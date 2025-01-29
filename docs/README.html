@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMT Stress Experiment Analysis Toolkit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+        }
+        h1, h2, h3, h4 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.95em;
+        }
+        pre {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #ccc;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>LMT Stress Experiment Analysis Toolkit</h1>
+    <p>A Python-based pipeline for behavioral identity analysis using LDA/PCA.</p>
+
+    <h2>Overview</h2>
+    <p>
+        This toolkit processes rodent behavioral data from LMT experiments to perform identity domain analysis via dimensionality reduction techniques (LDA/PCA).
+        Currently supports baseline analysis with three temporal resolutions:
+    </p>
+    <ul>
+        <li>12-hour intervals (night cycle)</li>
+        <li>4-hour chunks (circadian phases)</li>
+        <li>Hourly resolution</li>
+    </ul>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Python 3.8+ with packages: <code>pandas</code>, <code>numpy</code>, <code>scipy</code>, <code>scikit-learn</code>, <code>sqlite3</code>, <code>tkinter</code></li>
+        <li>SQLite databases containing raw event/animal data</li>
+        <li>DB Browser for SQLite (recommended for manual checks)</li>
+    </ul>
+
+    <h2>Pipeline Workflow</h2>
+
+    <h3>1. Event Filtering</h3>
+    <p><strong>Script:</strong> <code>Event_filtered.py</code></p>
+    <p><strong>Purpose:</strong> Create cleaned event data with timestamps.</p>
+    <p><strong>Steps:</strong></p>
+    <ol>
+        <li>Run script, select database via GUI</li>
+        <li>Set experiment start time using calendar prompt</li>
+    </ol>
+    <p><strong>Output:</strong></p>
+    <ul>
+        <li>Creates <code>EVENT_FILTERED</code> table</li>
+        <li>Excludes non-behavioral events (e.g., RFID errors, brief detections)</li>
+        <li>Merges adjacent events (&lt;1 sec apart)</li>
+        <li>Adds duration/frame metrics</li>
+    </ul>
+
+    <h3>2. Behavioral Feature Extraction</h3>
+    <p>Choose processor based on temporal resolution:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Script</th>
+                <th>Resolution</th>
+                <th>Use Case</th>
+                <th>Output Tables</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>behavior_processor.py</code></td>
+                <td>Per-experiment</td>
+                <td>Daily totals</td>
+                <td>BEHAVIOR_STATS, MULTI_MOUSE_EVENTS</td>
+            </tr>
+            <tr>
+                <td><code>behavior_processor_interval.py</code></td>
+                <td>12h intervals (7PM-7AM)</td>
+                <td>Night-cycle analysis</td>
+                <td>behavior_stats_intervals</td>
+            </tr>
+            <tr>
+                <td><code>behavior_processor_hourly.py</code></td>
+                <td>Hourly chunks</td>
+                <td>Flexible temporal analysis</td>
+                <td>behavior_hourly, group_events_hourly</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Key Features:</strong></p>
+    <ul>
+        <li>Separates dyadic interactions into active/passive counts</li>
+        <li>Tracks group behaviors (≥3 mice)</li>
+        <li>Imputes missing data using mouse-specific medians</li>
+    </ul>
+
+    <h3>3. Database Unification</h3>
+    <p><strong>Script:</strong> <code>lda_database_creator.py</code></p>
+    <p><strong>Purpose:</strong> Merge multiple experiments into one analysis-ready dataset.</p>
+    <p><strong>Steps:</strong></p>
+    <ol>
+        <li>Select source databases (GUI)</li>
+        <li>Choose output path</li>
+    </ol>
+    <p><strong>Output:</strong></p>
+    <ul>
+        <li>Merged SQLite database</li>
+        <li>Corresponding CSV file</li>
+    </ul>
+    <p><strong>Tip:</strong> Create separate merged DBs for different temporal resolutions</p>
+
+    <h3>4. Dimensionality Reduction Analysis</h3>
+    <p><strong>Scripts:</strong></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Script</th>
+                <th>Method</th>
+                <th>Temporal Resolution</th>
+                <th>Key Features</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>analysis_demo.py</code></td>
+                <td>LDA</td>
+                <td>12h intervals</td>
+                <td>Identity domain stability scoring</td>
+            </tr>
+            <tr>
+                <td><code>analysis_demo_4h.py</code></td>
+                <td>LDA</td>
+                <td>4h chunks</td>
+                <td>Circadian phase analysis</td>
+            </tr>
+            <tr>
+                <td><code>analysis_demo_pca.py</code></td>
+                <td>PCA</td>
+                <td>4h chunks</td>
+                <td>3D feature space projection</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Workflow:</strong></p>
+    <ol>
+        <li>Input merged CSV</li>
+        <li>Automated preprocessing:
+            <ul>
+                <li>Variance thresholding (remove low-variance features)</li>
+                <li>Correlation filtering (&gt;0.95 correlated features removed)</li>
+                <li>Standardization (Z-score normalization)</li>
+            </ul>
+        </li>
+    </ol>
+    <p><strong>Output:</strong></p>
+    <ul>
+        <li>Stability scores (LDA)</li>
+        <li>Projection coordinates in identity space</li>
+    </ul>
+
+    <h3>5. Post-Processing & Visualization</h3>
+    <p><strong>To be implemented</strong></p>
+    <p><strong>Suggested tools:</strong></p>
+    <ul>
+        <li>Plotly/Dash for interactive 3D plots</li>
+        <li>Seaborn for stability score heatmaps</li>
+    </ul>
+
+    <h2>Key Script Utilities</h2>
+    <ul>
+        <li><code>id_update.py</code>: Safely modify mouse IDs across tables</li>
+        <li><code>database_utils.py</code>: DB backup/verification functions</li>
+        <li><code>db_selector.py</code>: GUI-based database selection</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li>Backup databases before running processors</li>
+        <li>Validate outputs using DB Browser</li>
+        <li>For 4h analysis: Use <code>merged_for_lda_hourly.csv</code></li>
+        <li>For 12h analysis: Use <code>merged_for_lda_intervals.csv</code></li>
+    </ul>
+
+    <p>Based on Forkosh's Identity Domains concept (GitHub).</p>
+    <p>For support, contact [andreastivala.as@gmail.com/email].</p>
+</body>
+</html>
