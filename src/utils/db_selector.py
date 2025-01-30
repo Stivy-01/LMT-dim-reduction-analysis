@@ -61,6 +61,7 @@ def get_experiment_time():
         # Date selection
         from tkcalendar import Calendar
         top = tk.Toplevel(root)
+        top.title("Select Experiment Start Time")
         cal = Calendar(top, date_pattern='y-mm-dd')
         cal.pack(padx=10, pady=10)
 
@@ -68,25 +69,55 @@ def get_experiment_time():
         time_frame = tk.Frame(top)
         time_frame.pack(pady=5)
         
-        tk.Label(time_frame, text="Time (HH:MM:SS)").pack(side=tk.LEFT)
-        hour_var = tk.StringVar(value='09')
-        min_var = tk.StringVar(value='00')
-        sec_var = tk.StringVar(value='00')
+        tk.Label(time_frame, text="Time (HH:MM:SS) - 24h format").pack(side=tk.LEFT)
         
-        tk.Spinbox(time_frame, from_=0, to=23, width=2, textvariable=hour_var).pack(side=tk.LEFT)
+        # Create entry widgets for direct input
+        hour_var = tk.StringVar(value="16")  # Set initial value
+        min_var = tk.StringVar(value="30")   # Set initial value
+        sec_var = tk.StringVar(value="00")   # Set initial value
+        
+        def create_entry(frame, var, width=2):
+            entry = tk.Entry(frame, textvariable=var, width=width, justify=tk.CENTER)
+            entry.bind('<FocusIn>', lambda e: entry.selection_range(0, tk.END))
+            return entry
+        
+        hour_entry = create_entry(time_frame, hour_var)
+        hour_entry.pack(side=tk.LEFT)
+        hour_entry.insert(0, hour_var.get())  # Explicitly set the text
+        
         tk.Label(time_frame, text=":").pack(side=tk.LEFT)
-        tk.Spinbox(time_frame, from_=0, to=59, width=2, textvariable=min_var).pack(side=tk.LEFT)
+        min_entry = create_entry(time_frame, min_var)
+        min_entry.pack(side=tk.LEFT)
+        min_entry.insert(0, min_var.get())  # Explicitly set the text
+        
         tk.Label(time_frame, text=":").pack(side=tk.LEFT)
-        tk.Spinbox(time_frame, from_=0, to=59, width=2, textvariable=sec_var).pack(side=tk.LEFT)
+        sec_entry = create_entry(time_frame, sec_var)
+        sec_entry.pack(side=tk.LEFT)
+        sec_entry.insert(0, sec_var.get())  # Explicitly set the text
 
         # Confirmation
         selected_time = None
         def on_confirm():
             nonlocal selected_time
-            date_str = cal.get_date()
-            time_str = f"{hour_var.get().zfill(2)}:{min_var.get().zfill(2)}:{sec_var.get().zfill(2)}"
-            selected_time = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
-            top.destroy()
+            try:
+                date_str = cal.get_date()
+                
+                # Get the actual values from the entries
+                hour = int(hour_entry.get())
+                minute = int(min_entry.get())
+                second = int(sec_entry.get())
+                
+                # Validate ranges
+                if not (0 <= hour <= 23 and 0 <= minute <= 59 and 0 <= second <= 59):
+                    raise ValueError("Time values out of range")
+                
+                time_str = f"{hour:02d}:{minute:02d}:{second:02d}"
+                print(f"Final time string: {time_str}")
+                selected_time = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
+                top.destroy()
+            except ValueError as e:
+                print(f"Error details: {str(e)}")  # Print the actual error
+                tk.messagebox.showerror("Error", f"Invalid time values. Please check your input.\nHour: {hour_entry.get()}\nMinute: {min_entry.get()}\nSecond: {sec_entry.get()}")
 
         tk.Button(top, text="Confirm", command=on_confirm).pack(pady=5)
         root.wait_window(top)
@@ -96,8 +127,8 @@ def get_experiment_time():
         # Fallback to text input
         root.destroy()
         while True:
-            time_str = input("Enter experiment start (YYYY-MM-DD HH:MM:SS): ")
+            time_str = input("Enter experiment start (YYYY-MM-DD HH:MM:SS) - 24h format: ")
             try:
                 return datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
             except ValueError:
-                print("Invalid format! Please use YYYY-MM-DD HH:MM:SS") 
+                print("Invalid format! Please use YYYY-MM-DD HH:MM:SS in 24h format") 
