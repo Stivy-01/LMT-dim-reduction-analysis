@@ -1,6 +1,8 @@
 # LMT Dimensionality Reduction Analysis Toolkit
 A Python-based pipeline for behavioral identity analysis using LDA/PCA.
 
+> 📚 **New to this toolkit?** Check out our [Setup Guide](../SETUP_GUIDE.md) for detailed installation and getting started instructions!
+
 ## Overview
 
 This toolkit processes rodent behavioral data from LMT experiments to perform identity domain analysis via dimensionality reduction techniques (LDA/PCA). Currently supports baseline analysis with three temporal resolutions:
