@@ -4,6 +4,13 @@ import os
 import sys
 from pathlib import Path
 import sqlite3
+
+# Add the project root to the Python path
+current_file = Path(os.path.abspath(__file__))
+project_root = current_file.parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from src.utils.db_selector import get_db_path, get_experiment_time
 
 EXCLUDED_BEHAVIORS = [
