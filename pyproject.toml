@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lda"
+version = "0.1"
+description = "LMT Data Analysis Package"
+authors = [
+    {name = "Andrea Papaleo"}
+]
+requires-python = ">=3.6"
+dependencies = [
+    "pandas",
+    "numpy",
+    "pathlib",
+]
+
+[tool.setuptools]
+packages = ["src"] 
