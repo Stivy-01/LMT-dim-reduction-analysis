@@ -1,11 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-LMT Analysis Package
-===================
+LMT Dimensionality Reduction Analysis Toolkit
+===========================================
 
-This package provides tools for analyzing Laboratory Mouse Tracker (LMT) data.
-It includes modules for data preprocessing, behavior analysis, visualization,
-and database management.
+This toolkit provides advanced analysis tools for Laboratory Mouse Tracker (LMT) data,
+focusing on dimensionality reduction techniques for behavioral analysis. It includes
+modules for data preprocessing, behavior analysis, visualization, and database management.
+
+The toolkit supports multiple temporal resolutions:
+- 12-hour intervals (night cycle)
+- 4-hour chunks (circadian phases)
+- Hourly resolution
+
+Main components:
+- Preprocessing: Event filtering and data cleaning
+- Behavior Analysis: Feature extraction and processing
+- Dimensionality Reduction: LDA/PCA analysis
+- Visualization: Interactive plots and data exploration
 """
 
 import os
@@ -14,8 +25,10 @@ import logging
 from pathlib import Path
 
 # Package metadata
-__version__ = '0.1.0'
-__author__ = 'Andrea Papaleo Lab'
+__version__ = "0.1.0"
+__author__ = 'Andrea Stivala'
+__email__ = 'andreastivala.as@gmail.com'
+__package_name__ = "LMT Dimensionality Reduction Analysis Toolkit"
 
 def initialize_logging():
     """Initialize logging configuration"""
@@ -46,14 +59,16 @@ def initialize_logging():
 
 # Initialize package
 logger = initialize_logging()
-logger.info(f"LMT Analysis Package v{__version__} initialized")
+logger.info(f"{__package_name__} v{__version__} initialized")
 logger.debug(f"Running in {os.getenv('LMT_ENV', 'development')} mode")
 
 # Define public interface
 __all__ = [
     'config',
     '__version__',
-    '__author__'
+    '__author__',
+    '__email__',
+    '__package_name__'
 ]
 
 # Import config module
