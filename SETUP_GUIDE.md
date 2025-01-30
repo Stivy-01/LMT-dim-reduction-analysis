@@ -39,17 +39,10 @@ pip install numpy==1.23.5
 # 2. Then scipy
 pip install scipy>=1.9.0
 
-# 3. Finally, all other requirements
-pip install -r requirements.txt
-```
-
-### 4. Install the Package
-```bash
-# Install in development mode (recommended for users who might modify the code)
-pip install -e .
-
-# Or install in regular mode
-pip install .
+# 3. Finally, install the package
+pip install -e .  # for development mode (recommended)
+# OR
+pip install .    # for regular installation
 ```
 
 After installation, you can import the package in Python:
@@ -60,7 +53,7 @@ from lmt_analysis.behavior import behavior_processor
 from lmt_analysis.visualization import identity_space_plotter
 ```
 
-### 5. Verify Installation
+### 4. Verify Installation
 ```python
 # Create a test script (test_installation.py)
 from lmt_analysis.utils import test_setup
