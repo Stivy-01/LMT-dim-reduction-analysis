@@ -4,6 +4,9 @@ import os
 import sys
 from pathlib import Path
 import sqlite3
+import tkinter as tk
+from tkinter import messagebox, filedialog
+from tkcalendar import Calendar
 
 # Add the project root to the Python path
 current_file = Path(os.path.abspath(__file__))
