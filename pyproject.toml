@@ -12,6 +12,13 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
+classifiers = [  # MOVED HERE
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.8",
+]
 dependencies = [
     "numpy==1.23.5",
     "scipy>=1.9.0",
@@ -20,19 +27,12 @@ dependencies = [
     "plotly>=5.13.0",
     "tkcalendar>=1.6.1",
     "seaborn>=0.12.2",
-    "pathlib",
+    # REMOVED "pathlib"
 ]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["src"]
+packages = ["database", "utils", "analysis", "behavior"]
 
 [tool.setuptools.dynamic]
 version = {attr = "src.__version__"}
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering :: Bio-Informatics",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.8",
-] 
