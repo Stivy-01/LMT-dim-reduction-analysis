@@ -13,205 +13,223 @@ if str(project_root) not in sys.path:
 # Now we can import our modules
 import json
 from collections import defaultdict
+from datetime import datetime, timedelta
 import pandas as pd
-from src.utils.db_selector import get_db_path, get_date_from_filename
+from src.utils.db_selector import get_db_path
 from src.utils.database_utils import get_db_connection, verify_table_structure
+import numpy as np
 
 def print_flush(*args, **kwargs):
-    """Print and flush immediately"""
     print(*args, **kwargs)
     sys.stdout.flush()
 
 class BehaviorProcessor:
     def __init__(self, db_path):
         self.db_path = db_path
-        self.date = get_date_from_filename(db_path)
         self.conn = get_db_connection(db_path)
-        
-        # Get actual mouse IDs from ANIMAL table
         self.all_mice = self.get_animal_ids()
         
     def get_animal_ids(self):
-        """Fetch actual mouse IDs from ANIMAL table"""
         query = "SELECT ID FROM ANIMAL"
         df = pd.read_sql(query, self.conn)
-        return sorted(df['ID'].tolist())  
+        return sorted(df['ID'].tolist())
     
     def process_events(self):
         print(f"\n🔍 Processing: {Path(self.db_path).name}")
-        # Get all events with necessary information
         query = """
         SELECT id, idanimalA, idanimalB, idanimalC, idanimalD, name, 
-               startframe, endframe, event_start_datetime
+               startframe, endframe, event_start_datetime, duration_seconds
         FROM EVENT_FILTERED
         """
         events_df = pd.read_sql(query, self.conn)
         print_flush(f"Loaded {len(events_df)} events")
-        print(f"✅ Completed: {self.db_path}")
-        # Initialize dictionaries to store behavior counts
-        behavior_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
-        group_behavior_counts = defaultdict(lambda: defaultdict(int))
 
-        print_flush("Processing events...")
-        for _, row in events_df.iterrows():
-            participants = [int(row[f'idanimal{letter}']) for letter in ['A', 'B', 'C', 'D'] 
-                          if pd.notnull(row[f'idanimal{letter}'])]
-            
-            # Handle group events
-            if len(participants) >= 3 or row['name'].startswith('Nest'):
-                participants = sorted(participants)
-                participants_key = json.dumps(participants)
-                
-                # Add to multi-mouse events table
-                group_behavior_counts[participants_key][row['name']] += 1
-                
-                # SPECIAL HANDLING FOR GROUP3
-                if len(participants) == 3:
-                    # Find isolated mouse (the one not in participants)
-                    isolated_mouse = [m for m in self.all_mice if m not in participants]
-                    if isolated_mouse:
-                        # Track isolation in individual stats
-                        behavior_counts[isolated_mouse[0]]['isolated']['count'] += 1
-            
-            # Pairwise events
-            elif len(participants) == 2:
-                animal_a, animal_b = participants[0], participants[1]
-                # Active count for initiator
-                behavior_counts[int(animal_a)][row['name']]['active'] += 1
-                # Passive count for receiver
-                behavior_counts[int(animal_b)][row['name']]['passive'] += 1
-            
-            # Individual events
-            elif len(participants) == 1:
-                animal = participants[0]
-                behavior_counts[int(animal)][row['name']]['count'] += 1
-
-        # Process BEHAVIOR_STATS table
-        print_flush("Creating behavior stats table...")
-        
-        # Get unique behaviors
+        # Initialize data structures
+        behavior_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {'count': 0}))))
+        behavior_durations = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {'total_duration': 0.0, 'durations': []})))
+        group_behavior_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {'count': 0, 'total_duration': 0.0, 'durations': []})))
+        interval_strs = set()
         all_behaviors = set()
         pairwise_behaviors = set()
         individual_behaviors = set()
-        
-        for mouse_behaviors in behavior_counts.values():
-            for behavior, counts in mouse_behaviors.items():
-                if 'active' in counts:
-                    pairwise_behaviors.add(behavior)
-                else:
-                    individual_behaviors.add(behavior)
+        group_behaviors = set()
+
+        # Determine the interval start time based on the first event in the dataset
+        first_event_time = pd.to_datetime(events_df['event_start_datetime'].min())
+        interval_start = first_event_time.replace(minute=0, second=0)
+        interval_str = interval_start.strftime('%Y-%m-%d %H:%M:%S')
+        interval_strs.add(interval_str)
+
+        # Process each event
+        for _, row in events_df.iterrows():
+            event_time_str = row['event_start_datetime']
+            try:
+                event_time = datetime.strptime(event_time_str, '%Y-%m-%d %H:%M:%S')
+            except:
+                continue
+
+            # No time filtering, since all events are grouped into a single interval
+            participants = [int(row[f'idanimal{letter}']) for letter in ['A', 'B', 'C', 'D'] 
+                            if pd.notnull(row[f'idanimal{letter}'])]
+            behavior = row['name']
+            duration = row['duration_seconds']
+
+            # Handle group events
+            if len(participants) >= 3 or behavior.startswith('Nest'):
+                participants_key = json.dumps(sorted(participants))
+                group_behavior_counts[interval_str][participants_key][behavior]['count'] += 1
+                group_behavior_counts[interval_str][participants_key][behavior]['total_duration'] += duration
+                group_behavior_counts[interval_str][participants_key][behavior]['durations'].append(duration)
+                group_behaviors.add(behavior)
+                
+                # Handle isolation for groups of 3
+                if len(participants) == 3:
+                    isolated = [m for m in self.all_mice if m not in participants]
+                    if isolated:
+                        behavior_counts[interval_str][isolated[0]]['isolated']['count']['count'] += 1
+                        behavior_durations[interval_str][isolated[0]]['isolated']['total_duration'] += duration
+                        behavior_durations[interval_str][isolated[0]]['isolated']['durations'].append(duration)
+                        all_behaviors.add('isolated')
+            elif len(participants) == 2:
+                animal_a, animal_b = participants[0], participants[1]
+                # Active count for initiator
+                behavior_counts[interval_str][animal_a][behavior]['active']['count'] += 1
+                # Passive count for receiver
+                behavior_counts[interval_str][animal_b][behavior]['passive']['count'] += 1
+                # Store duration once per behavior instance
+                behavior_durations[interval_str][behavior][f"{animal_a}_{animal_b}"]['total_duration'] += duration
+                behavior_durations[interval_str][behavior][f"{animal_a}_{animal_b}"]['durations'].append(duration)
+                pairwise_behaviors.add(behavior)
+                all_behaviors.add(behavior)
+            elif len(participants) == 1:
+                mouse = participants[0]
+                behavior_counts[interval_str][mouse][behavior]['count']['count'] += 1
+                behavior_durations[interval_str][mouse][behavior]['total_duration'] += duration
+                behavior_durations[interval_str][mouse][behavior]['durations'].append(duration)
+                individual_behaviors.add(behavior)
                 all_behaviors.add(behavior)
 
-        # Create columns for the BEHAVIOR_STATS table
-        behavior_columns = ["mouse_id INTEGER", "date TEXT"]
+        # Create tables
+        behavior_columns = ["mouse_id INTEGER", "interval_start TEXT"]
         for behavior in sorted(all_behaviors):
             if behavior in pairwise_behaviors:
+                for suffix in ['active', 'passive']:
+                    behavior_columns.append(f"{self.sanitize(behavior + '_' + suffix + '_count')} INTEGER DEFAULT 0")
+                # Duration columns stored once per behavior
                 behavior_columns.extend([
-                    f"{self.sanitize_column_name(behavior + '_active')} INTEGER DEFAULT 0",
-                    f"{self.sanitize_column_name(behavior + '_passive')} INTEGER DEFAULT 0"
+                    f"{self.sanitize(behavior + '_total_duration')} REAL DEFAULT 0",
+                    f"{self.sanitize(behavior + '_mean_duration')} REAL DEFAULT 0",
+                    f"{self.sanitize(behavior + '_median_duration')} REAL DEFAULT 0",
+                    f"{self.sanitize(behavior + '_std_duration')} REAL DEFAULT 0"
                 ])
             else:
-                behavior_columns.append(f"{self.sanitize_column_name(behavior)} INTEGER DEFAULT 0")
-        behavior_columns.append("PRIMARY KEY (mouse_id, date)")
+                behavior_columns.extend([
+                    f"{self.sanitize(behavior + '_count')} INTEGER DEFAULT 0",
+                    f"{self.sanitize(behavior + '_total_duration')} REAL DEFAULT 0",
+                    f"{self.sanitize(behavior + '_mean_duration')} REAL DEFAULT 0",
+                    f"{self.sanitize(behavior + '_median_duration')} REAL DEFAULT 0",
+                    f"{self.sanitize(behavior + '_std_duration')} REAL DEFAULT 0"
+                ])
+        behavior_columns.append("PRIMARY KEY (mouse_id, interval_start)")
 
-        # Get unique group behaviors
-        group_behaviors = set()
-        for behaviors in group_behavior_counts.values():
-            group_behaviors.update(behaviors.keys())
+        # Create MULTI_MOUSE_EVENTS table
+        group_columns = ["participants TEXT", "interval_start TEXT"]
+        for behavior in sorted(group_behaviors):
+            group_columns.extend([
+                f"{self.sanitize(behavior + '_count')} INTEGER DEFAULT 0",
+                f"{self.sanitize(behavior + '_total_duration')} REAL DEFAULT 0",
+                f"{self.sanitize(behavior + '_mean_duration')} REAL DEFAULT 0",
+                f"{self.sanitize(behavior + '_median_duration')} REAL DEFAULT 0",
+                f"{self.sanitize(behavior + '_std_duration')} REAL DEFAULT 0"
+            ])
+        group_columns.append("PRIMARY KEY (participants, interval_start)")
 
-        # Create columns for the MULTI_MOUSE_EVENTS table
-        group_columns = ["participants TEXT", "date TEXT"]
-        group_columns.extend([f"{self.sanitize_column_name(behavior)} INTEGER DEFAULT 0" 
-                            for behavior in sorted(group_behaviors)])
-        group_columns.append("PRIMARY KEY (participants, date)")
-
-        # Create tables
-        create_stats_table = f"""
-            CREATE TABLE IF NOT EXISTS BEHAVIOR_STATS (
-                {', '.join(behavior_columns)}
-            )
-        """
-        create_group_table = f"""
-            CREATE TABLE IF NOT EXISTS MULTI_MOUSE_EVENTS (
-                {', '.join(group_columns)}
-            )
-        """
-        
-        print_flush("Creating tables with columns:")
-        print_flush("BEHAVIOR_STATS columns:")
-        print_flush(behavior_columns)
-        print_flush("\nMULTI_MOUSE_EVENTS columns:")
-        print_flush(group_columns)
-        
         with self.conn:
             self.conn.execute("DROP TABLE IF EXISTS BEHAVIOR_STATS")
-            self.conn.execute(create_stats_table)
+            self.conn.execute(f"CREATE TABLE BEHAVIOR_STATS ({', '.join(behavior_columns)})")
             
             self.conn.execute("DROP TABLE IF EXISTS MULTI_MOUSE_EVENTS")
-            self.conn.execute(create_group_table)
+            self.conn.execute(f"CREATE TABLE MULTI_MOUSE_EVENTS ({', '.join(group_columns)})")
 
-        # Insert behavior stats with transaction
+        # Insert behavior stats
         print_flush("Inserting behavior statistics...")
-        with self.conn:  # Transaction block
-            for mouse_id in self.all_mice:
-                values = [mouse_id, self.date]
-                for behavior in sorted(all_behaviors):
-                    if behavior in pairwise_behaviors:
-                        values.extend([
-                            behavior_counts[mouse_id][behavior].get('active', 0),
-                            behavior_counts[mouse_id][behavior].get('passive', 0)
-                        ])
-                    else:
-                        values.append(behavior_counts[mouse_id][behavior].get('count', 0))
-                
-                placeholders = ','.join(['?' for _ in range(len(values))])
-                columns = ['mouse_id', 'date']
-                for behavior in sorted(all_behaviors):
-                    if behavior in pairwise_behaviors:
-                        columns.extend([
-                            self.sanitize_column_name(behavior + '_active'),
-                            self.sanitize_column_name(behavior + '_passive')
-                        ])
-                    else:
-                        columns.append(self.sanitize_column_name(behavior))
-                
-                insert_query = f"""
-                    INSERT INTO BEHAVIOR_STATS 
-                    ({','.join(columns)})
-                    VALUES ({placeholders})
-                """
-                self.conn.execute(insert_query, values)
+        with self.conn:
+            for interval_str in sorted(interval_strs):
+                for mouse_id in self.all_mice:
+                    values = [
+                        int(mouse_id),  # Ensure mouse_id is integer
+                        str(interval_str)  # Ensure interval is string
+                    ]
+                    for behavior in sorted(all_behaviors):
+                        if behavior in pairwise_behaviors:
+                            # Add active and passive counts
+                            for suffix in ['active', 'passive']:
+                                count = behavior_counts[interval_str][mouse_id][behavior][suffix]['count']
+                                values.append(int(count))  # Ensure count is integer
+                            
+                            # Add duration statistics (stored once per behavior)
+                            behavior_dur = behavior_durations[interval_str][behavior]
+                            # Collect all durations where this mouse was involved
+                            mouse_durations = []
+                            for pair, stats in behavior_dur.items():
+                                if str(mouse_id) in pair:  # If mouse was part of this interaction
+                                    mouse_durations.extend(stats['durations'])
+                            
+                            # Convert all duration stats to float
+                            values.extend([
+                                float(sum(mouse_durations)) if mouse_durations else 0.0,  # total_duration
+                                float(np.mean(mouse_durations)) if mouse_durations else 0.0,  # mean
+                                float(np.median(mouse_durations)) if mouse_durations else 0.0,  # median
+                                float(np.std(mouse_durations)) if len(mouse_durations) > 1 else 0.0  # std
+                            ])
+                        else:
+                            # Individual behaviors
+                            count = behavior_counts[interval_str][mouse_id][behavior]['count']['count']
+                            values.append(int(count))  # Ensure count is integer
+                            durations = behavior_durations[interval_str][mouse_id][behavior]['durations']
+                            
+                            # Convert all duration stats to float
+                            values.extend([
+                                float(behavior_durations[interval_str][mouse_id][behavior]['total_duration']),
+                                float(np.mean(durations)) if durations else 0.0,
+                                float(np.median(durations)) if durations else 0.0,
+                                float(np.std(durations)) if len(durations) > 1 else 0.0
+                            ])
+                    
+                    placeholders = ','.join(['?' for _ in range(len(values))])
+                    columns = ['mouse_id', 'interval_start']
+                    for behavior in sorted(all_behaviors):
+                        if behavior in pairwise_behaviors:
+                            for suffix in ['active', 'passive']:
+                                columns.append(self.sanitize(behavior + '_' + suffix + '_count'))
+                            # Duration columns (once per behavior)
+                            columns.extend([
+                                self.sanitize(behavior + '_total_duration'),
+                                self.sanitize(behavior + '_mean_duration'),
+                                self.sanitize(behavior + '_median_duration'),
+                                self.sanitize(behavior + '_std_duration')
+                            ])
+                        else:
+                            columns.extend([
+                                self.sanitize(behavior + '_count'),
+                                self.sanitize(behavior + '_total_duration'),
+                                self.sanitize(behavior + '_mean_duration'),
+                                self.sanitize(behavior + '_median_duration'),
+                                self.sanitize(behavior + '_std_duration')
+                            ])
+                    
+                    insert_query = f"""
+                        INSERT INTO BEHAVIOR_STATS 
+                        ({','.join(columns)})
+                        VALUES ({placeholders})
+                    """
+                    self.conn.execute(insert_query, values)
 
-        # Insert group events with transaction
-        print_flush("Inserting group events statistics...")
-        with self.conn:  # Transaction block
-            for participants_key, behaviors in group_behavior_counts.items():
-                values = [participants_key, self.date]
-                for behavior in sorted(group_behaviors):
-                    values.append(behaviors.get(behavior, 0))
-                
-                placeholders = ','.join(['?' for _ in range(len(values))])
-                columns = ['participants', 'date']
-                columns.extend([self.sanitize_column_name(b) for b in sorted(group_behaviors)])
-                
-                insert_query = f"""
-                    INSERT INTO MULTI_MOUSE_EVENTS 
-                    ({','.join(columns)})
-                    VALUES ({placeholders})
-                """
-                self.conn.execute(insert_query, values)
-
-        print_flush("✅ Processing complete!")
-
-    def sanitize_column_name(self, name):
-        """Convert behavior name to valid SQLite column name"""
-        sanitized = name.replace(' ', '_')
-        sanitized = sanitized.replace('-', '_')
-        sanitized = sanitized.replace(',', '')
-        sanitized = sanitized.replace('(', '')
-        sanitized = sanitized.replace(')', '')
+    def sanitize(self, name):
+        sanitized = name.replace(' ', '_').replace('-', '_').replace(',', '')
+        sanitized = ''.join(c for c in sanitized if c not in '()')
         if not sanitized[0].isalpha():
-            sanitized = 'behavior_' + sanitized
+            sanitized = 'b_' + sanitized
         return sanitized
 
 def main():
@@ -224,10 +242,7 @@ def main():
         verify_table_structure(processor.conn)
 
         print_flush("\nSample BEHAVIOR_STATS:")
-        stats = pd.read_sql("SELECT * FROM BEHAVIOR_STATS LIMIT 5", processor.conn)
-        print_flush(stats)
-        print_flush("\nBEHAVIOR_STATS columns:")
-        print_flush(stats.columns.tolist())
+        print_flush(pd.read_sql("SELECT * FROM BEHAVIOR_STATS LIMIT 5", processor.conn))
 
         print_flush("\nSample MULTI_MOUSE_EVENTS:")
         print_flush(pd.read_sql("SELECT * FROM MULTI_MOUSE_EVENTS LIMIT 5", processor.conn))

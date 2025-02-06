@@ -23,7 +23,8 @@ from src.utils.database_utils import (
     record_merge,
     merge_tables,
     get_table_mapping,
-    validate_schema
+    validate_schema,
+    add_missing_columns
 )
 
 DEFAULT_MERGED_DB = "merged_analysis.sqlite"
@@ -31,16 +32,29 @@ DEFAULT_MERGED_DB = "merged_analysis.sqlite"
 def conversion_to_csv(conn, db_path, table_name):
     """Convert specified table from database to CSV"""
     try:
-        # Generate CSV path based on database path
-        csv_path = os.path.splitext(db_path)[0] + ".csv"
+        # Create src/data directory if it doesn't exist
+        data_dir = project_root / 'src' / 'data'
+        data_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Generate CSV path in the src/data directory
+        db_name = Path(db_path).stem  # Get database name without extension
+        csv_path = data_dir / f"{db_name}_{table_name}.csv"
         
         # Load data into pandas DataFrame
-        query = f"SELECT * FROM {table_name};"
+        query = f'SELECT * FROM "{table_name}"'
         df = pd.read_sql_query(query, conn)
         
         # Save to CSV
         df.to_csv(csv_path, index=False)
         print(f"✅ Successfully created CSV at: {csv_path}")
+        
+        # Print summary statistics
+        if 'interval_start' in df.columns and 'mouse_id' in df.columns:
+            print(f"\nCSV Summary Statistics:")
+            print(f"Total rows: {len(df)}")
+            print(f"Unique intervals: {df['interval_start'].nunique()}")
+            print(f"Unique mice: {df['mouse_id'].nunique()}")
+        
         return True
     except Exception as e:
         print(f"❌ CSV conversion error: {str(e)}")
@@ -163,27 +177,85 @@ def main():
     try:
         # Get analysis type from user
         root = tk.Tk()
-        root.withdraw()
+        root.title("LMT Analysis Type Selection")
+        root.geometry("400x350")
         
-        table_type = simpledialog.askinteger(
-            "Analysis Type",
-            "Choose analysis type (enter a number):\n\n" +
-            "1: Hourly Analysis\n" +
-            "   - behavior_hourly\n" +
-            "   - group_events_hourly\n\n" +
-            "2: Interval Analysis\n" +
-            "   - behavior_stats_intervals\n" +
-            "   - MULTI_MOUSE_EVENTS\n\n" +
-            "3: Daily Analysis\n" +
-            "   - BEHAVIOR_STATS\n" +
-            "   - MULTI_MOUSE_EVENTS",
-            minvalue=1, maxvalue=3
-        )
+        # Create a frame for better layout
+        frame = tk.Frame(root, padx=20, pady=20)
+        frame.pack(expand=True, fill='both')
         
-        if not table_type:
+        # Add a label
+        tk.Label(
+            frame,
+            text="Choose analysis type:",
+            font=('Helvetica', 12, 'bold')
+        ).pack(pady=(0, 20))
+        
+        # Variable to store selection
+        selected_type = [0]  # Using list to store value that can be modified in closure
+        
+        def make_selection(choice):
+            analysis_types = {
+                1: "Hourly Analysis",
+                2: "Interval Analysis (12-hour)",
+                3: "Daily Analysis"
+            }
+            confirm = messagebox.askokcancel(
+                "Confirm Analysis Type",
+                f"You selected: {analysis_types[choice]}\n\n"
+                "Click OK to proceed to database selection\n"
+                "Click Cancel to change selection"
+            )
+            if confirm:
+                selected_type[0] = choice
+                root.quit()
+        
+        # Analysis type buttons
+        tk.Button(
+            frame,
+            text="1: Hourly Analysis\n- behavior_hourly\n- group_events_hourly",
+            command=lambda: make_selection(1),
+            font=('Helvetica', 10),
+            width=40,
+            height=3,
+            relief=tk.RAISED,
+            bg='#E8E8E8'
+        ).pack(pady=10)
+        
+        tk.Button(
+            frame,
+            text="2: Interval Analysis (12-hour)\n- behavior_stats_intervals\n- multi_mouse_events_intervals",
+            command=lambda: make_selection(2),
+            font=('Helvetica', 10),
+            width=40,
+            height=3,
+            relief=tk.RAISED,
+            bg='#E8E8E8'
+        ).pack(pady=10)
+        
+        tk.Button(
+            frame,
+            text="3: Daily Analysis\n- BEHAVIOR_STATS\n- MULTI_MOUSE_EVENTS",
+            command=lambda: make_selection(3),
+            font=('Helvetica', 10),
+            width=40,
+            height=3,
+            relief=tk.RAISED,
+            bg='#E8E8E8'
+        ).pack(pady=10)
+        
+        # Run the window
+        root.mainloop()
+        
+        # Get the selected value and cleanup
+        final_selection = selected_type[0]
+        root.destroy()
+        
+        if not final_selection:
             raise ValueError("No analysis type selected")
         
         # Select source databases
+        print(f"\nSelected Analysis Type: {final_selection}")
         print("Select source databases or folder containing databases...")
         db_paths = get_db_path()
         if not db_paths:
@@ -193,7 +265,7 @@ def main():
         valid_dbs = []
         table_names_map = {}  # Store table names for each valid database
         for db_path in db_paths:
-            is_valid, found_tables = verify_database(db_path, table_type)
+            is_valid, found_tables = verify_database(db_path, final_selection)
             if is_valid:
                 valid_dbs.append(db_path)
                 table_names_map[db_path] = found_tables
@@ -232,23 +304,37 @@ def main():
         setup_metadata_table(conn)
         
         # Always ensure tables exist, whether new or existing database
-        create_target_tables(conn, table_type, valid_dbs[0], table_names_map[valid_dbs[0]])
+        create_target_tables(conn, final_selection, valid_dbs[0], table_names_map[valid_dbs[0]])
         
         # Process each source database
         processed_count = 0
         for db_path in valid_dbs:
-            if is_source_processed(conn, db_path, table_type):
+            if is_source_processed(conn, db_path, final_selection):
                 print(f"Skipping already processed: {Path(db_path).name}")
                 continue
                 
             print(f"Processing: {Path(db_path).name}")
-            if merge_tables(conn, db_path, table_type, table_names_map[db_path]):
-                record_merge(conn, db_path, table_type)
+            if merge_tables(conn, db_path, final_selection, table_names_map[db_path]):
+                record_merge(conn, db_path, final_selection)
                 processed_count += 1
         
         conn.commit()
         print(f"\n✅ Successfully processed {processed_count} new databases")
         print(f"Merged database location: {merged_db_path}")
+        
+        # Export to CSV files
+        print("\nCreating CSV files...")
+        if final_selection == 1:  # Hourly Analysis
+            conversion_to_csv(conn, merged_db_path, "behavior_hourly")
+            conversion_to_csv(conn, merged_db_path, "group_events_hourly")
+        elif final_selection == 2:  # Interval Analysis
+            conversion_to_csv(conn, merged_db_path, "behavior_stats_intervals")
+            conversion_to_csv(conn, merged_db_path, "multi_mouse_events_intervals")
+        elif final_selection == 3:  # Daily Analysis
+            conversion_to_csv(conn, merged_db_path, "BEHAVIOR_STATS")
+            conversion_to_csv(conn, merged_db_path, "MULTI_MOUSE_EVENTS")
+        
+        print("\nProcess complete! Check the output directory for your merged database and CSV files.")
         
         # Show table statistics using actual table names from first database
         first_db_tables = table_names_map[valid_dbs[0]]

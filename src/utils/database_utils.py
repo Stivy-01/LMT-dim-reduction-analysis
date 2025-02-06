@@ -92,44 +92,23 @@ def get_table_mapping():
     """Get mapping of analysis types to their required tables."""
     return {
         1: ['behavior_hourly', 'group_events_hourly'],
-        2: ['behavior_stats_intervals', 'MULTI_MOUSE_EVENTS',  # Original names
-           'BEHAVIOR_STATS_INTERVALS', 'Multi_Mouse_Events'],  # Common variations
-        3: ['BEHAVIOR_STATS', 'MULTI_MOUSE_EVENTS',
-           'behavior_stats', 'Multi_Mouse_Events']
+        2: ['behavior_stats_intervals', 'multi_mouse_events_intervals'],  # Changed to match actual table names
+        3: ['BEHAVIOR_STATS', 'MULTI_MOUSE_EVENTS']
     }
 
 def merge_tables(target_conn, source_path, table_type, table_names_map):
-    """Merge tables from source database into target database.
-    
-    Args:
-        target_conn: Connection to the target database
-        source_path: Path to the source database
-        table_type: Type of analysis (1, 2, or 3)
-        table_names_map: Dictionary mapping lowercase table names to actual names in the source DB
-    """
+    """Merge tables from source database into target database."""
     source_conn = sqlite3.connect(source_path)
     cursor = target_conn.cursor()
     
     try:
-        # Attach source database with a unique alias to avoid conflicts
-        db_name = Path(source_path).stem.replace(" ", "_").replace("-", "_")
-        safe_alias = f"source_{db_name}"
-        
-        # First detach if already attached (cleanup from previous errors)
-        try:
-            cursor.execute(f"DETACH DATABASE IF EXISTS {safe_alias}")
-        except:
-            pass
-            
-        # Attach the source database
-        cursor.execute(f"ATTACH DATABASE ? AS {safe_alias}", (source_path,))
-        
         # Get the required tables for this type
         required_tables_lower = {t.lower() for t in get_table_mapping()[table_type]}
         
         # Process each required table using its actual name in the source
         for table_lower in required_tables_lower:
             actual_table_name = table_names_map[table_lower]
+            print(f"\nProcessing table: {actual_table_name}")
             
             # Validate schema
             schema_status = validate_schema(source_conn, target_conn, actual_table_name)
@@ -138,27 +117,53 @@ def merge_tables(target_conn, source_path, table_type, table_names_map):
                 if schema_status['missing_in_target']:
                     add_missing_columns(target_conn, actual_table_name, schema_status['missing_in_target'])
             
-            # Get columns that exist in both source and target
-            source_cols = set(get_table_columns(source_conn, actual_table_name))
-            target_cols = set(get_table_columns(target_conn, actual_table_name))
-            common_cols = sorted(list(source_cols & target_cols))
-            
-            if not common_cols:
-                print(f"Warning: No common columns found for table {actual_table_name}")
-                continue
+            # Read data from source and target
+            try:
+                source_df = pd.read_sql_query(f'SELECT * FROM "{actual_table_name}"', source_conn)
+                print(f"Read {len(source_df)} rows from source")
                 
-            column_list = ', '.join(common_cols)
-            
-            # Perform merge using UPSERT pattern
-            print(f"Merging data for table: {actual_table_name}")
-            cursor.execute(f"""
-                INSERT OR IGNORE INTO [{actual_table_name}] ({column_list})
-                SELECT {column_list} 
-                FROM {safe_alias}.[{actual_table_name}]
-            """)
-            
-            rows_added = cursor.rowcount
-            print(f"Added {rows_added} new rows to {actual_table_name}")
+                try:
+                    target_df = pd.read_sql_query(f'SELECT * FROM "{actual_table_name}"', target_conn)
+                    print(f"Read {len(target_df)} rows from target")
+                except:
+                    target_df = pd.DataFrame()  # Empty DataFrame if table doesn't exist
+                    print("No existing data in target")
+                
+                # Show data distribution before merge
+                if 'interval_start' in source_df.columns and 'mouse_id' in source_df.columns:
+                    print("\nSource data stats:")
+                    print(f"Unique intervals: {source_df['interval_start'].nunique()}")
+                    print(f"Unique mice: {source_df['mouse_id'].nunique()}")
+                    if not target_df.empty:
+                        print("\nTarget data stats:")
+                        print(f"Unique intervals: {target_df['interval_start'].nunique()}")
+                        print(f"Unique mice: {target_df['mouse_id'].nunique()}")
+                
+                # Combine data
+                combined_df = pd.concat([target_df, source_df], ignore_index=True)
+                print(f"\nCombined into {len(combined_df)} rows")
+                
+                # Remove exact duplicates
+                combined_df = combined_df.drop_duplicates()
+                print(f"After removing duplicates: {len(combined_df)} rows")
+                
+                # Show final stats
+                if 'interval_start' in combined_df.columns and 'mouse_id' in combined_df.columns:
+                    print("\nFinal data stats:")
+                    print(f"Unique intervals: {combined_df['interval_start'].nunique()}")
+                    print(f"Unique mice: {combined_df['mouse_id'].nunique()}")
+                
+                # Replace existing data with merged data
+                cursor.execute(f'DROP TABLE IF EXISTS "{actual_table_name}"')
+                combined_df.to_sql(actual_table_name, target_conn, if_exists='replace', index=False)
+                
+                # Verify the merge
+                verification_df = pd.read_sql_query(f'SELECT * FROM "{actual_table_name}"', target_conn)
+                print(f"\nVerification - rows in final table: {len(verification_df)}")
+                
+            except Exception as e:
+                print(f"Error during merge for {actual_table_name}: {str(e)}")
+                raise
         
         target_conn.commit()
         return True
@@ -168,9 +173,4 @@ def merge_tables(target_conn, source_path, table_type, table_names_map):
         target_conn.rollback()
         return False
     finally:
-        # Cleanup: detach source database and close connections
-        try:
-            cursor.execute(f"DETACH DATABASE IF EXISTS {safe_alias}")
-        except:
-            pass
         source_conn.close() 

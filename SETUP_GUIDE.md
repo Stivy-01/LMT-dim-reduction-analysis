@@ -61,3 +61,27 @@ test_setup.run_test()
 ```
 
 If you see no errors, the installation was successful! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Best approach might be to:
+Use median for the bar width (most representative)
+Add std as error bars or transparency
+Keep mean in the statistics panel
+This way you can see:
+Typical duration (median - width)
+Consistency (std - error bars)
+Overall pattern (mean - stats)

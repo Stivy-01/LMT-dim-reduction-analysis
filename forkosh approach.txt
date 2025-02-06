@@ -1,0 +1,25 @@
+1. Variabilità Massimizzata: Fisher–Rao Discriminant
+Criterio di Ottimizzazione: LDA è stato impostato per massimizzare il rapporto tra la variabilità tra individui (Σb) e quella intra-individuale (Σw), seguendo il principio del Fisher–Rao discriminant.
+Matematicamente, cercano una proiezione w che soddisfi:​
+
+ w = argmax_w ( (w^T Σ_b w) / (w^T Σ_w w) )
+
+
+Questo garantisce che le dimensioni identificate catturino al meglio le differenze tra gli individui, mantenendo la stabilità nel tempo​
+.
+2. Input del Modello: Tutti i 60 Readouts Comportamentali
+Dataset Completo: A differenza di altri approcci, non hanno fatto selezione preliminare delle feature.
+Hanno usato tutte le 60 misure comportamentali raccolte dai topi durante l’esperimento.
+Questo approccio è stato giustificato dall’elevata resistenza dell’LDA alla ridondanza nei dati, evitando di introdurre bias con una selezione manuale delle feature​
+.
+3. Numero di Dimensioni (Identity Domains)
+Criterio Empirico: Hanno determinato il numero di dimensioni significative osservando la percentuale di sovrapposizione tra le distribuzioni dei punteggi degli individui.
+Hanno mantenuto solo le dimensioni con < 5% di sovrapposizione tra individui, ottenendo quattro dimensioni stabili (IDs)​
+.
+4. Normalizzazione dei Dati
+Standardizzazione (Z-score normalization): Tutte le misure comportamentali sono state normalizzate a distribuzioni gaussiane usando una trasformazione a quantili per ridurre l’effetto degli outlier​
+.
+5. Stabilità e Validazione
+Hanno testato la stabilità delle dimensioni nel tempo (su dati raccolti in 4 giorni) e dopo una manipolazione sociale.
+Le dimensioni prodotte dall’LDA si sono rivelate stabili, a differenza della PCA, dove solo due componenti principali hanno mostrato stabilità​
+.

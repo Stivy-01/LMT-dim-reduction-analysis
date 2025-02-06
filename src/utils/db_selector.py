@@ -45,12 +45,19 @@ def get_db_path():
     return [str(Path(f).resolve()) for f in files]
 
 def get_date_from_filename(db_path):
-    """Extract date from filename (modified for Path objects)"""
+    """Extract date from filename."""
     path = Path(db_path)
-    match = re.search(r"\b(\d{2})\.(\d{2})\.(\d{2})\b", path.name)
-    if not match:
-        raise ValueError(f"No valid date found in filename: {path.name}")
-    return f"20{match.group(3)}-{match.group(2)}-{match.group(1)}"
+    # Try different date formats
+    patterns = [
+        r"(\d{2})[\._](\d{2})[\._](\d{2})",  # dd.mm.yy or dd_mm_yy
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, path.name)
+        if match:
+            return f"20{match.group(3)}-{match.group(2)}-{match.group(1)}"
+    
+    raise ValueError(f"No valid date found in filename: {path.name}")
 
 def get_experiment_time():
     """GUI dialog to select both date and time"""

@@ -1,0 +1,97 @@
+1. Data Preparation
+Copy
+- Organize behavioral data into format:
+  * Rows: Individual subjects (mice) × days
+  * Columns: Behavioral measurements
+  * Shape: (n_subjects * n_days) × n_behaviors
+- Ensure no missing values
+- Apply quantile normalization per batch/day
+2. Initial Data Processing
+Copy
+1. Normalize each behavioral measure:
+   - Use quantile normalization
+   - Transform to normal distribution (probit function)
+   - Do this separately for:
+     * Each behavioral measure
+     * Each batch
+     * Each day
+
+2. Create behavioral vectors:
+   - For each mouse (m)
+   - For each day (d)
+   - Format: b(m)d = [b₁(m)d, b₂(m)d, ..., bₙ(m)d]
+3. Calculate Variance Matrices
+Copy
+# Pseudocode for variance calculations
+def calculate_variances(data):
+    # Within-cluster variance (Σw)
+    Σw = sum([
+        sum([
+            (x_md - mean_m) @ (x_md - mean_m).T 
+            for d in days
+        ]) 
+        for m in mice
+    ])
+    
+    # Between-cluster variance (Σb)
+    Σb = D * sum([
+        (mean_m - global_mean) @ (mean_m - global_mean).T 
+        for m in mice
+    ])
+    
+    return Σw, Σb
+4. Apply LDA
+Copy
+1. Solve eigenvalue problem:
+   - Find eigenvectors of Σw⁻¹Σb
+   - Select top eigenvectors based on eigenvalues
+   - These form projection matrix W
+
+2. Project data:
+   - Transform original behavioral vectors using W
+   - Results in lower-dimensional ID space
+5. Extract Individual IDs
+Copy
+1. Project behavioral vectors:
+   idm = EID · <b(m)>d
+   where:
+   - EID is projection matrix
+   - <b(m)>d is average across days
+
+2. Validate results:
+   - Check separation between individuals
+   - Verify stability across days
+6. Quality Control Steps
+Copy
+1. Verify assumptions:
+   - Normal distribution after normalization
+   - Sufficient separation between groups
+   
+2. Check stability:
+   - Cross-validation across days
+   - Test reproducibility
+
+3. Evaluate results:
+   - Fisher-Rao discriminant score
+   - Classification accuracy
+Implementation Notes
+Copy
+Key Parameters to Track:
+1. Number of behavioral measures (original dimensionality)
+2. Number of subjects
+3. Number of days/observations per subject
+4. Number of retained dimensions in final ID space
+5. Eigenvalue threshold for dimension selection
+Validation Metrics
+Copy
+1. Within-individual stability:
+   - Correlation across days
+   - Within-individual variance
+
+2. Between-individual separation:
+   - Fisher-Rao discriminant
+   - Classification accuracy
+
+3. Reproducibility measures:
+   - Split-half reliability
+   - Test-retest reliability

@@ -1,0 +1,21 @@
+1. Permutation Tests (Non-Parametric)
+Widely used throughout the paper to assess the significance of their findings, especially for comparing identity domains (IDs) and verifying stability over time or after manipulations.
+Why?
+No assumption of normality.
+More robust for small sample sizes or data that may not follow a standard distribution.
+Example: Used to test the self-similarity of ID scores between baseline and after mixing the groups (Supplementary Fig. 4 and Fig. 2c).
+2. One-Sample t-Test
+Applied when comparing observed variance explained by ID scores with a distribution of shuffled ID scores (to determine if the true variance explained was significantly higher than expected by chance).
+Example: Used in the RNA-seq analysis to assess the variance explained by IDs across the transcriptome​
+.
+3. Linear Regression and R² Analysis
+Used in multiple analyses to assess the predictive power of ID scores in relation to classical behavioral tests and gene expression.
+Example:
+Fig. 3c: Linear regression between ID1 scores and social dominance (David’s score) with an exceptionally high R² = 0.72.
+Gene expression analysis: ID scores were used as predictors in a linear model for transcriptomic variance.
+4. ANOVA (Analysis of Variance)
+Used in parametric comparisons where the data distribution was assumed to be normal.
+Example: Comparisons of behavioral scores across multiple IDs or experimental groups when normality was verified.
+5. Pearson’s Correlation
+Used for evaluating the relationship between ID scores and classical behavioral readouts.
+Example: Fig. 3a, where the strength of correlation between each ID and specific behavioral readouts is represented in a heatmap.
