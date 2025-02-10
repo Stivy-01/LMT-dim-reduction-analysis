@@ -3,7 +3,7 @@
 import os
 import sys
 from pathlib import Path
-
+from tkinter import messagebox
 # Add the project root to the Python path
 current_file = Path(os.path.abspath(__file__))
 project_root = current_file.parent.parent.parent
@@ -250,18 +250,32 @@ class BehaviorProcessor:
 
 def main():
     try:
-        db_path = get_db_path()[0]
-        processor = BehaviorProcessor(db_path)
-        processor.process_events()
+        db_paths = get_db_path()  # Get all paths without [0]
+        
+        if not db_paths:
+            print_flush("No files selected. Exiting...")
+            return
+            
+        print_flush(f"\n📂 Processing {len(db_paths)} files...")
+        
+        for i, db_path in enumerate(db_paths, 1):
+            print_flush(f"\n[{i}/{len(db_paths)}] Processing file: {Path(db_path).name}")
+            processor = BehaviorProcessor(db_path)
+            processor.process_events()
 
-        print_flush("\n🔎 Verification:")
-        verify_table_structure(processor.conn)
+            print_flush("\n🔎 Verification:")
+            verify_table_structure(processor.conn)
 
-        print_flush("\nSample behavior_stats_intervals:")
-        print_flush(pd.read_sql("SELECT * FROM behavior_stats_intervals LIMIT 5", processor.conn))
+            print_flush("\nSample behavior_stats_intervals:")
+            print_flush(pd.read_sql("SELECT * FROM behavior_stats_intervals LIMIT 5", processor.conn))
 
-        print_flush("\nSample multi_mouse_events_intervals:")
-        print_flush(pd.read_sql("SELECT * FROM multi_mouse_events_intervals LIMIT 5", processor.conn))
+            print_flush("\nSample multi_mouse_events_intervals:")
+            print_flush(pd.read_sql("SELECT * FROM multi_mouse_events_intervals LIMIT 5", processor.conn))
+            
+            # Close the connection after processing each file
+            processor.conn.close()
+            
+        print_flush("\n✅ All files processed successfully!")
 
     except Exception as e:
         print_flush(f"Error occurred: {str(e)}")

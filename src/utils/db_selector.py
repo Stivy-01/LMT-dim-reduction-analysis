@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 from pathlib import Path
 import re
 import glob
@@ -13,7 +13,7 @@ def get_db_path():
     root.withdraw()
     
     # Create custom dialog
-    choice = tk.messagebox.askquestion(
+    choice = messagebox.askquestion(
         "Selection Mode",
         "How would you like to select files?",
         icon='question',
@@ -66,7 +66,6 @@ def get_experiment_time():
     
     try:
         # Date selection
-        from tkcalendar import Calendar
         top = tk.Toplevel(root)
         top.title("Select Experiment Start Time")
         cal = Calendar(top, date_pattern='y-mm-dd')
@@ -124,7 +123,7 @@ def get_experiment_time():
                 top.destroy()
             except ValueError as e:
                 print(f"Error details: {str(e)}")  # Print the actual error
-                tk.messagebox.showerror("Error", f"Invalid time values. Please check your input.\nHour: {hour_entry.get()}\nMinute: {min_entry.get()}\nSecond: {sec_entry.get()}")
+                messagebox.showerror("Error", f"Invalid time values. Please check your input.\nHour: {hour_entry.get()}\nMinute: {min_entry.get()}\nSecond: {sec_entry.get()}")
 
         tk.Button(top, text="Confirm", command=on_confirm).pack(pady=5)
         root.wait_window(top)
