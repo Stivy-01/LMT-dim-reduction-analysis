@@ -43,9 +43,9 @@ def analyze_lda_parallel(X, y):
     #X_scaled = scaler.fit_transform(X)
     X_scaled = X
     # Remove low variance features
-    #selector = VarianceThreshold(threshold=0.1)
-    #X_filtered = selector.fit_transform(X_scaled)
-    X_filtered = X_scaled
+    selector = VarianceThreshold(threshold=0.1)
+    X_filtered = selector.fit_transform(X_scaled)
+    #X_filtered = X_scaled
     # Quantile normalization for Gaussian-like distributions
     #qt = QuantileTransformer(output_distribution='normal')
     #X_transformed = qt.fit_transform(X_filtered)
@@ -139,5 +139,5 @@ def analyze_lda_parallel(X, y):
         'component_overlaps': overlaps,
         'significant_components': significant_components,
         'discriminative_power': discriminative_power,
-        #'feature_mask': selector.get_support()  # For tracking which features were kept
+        'feature_mask': selector.get_support()  # For tracking which features were kept
     } 

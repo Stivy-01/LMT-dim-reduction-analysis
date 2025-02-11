@@ -23,6 +23,7 @@ print("Stability score medio:", results['stability_score'])
 print("Eigenvalues delle componenti:", results['eigenvalues'])
 print("Componenti (Identity Domains):", results['components'])
 print("Discriminative Power:", results['discriminative_power'])
+print("Feature mask:", results['feature_mask'])
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm
