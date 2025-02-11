@@ -29,17 +29,17 @@ def analyze_lda_parallel(X, y):
     """
     # 1. Data preprocessing
     # Standardization
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
-    
+   # scaler = StandardScaler()
+    #X_scaled = scaler.fit_transform(X)
+    X_scaled = X
     # Remove low variance features
-    selector = VarianceThreshold(threshold=0.1)
-    X_filtered = selector.fit_transform(X_scaled)
-    
+    #selector = VarianceThreshold(threshold=0.1)
+    #X_filtered = selector.fit_transform(X_scaled)
+    X_filtered = X_scaled
     # Quantile normalization for Gaussian-like distributions
-    qt = QuantileTransformer(output_distribution='normal')
-    X_transformed = qt.fit_transform(X_filtered)
-    
+    #qt = QuantileTransformer(output_distribution='normal')
+    #X_transformed = qt.fit_transform(X_filtered)
+    X_transformed = X_filtered
     # 2. Initial LDA with all possible components
     ida = IdentityDomainAnalyzer()
     # Maximum possible components is n_classes - 1
@@ -58,7 +58,7 @@ def analyze_lda_parallel(X, y):
                 
                 # Calculate distribution overlap
                 hist1, bins = np.histogram(data1, bins=50, density=True)
-                hist2, _ = np.histogram(data2, bins=bins, density=True)
+                hist2, _ = np.histogram(data2, bins=50, density=True)
                 overlap = np.minimum(hist1, hist2).sum() * (bins[1] - bins[0])
                 comp_overlaps.append(overlap)
         
@@ -75,7 +75,7 @@ def analyze_lda_parallel(X, y):
         cumsum = np.cumsum(eigenvalue_ratio)
         min_components = np.where(cumsum >= 0.80)[0][0] + 1
         # Combine overlap and eigenvalue information
-        component_scores = overlaps / eigenvalue_ratio
+        component_scores = overlaps / eigenvalue_ratio[:len(overlaps)]
         significant_components = np.argsort(component_scores)[:min_components]
         n_stable = len(significant_components)
     
@@ -121,5 +121,5 @@ def analyze_lda_parallel(X, y):
         'component_overlaps': overlaps,
         'significant_components': significant_components,
         'discriminative_power': discriminative_power,
-        'feature_mask': selector.get_support()  # For tracking which features were kept
+        #'feature_mask': selector.get_support()  # For tracking which features were kept
     } 
