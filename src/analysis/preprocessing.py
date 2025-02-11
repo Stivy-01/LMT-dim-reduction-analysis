@@ -38,6 +38,7 @@ class BehaviorPreprocessor:
         self.feature_mask = None
         self.dropped_features = None
         self.feature_names = None
+        self.mouse_id_mapping = None
         
     def _handle_datetime(self, df):
         """Handle datetime columns and ensure proper interval structure."""
@@ -77,23 +78,46 @@ class BehaviorPreprocessor:
         feature_cols = [col for col in df.columns 
                        if col not in ['mouse_id', 'date', 'interval_start', 'interval_id', 'timestamp']]
         
-        # Convert to numeric
+        # Convert to numeric and handle any non-numeric columns
         df[feature_cols] = df[feature_cols].apply(pd.to_numeric, errors='coerce')
         
-        # Normalize within each interval
-        df_normalized = self._normalize_by_interval(df, feature_cols)
-        
         # Extract features and IDs
-        X = df_normalized[feature_cols].copy()
+        X = df[feature_cols].copy()
         
-        # Fill any remaining NaN with interval-specific means
-        for interval_id in df['interval_id'].unique():
-            interval_mask = df['interval_id'] == interval_id
-            X.loc[interval_mask] = X.loc[interval_mask].fillna(
-                X.loc[interval_mask].mean()
-            )
+        # Convert mouse IDs to numeric values
+        try:
+            # First try direct conversion to numeric
+            mouse_ids = pd.to_numeric(df['mouse_id'], errors='coerce')
+            if mouse_ids.isna().any():
+                # If any NaN values, try extracting numbers from strings
+                mouse_ids = pd.to_numeric(df['mouse_id'].astype(str).str.extract('(\d+)', expand=False))
+            
+            # Convert to integers explicitly
+            mouse_ids = mouse_ids.astype(np.int64)
+            
+        except Exception as e:
+            print(f"Warning: Error converting mouse IDs: {e}")
+            # Fallback: create sequential IDs
+            unique_mice = df['mouse_id'].unique()
+            mouse_id_to_num = {mid: i for i, mid in enumerate(sorted(unique_mice))}
+            mouse_ids = pd.Series([mouse_id_to_num[mid] for mid in df['mouse_id']], dtype=np.int64)
         
-        return X, df['mouse_id'], df['interval_id']
+        # Ensure we have valid numeric IDs
+        if mouse_ids.isna().any():
+            raise ValueError("Failed to convert mouse IDs to numeric values")
+            
+        # Create sequential mouse numbers (0 to n-1)
+        unique_mice = np.sort(mouse_ids.unique())  # Sort to maintain consistent ordering
+        mouse_id_to_num = {int(mid): i for i, mid in enumerate(unique_mice)}  # Ensure integer keys
+        mouse_numbers = np.array([mouse_id_to_num[int(mid)] for mid in mouse_ids], dtype=np.int64)
+        
+        # Store the mapping for later reference
+        self.mouse_id_mapping = {int(k): int(v) for k, v in mouse_id_to_num.items()}  # Ensure integer values
+        
+        # Fill NaN values with column means
+        X = X.fillna(X.mean())
+        
+        return X.values, mouse_numbers, None
     
     def _remove_correlated_features(self, X):
         """Remove highly correlated features."""
@@ -141,19 +165,29 @@ class BehaviorPreprocessor:
             df: DataFrame containing behavioral data
             
         Returns:
-            tuple: (preprocessed_features, mouse_ids, cv_splits)
+            tuple: (preprocessed_features, mouse_numbers, cv_splits)
         """
-        # Handle datetime and intervals
-        df = self._handle_datetime(df)
-        
         # Clean and normalize data
-        X, mouse_ids, interval_ids = self._clean_data(df)
+        X, mouse_numbers, _ = self._clean_data(df)
         
         # Store original feature names
-        self.feature_names = X.columns.tolist()
+        self.feature_names = [col for col in df.columns 
+                             if col not in ['mouse_id', 'date', 'interval_start', 'interval_id', 'timestamp']]
         
-        # Convert to numpy array
-        X = X.values
+        # Print mouse ID information
+        unique_numbers = np.unique(mouse_numbers)
+        print("\nMouse ID Summary:")
+        print(f"Total samples: {len(mouse_numbers)}")
+        print(f"Unique mice: {len(unique_numbers)}")
+        print("\nSamples per mouse:")
+        for mouse_num in unique_numbers:
+            count = np.sum(mouse_numbers == mouse_num)
+            original_id = list(self.mouse_id_mapping.keys())[mouse_num]  # Get original ID
+            print(f"Mouse {original_id} (Mouse #{mouse_num + 1}): {count} samples")
+        print()
+        
+        # Standardize the features
+        X = self.scaler.fit_transform(X)
         
         # Remove low variance features
         X_var = self.variance_selector.fit_transform(X)
@@ -162,17 +196,14 @@ class BehaviorPreprocessor:
         # Remove highly correlated features
         X_final = self._remove_correlated_features(X_var)
         
-        # Create cross-validation splits
-        cv_splits = self._create_cross_validation_splits(interval_ids)
-        
         print(f"Preprocessing summary:")
         print(f"- Original features: {X.shape[1]}")
         print(f"- After variance threshold: {X_var.shape[1]}")
         print(f"- After correlation filtering: {X_final.shape[1]}")
-        print(f"- Number of intervals: {len(np.unique(interval_ids))}")
-        print(f"- Cross-validation splits: {len(cv_splits)}")
+        print(f"- Number of samples: {X_final.shape[0]}")
+        print(f"- Number of unique mice: {len(unique_numbers)}")
         
-        return X_final, mouse_ids, cv_splits
+        return X_final, mouse_numbers, None
     
     def get_feature_names(self):
         """Get names of selected features."""
@@ -194,14 +225,14 @@ def preprocess_data(df, correlation_threshold=0.95, variance_threshold=0.1):
         variance_threshold: Threshold for removing low variance features
         
     Returns:
-        tuple: (preprocessed_features, mouse_ids, cv_splits, feature_names)
+        tuple: (preprocessed_features, mouse_numbers, cv_splits, feature_names)
     """
     preprocessor = BehaviorPreprocessor(
         correlation_threshold=correlation_threshold,
         variance_threshold=variance_threshold
     )
     
-    X, mouse_ids, cv_splits = preprocessor.fit_transform(df)
+    X, mouse_numbers, cv_splits = preprocessor.fit_transform(df)
     feature_names = preprocessor.get_feature_names()
     
-    return X, mouse_ids, cv_splits, feature_names 
+    return X, mouse_numbers, cv_splits, feature_names 

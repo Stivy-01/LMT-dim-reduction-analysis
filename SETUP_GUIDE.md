@@ -18,7 +18,7 @@ git clone https://github.com/your-username/LMT-dim-reduction-toolkit
 cd LMT-dim-reduction-toolkit
 ```
 
-### 2. Set Up Python Environment
+### 2a. Set Up Python Environment
 ```bash
 # Create a virtual environment (recommended)
 python -m venv lmt_env
@@ -28,6 +28,14 @@ python -m venv lmt_env
 .\lmt_env\Scripts\activate
 # On Unix/MacOS:
 source lmt_env/bin/activate
+```
+### 2b. Set Up Conda Enviroment
+```terminal
+# Create a conda enviroment
+conda -n lmt_env
+
+# Activate the enviroment
+conda activate lmt_env
 ```
 
 ### 3. Install Dependencies
