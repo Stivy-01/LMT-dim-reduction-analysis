@@ -1,0 +1,108 @@
+Analysis of Behavior Contributions to Identity Domains
+==================================================
+
+Identity Domain 1: "High-Intensity Social Investigator"
+--------------------
+
+Top Contributing Behaviors:
++ Approach_contact_total_duration: 0.5159
+- Approach_median_duration: 0.4849
++ Approach_contact_active_count: 0.3748
++ Approach_mean_duration: 0.3636
+- Approach_contact_std_duration: 0.3086
++ Approach_contact_passive_count: 0.1542
+- Approach_active_count: 0.1350
+- Approach_passive_count: 0.1246
++ Oral_oral_Contact_total_duration: 0.1043
+- Get_away_total_duration: 0.0993
+
+Identity Domain 2: "Sustained Social Affiliator"
+--------------------
+
+Top Contributing Behaviors:
++ Approach_contact_mean_duration: 0.5408
++ Approach_active_count: 0.3722
++ Approach_total_duration: 0.3688
++ Approach_passive_count: 0.3664
+- Get_away_total_duration: 0.2136
+- Approach_contact_std_duration: 0.1856
++ Break_contact_mean_duration: 0.1534
+- Break_contact_median_duration: 0.1528
++ FollowZone_mean_duration: 0.1496
++ Oral_oral_Contact_total_duration: 0.1226
+
+Identity Domain 3: "Environmental-Social Explorer"
+--------------------
+
+Top Contributing Behaviors:
++ Approach_rear_mean_duration: 0.5014
+- Break_contact_passive_count: 0.4966
++ Approach_rear_median_duration: 0.4430
++ Break_contact_active_count: 0.3060
++ Approach_rear_passive_count: 0.2466
++ Approach_rear_active_count: 0.2258
+- Break_contact_total_duration: 0.1368
++ Break_contact_median_duration: 0.1195
+- Group_3_break_count: 0.1060
+- Break_contact_mean_duration: 0.0994
+
+Identity Domain 4: "Passive Social Recipient"
+--------------------
+
+Top Contributing Behaviors:
++ Approach_contact_passive_count: 0.6283
++ Approach_mean_duration: 0.5388
++ Approach_median_duration: 0.4098
+- Approach_contact_active_count: 0.2908
++ Side_by_side_Contact_mean_duration: 0.1372
++ Side_by_side_Contact_total_duration: 0.1295
++ Approach_contact_mean_duration: 0.0823
+- Side_by_side_Contact_median_duration: 0.0558
+- SAP_median_duration: 0.0504
+- Approach_total_duration: 0.0492
+
+Identity Domain 5: "Anxiety-Prone Individual"
+--------------------
+
+Top Contributing Behaviors:
+- Stop_total_duration: 0.6102
+- WallJump_std_duration: 0.3456
++ seq_oral_oral___oral_genital_mean_duration: 0.3041
+- Stop_in_contact_median_duration: 0.2586
++ Stop_isolated_count: 0.2473
+- Train2_median_duration: 0.1886
+- WallJump_median_duration: 0.1831
+- Train2_std_duration: 0.1582
++ seq_oral_oral___oral_genital_median_duration: 0.1568
++ isolated_count: 0.1377
+
+Identity Domain 6: "Dynamic Social Integrator"
+--------------------
+
+Top Contributing Behaviors:
+- Approach_contact_mean_duration: 0.5412
++ Approach_active_count: 0.3723
++ Approach_total_duration: 0.3688
++ Approach_passive_count: 0.3664
+- Get_away_total_duration: 0.2141
++ Approach_contact_std_duration: 0.1856
+- Break_contact_mean_duration: 0.1535
++ Break_contact_median_duration: 0.1529
+- FollowZone_mean_duration: 0.1497
++ Oral_oral_Contact_total_duration: 0.1228
+
+Identity Domain 7: "Social Contact Maintainer"
+--------------------
+
+Top Contributing Behaviors:
++ Approach_contact_total_duration: 0.5160
++ Approach_median_duration: 0.4849
++ Approach_contact_active_count: 0.3748
+- Approach_mean_duration: 0.3638
++ Approach_contact_std_duration: 0.3084
++ Approach_contact_passive_count: 0.1542
+- Approach_active_count: 0.1351
+- Approach_passive_count: 0.1246
++ Oral_oral_Contact_total_duration: 0.1042
+- Get_away_total_duration: 0.0992
+

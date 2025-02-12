@@ -18,12 +18,35 @@ X = df[feature_columns].values
 results = analyze_lda_parallel(X, y)
 
 # 4. Visualizza i risultati
+print("\nBasic Analysis Results:")
 print("Numero di componenti stabili trovate:", results['n_components'])
 print("Stability score medio:", results['stability_score'])
 print("Eigenvalues delle componenti:", results['eigenvalues'])
-print("Componenti (Identity Domains):", results['components'])
 print("Discriminative Power:", results['discriminative_power'])
-print("Feature mask:", results['feature_mask'])
+
+# 5. Visualizza informazioni dettagliate sulle feature
+print("\nDetailed Feature Analysis:")
+feature_mask = results['feature_mask']
+components = results['components']
+
+# Ottieni feature selezionate
+selected_features = [feat for feat, selected in zip(feature_columns, feature_mask) if selected]
+
+# Per ogni componente
+for comp_idx in range(components.shape[0]):
+    print(f"\nComponent {comp_idx + 1} Features:")
+    # Ottieni pesi delle feature per questo componente
+    weights = components[comp_idx]
+    # Crea coppie feature-peso e ordina per peso assoluto
+    feature_weights = list(zip(selected_features, weights))
+    feature_weights.sort(key=lambda x: abs(x[1]), reverse=True)
+    
+    # Stampa feature di maggior contributo (peso assoluto > 0.1)
+    print("Top contributing features (|weight| > 0.1):")
+    for feature, weight in feature_weights:
+        if abs(weight) > 0.1:
+            print(f"{feature}: {weight:.3f}")
+
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm

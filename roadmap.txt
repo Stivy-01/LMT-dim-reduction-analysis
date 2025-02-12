@@ -1,0 +1,519 @@
+1. Data Input and Preprocessing
+a. Load the Behavioral Data
+
+Organize your data so that for each mouse m and each day d you have a behavioral vector x[m][d] of size 204 (1×204).
+In Python, you might load your data using libraries such as pandas or numpy.
+python
+Copia
+Modifica
+import pandas as pd
+import numpy as np
+
+# Example: load a CSV where each row corresponds to one mouse-day observation with 204 behavior columns.
+data = pd.read_csv("behavior_data.csv")
+# Assume the CSV contains columns: 'mouse_id', 'day', 'behavior_1', ..., 'behavior_204'
+b. Normalize the Data
+
+Normalization for Specific Variables:
+Normalize key variables (such as time outside the nest or number of contacts) so that they contribute equally.
+
+Quantile Normalization (Per Batch and Day):
+For each behavior and for each batch/day, perform quantile normalization.
+You can use available packages like scikit-learn’s QuantileTransformer.
+
+Transform to Approximate a Normal Distribution:
+Apply the quantile transform (or another transformation) to each behavior to help it approximate a normal distribution.
+
+python
+Copia
+Modifica
+from sklearn.preprocessing import QuantileTransformer
+
+transformer = QuantileTransformer(output_distribution='normal')
+# Example: process one behavior column; you should loop over all 204 behaviors and group by batch and day as needed.
+data['behavior_1_norm'] = transformer.fit_transform(data[['behavior_1']])
+# Repeat for all behaviors and ensure grouping by batch/day if required.
+2. Define the LDA Objective and Mathematical Formulation
+a. Objective:
+The aim is to find a projection vector w that maximizes the Fisher-Rao discriminant:
+
+𝑤
+=
+arg
+⁡
+max
+⁡
+𝑤
+tr
+⁡
+(
+𝑤
+𝑇
+Σ
+𝑏
+𝑤
+)
+𝑤
+𝑇
+Σ
+𝑤
+𝑤
+w=arg 
+w
+max
+​
+  
+w 
+T
+ Σ 
+w
+​
+ w
+tr(w 
+T
+ Σ 
+b
+​
+ w)
+​
+ 
+b. Lagrangian Formulation:
+Introduce a Lagrange multiplier λ to enforce the constraint:
+
+𝐿
+(
+𝑤
+)
+=
+𝑤
+𝑇
+Σ
+𝑏
+𝑤
+−
+𝜆
+(
+𝑤
+𝑇
+Σ
+𝑤
+𝑤
+−
+1
+)
+L(w)=w 
+T
+ Σ 
+b
+​
+ w−λ(w 
+T
+ Σ 
+w
+​
+ w−1)
+c. Stationary Condition:
+Taking the derivative with respect to w leads to the eigenvalue problem:
+
+2
+Σ
+𝑏
+𝑤
+−
+2
+𝜆
+Σ
+𝑤
+𝑤
+=
+0
+⟹
+Σ
+𝑏
+𝑤
+=
+𝜆
+Σ
+𝑤
+𝑤
+2Σ 
+b
+​
+ w−2λΣ 
+w
+​
+ w=0⟹Σ 
+b
+​
+ w=λΣ 
+w
+​
+ w
+Equivalently, you compute the eigenvectors of:
+
+Σ
+𝑤
+−
+1
+Σ
+𝑏
+Σ 
+w
+−1
+​
+ Σ 
+b
+​
+ 
+This eigen-decomposition guides the computation in the following steps.
+
+3. Compute the Variability Matrices
+a. Compute Within-Individual Variability (
+Σ
+𝑤
+Σ 
+w
+​
+ ):
+
+For each mouse m and day d, calculate the deviation of the 204-dimensional behavior vector from the mouse’s mean behavior over days:
+
+Σ
+𝑤
+=
+∑
+𝑚
+∑
+𝑑
+(
+𝑥
+𝑚
+,
+𝑑
+−
+⟨
+𝑥
+𝑚
+,
+⋅
+⟩
+)
+(
+𝑥
+𝑚
+,
+𝑑
+−
+⟨
+𝑥
+𝑚
+,
+⋅
+⟩
+)
+𝑇
+Σ 
+w
+​
+ = 
+m
+∑
+​
+  
+d
+∑
+​
+ (x 
+m,d
+​
+ −⟨x 
+m,⋅
+​
+ ⟩)(x 
+m,d
+​
+ −⟨x 
+m,⋅
+​
+ ⟩) 
+T
+ 
+Implementation Steps:
+
+For each mouse, compute the mean behavior vector over days.
+For each day, compute the difference: difference = x[m][d] - mean_x_m.
+Sum the outer products of these difference vectors.
+python
+Copia
+Modifica
+# Assume data is organized in a dictionary: data_dict[mouse_id] = list of daily 204-dimensional numpy arrays
+data_dict = {}  # Fill this with your preprocessed data
+
+Sigma_w = np.zeros((204, 204))
+for mouse_id, day_vectors in data_dict.items():
+    day_vectors = np.array(day_vectors)  # shape: (num_days, 204)
+    mean_vector = np.mean(day_vectors, axis=0)  # shape: (204,)
+    for vector in day_vectors:
+        diff = (vector - mean_vector).reshape(204, 1)
+        Sigma_w += diff @ diff.T
+b. Compute Between-Individual Variability (
+Σ
+𝑏
+Σ 
+b
+​
+ ):
+
+First, compute the global mean 
+𝜇
+μ over all mice and days. Then for each mouse:
+
+Σ
+𝑏
+=
+𝐷
+∑
+𝑚
+(
+∑
+𝑑
+𝑥
+𝑚
+,
+𝑑
+−
+𝜇
+)
+(
+∑
+𝑑
+𝑥
+𝑚
+,
+𝑑
+−
+𝜇
+)
+𝑇
+Σ 
+b
+​
+ =D 
+m
+∑
+​
+ ( 
+d
+∑
+​
+ x 
+m,d
+​
+ −μ)( 
+d
+∑
+​
+ x 
+m,d
+​
+ −μ) 
+T
+ 
+where D is the number of days (if constant across mice; otherwise, treat each mouse’s contribution accordingly).
+
+Implementation Steps:
+
+Concatenate all daily behavior vectors to compute the global mean vector.
+For each mouse, sum the daily behavior vectors and subtract the global mean.
+Form the outer product of these differences and sum them (scaling by D).
+python
+Copia
+Modifica
+# Concatenate all daily vectors from all mice to compute the global mean.
+all_vectors = np.concatenate([np.array(vectors) for vectors in data_dict.values()], axis=0)
+mu = np.mean(all_vectors, axis=0)  # global mean, shape: (204,)
+
+# If D (number of days) is constant per mouse, otherwise compute per mouse.
+D = next(iter(data_dict.values())).__len__()
+Sigma_b = np.zeros((204, 204))
+for mouse_id, day_vectors in data_dict.items():
+    day_vectors = np.array(day_vectors)
+    sum_vector = np.sum(day_vectors, axis=0)  # shape: (204,)
+    diff = (sum_vector - mu).reshape(204, 1)
+    Sigma_b += diff @ diff.T
+Sigma_b *= D
+4. Implement the LDA: Solve the Eigenvalue Problem
+a. Form the Matrix 
+Σ
+𝑤
+−
+1
+Σ
+𝑏
+Σ 
+w
+−1
+​
+ Σ 
+b
+​
+ :
+
+Compute the inverse of 
+Σ
+𝑤
+Σ 
+w
+​
+  and then multiply by 
+Σ
+𝑏
+Σ 
+b
+​
+ .
+
+python
+Copia
+Modifica
+Sigma_w_inv = np.linalg.inv(Sigma_w)
+mat = Sigma_w_inv @ Sigma_b
+b. Compute the Eigenvalues and Eigenvectors:
+
+Use an eigen-decomposition routine (for example, numpy.linalg.eig or scipy.linalg.eigh if the matrices are symmetric) to obtain the eigenvectors.
+
+python
+Copia
+Modifica
+eigenvalues, eigenvectors = np.linalg.eig(mat)
+# Sort eigenvectors by eigenvalues in descending order:
+sorted_indices = np.argsort(eigenvalues)[::-1]
+eigenvalues = eigenvalues[sorted_indices]
+eigenvectors = eigenvectors[:, sorted_indices]  # each column is an eigenvector (each of dimension 204)
+c. Interpret the Eigenvectors:
+
+The eigenvectors of 
+Σ
+𝑤
+−
+1
+Σ
+𝑏
+Σ 
+w
+−1
+​
+ Σ 
+b
+​
+  represent the directions that maximize between-individual variability relative to within-individual variability. These will form the rows of the EID matrix.
+
+5. Selection of Significant Identity Domains (IDs)
+a. Evaluate the Overlap Criterion:
+
+For each eigenvector, assess the “overlap”—a measure of how much individuals share that behavioral component.
+Note: The precise calculation of the overlap is domain-specific. Implement a function that returns an overlap percentage for each eigenvector.
+
+b. Select Significant Eigenvectors:
+
+From the sorted eigenvectors, select those with an overlap below your threshold (e.g., less than 5%).
+Since the number of significant IDs is not predetermined (it might be 4, 5, 6, etc.), your code should select as many as meet the criterion.
+
+python
+Copia
+Modifica
+def compute_overlap(eigenvector, data_dict):
+    # Placeholder for your overlap computation.
+    # Implement your own logic to compute the overlap percentage for the eigenvector.
+    # Return a percentage value.
+    return np.random.uniform(0, 10)  # Example random value; replace with actual computation.
+
+significant_eigenvectors = []
+for i in range(eigenvectors.shape[1]):
+    eigvec = eigenvectors[:, i]
+    overlap = compute_overlap(eigvec, data_dict)
+    if overlap < 5:  # If overlap is less than 5%
+        significant_eigenvectors.append(eigvec)
+
+# Convert to a numpy array with shape: (number_of_significant_IDs, 204)
+EID = np.array(significant_eigenvectors)
+# The number of rows in EID is now determined by how many eigenvectors passed the threshold.
+6. Projection: Compute ID Scores for Each Mouse
+a. Compute the Mean Behavioral Vector for Each Mouse:
+
+For each mouse m, calculate:
+
+⟨
+𝑏
+𝑚
+,
+𝑑
+⟩
+=
+1
+num_days
+∑
+𝑑
+𝑥
+𝑚
+,
+𝑑
+⟨b 
+m,d
+​
+ ⟩= 
+num_days
+1
+​
+  
+d
+∑
+​
+ x 
+m,d
+​
+ 
+python
+Copia
+Modifica
+mouse_mean_vectors = {}
+for mouse_id, day_vectors in data_dict.items():
+    day_vectors = np.array(day_vectors)
+    mouse_mean_vectors[mouse_id] = np.mean(day_vectors, axis=0)  # shape: (204,)
+b. Project onto the EID Matrix:
+
+For each mouse, compute the projection:
+
+𝑖
+𝑑
+𝑚
+=
+EID
+⋅
+⟨
+𝑏
+𝑚
+,
+𝑑
+⟩
+id 
+m
+​
+ =EID⋅⟨b 
+m,d
+​
+ ⟩
+where id_m is a vector whose dimension equals the number of significant IDs selected (it could be 4, 5, 6, etc.).
+
+python
+Copia
+Modifica
+id_scores = {}
+for mouse_id, mean_vector in mouse_mean_vectors.items():
+    # Ensure mean_vector has the correct shape for matrix multiplication.
+    score = EID @ mean_vector  # EID: (K, 204) and mean_vector: (204,), resulting in a (K,) vector.
+    id_scores[mouse_id] = score  # Each mouse now has a score vector of length K.
+7. Relationship of Each Mouse with the IDs
+a. Use the ID Scores:
+Each mouse now has a vector (id_scores[mouse_id]) indicating how its average behavior aligns with each of the significant Identity Domains.
+These scores can be further analyzed (for example, by correlating with genetic data, examining behavioral differences, etc.).
