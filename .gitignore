@@ -40,6 +40,7 @@ ENV/
 *.sqlite3
 *.csv
 *.log
+*.html
 
 # OS specific
 .DS_Store
