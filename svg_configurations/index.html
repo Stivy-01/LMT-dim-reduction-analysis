@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Mouse configurations</title>
+<style>
+  body { font: 14px/1.4 system-ui, sans-serif; margin: 24px; background:#fff;
+         color:#111; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  h2 { font-size: 15px; margin: 28px 0 8px; }
+  p.hint { color:#555; margin: 0 0 16px; }
+  .grid { display: flex; flex-wrap: wrap; gap: 14px; }
+  .card { width: 190px; border: 1px solid #ddd; border-radius: 8px;
+          padding: 8px; background: #fafafa; }
+  .card img { width: 100%; height: 150px; object-fit: contain;
+              display: block; }
+  .card .t { font-weight: 600; margin-top: 6px; }
+  .card .f { font-family: ui-monospace, monospace; font-size: 11px;
+             color: #666; word-break: break-all; }
+  body.dark { background:#1b1b1b; color:#eee; }
+  body.dark .card { background:#262626; border-color:#3a3a3a; }
+  body.dark .card .f { color:#9a9a9a; }
+  button { font: inherit; padding: 4px 10px; cursor: pointer; }
+</style></head><body>
+<h1>Mouse configurations</h1>
+<p class="hint">One SVG per configuration, transparent background, no labels.
+Colour is <code>currentColor</code>, so it follows the embedding figure.
+<button onclick="document.body.classList.toggle('dark')">toggle dark
+preview</button></p>
+
+<h2>Individual events</h2>
+<div class="grid">
+<div class="card"><img src="01_individual_moving_alone.svg" alt="Moving alone"><div class="t">Moving alone</div><div class="f">01_individual_moving_alone.svg</div></div>
+<div class="card"><img src="02_individual_stopped_alone.svg" alt="Stopped alone"><div class="t">Stopped alone</div><div class="f">02_individual_stopped_alone.svg</div></div>
+<div class="card"><img src="03_individual_rearing.svg" alt="Rearing"><div class="t">Rearing</div><div class="f">03_individual_rearing.svg</div></div>
+<div class="card"><img src="04_individual_stopped_and_huddled.svg" alt="Stopped and huddled"><div class="t">Stopped and huddled</div><div class="f">04_individual_stopped_and_huddled.svg</div></div>
+<div class="card"><img src="05_individual_jumping_against_a_wall.svg" alt="Jumping against a wall"><div class="t">Jumping against a wall</div><div class="f">05_individual_jumping_against_a_wall.svg</div></div>
+<div class="card"><img src="06_individual_sap.svg" alt="SAP"><div class="t">SAP</div><div class="f">06_individual_sap.svg</div></div>
+</div>
+<h2>Dyadic state events</h2>
+<div class="grid">
+<div class="card"><img src="07_dyadic_state_moving_in_contact.svg" alt="Moving in contact"><div class="t">Moving in contact</div><div class="f">07_dyadic_state_moving_in_contact.svg</div></div>
+<div class="card"><img src="08_dyadic_state_stopped_in_contact.svg" alt="Stopped in contact"><div class="t">Stopped in contact</div><div class="f">08_dyadic_state_stopped_in_contact.svg</div></div>
+<div class="card"><img src="09_dyadic_state_rearing_in_contact.svg" alt="Rearing in contact"><div class="t">Rearing in contact</div><div class="f">09_dyadic_state_rearing_in_contact.svg</div></div>
+<div class="card"><img src="10_dyadic_state_contact_side_by_side_same_way.svg" alt="Contact side by side, same way"><div class="t">Contact side by side, same way</div><div class="f">10_dyadic_state_contact_side_by_side_same_way.svg</div></div>
+<div class="card"><img src="11_dyadic_state_contact_side_by_side_opposite_way.svg" alt="Contact side by side, opposite way"><div class="t">Contact side by side, opposite way</div><div class="f">11_dyadic_state_contact_side_by_side_opposite_way.svg</div></div>
+<div class="card"><img src="12_dyadic_state_contact_nose_to_nose.svg" alt="Contact nose - nose"><div class="t">Contact nose - nose</div><div class="f">12_dyadic_state_contact_nose_to_nose.svg</div></div>
+<div class="card"><img src="13_dyadic_state_contact_nose_to_anogenital.svg" alt="Contact nose - anogenital"><div class="t">Contact nose - anogenital</div><div class="f">13_dyadic_state_contact_nose_to_anogenital.svg</div></div>
+</div>
+<h2>Dyadic dynamic events</h2>
+<div class="grid">
+<div class="card"><img src="14_dyadic_dynamic_approaching_in_social_range.svg" alt="Approaching a mouse in its social range"><div class="t">Approaching a mouse in its social range</div><div class="f">14_dyadic_dynamic_approaching_in_social_range.svg</div></div>
+<div class="card"><img src="15_dyadic_dynamic_approaching_rearing_in_social_range.svg" alt="Approaching a mouse in rearing in its social range"><div class="t">Approaching a mouse in rearing in its social range</div><div class="f">15_dyadic_dynamic_approaching_rearing_in_social_range.svg</div></div>
+<div class="card"><img src="16_dyadic_dynamic_making_contact.svg" alt="Making contact"><div class="t">Making contact</div><div class="f">16_dyadic_dynamic_making_contact.svg</div></div>
+<div class="card"><img src="17_dyadic_dynamic_moving_away_in_social_range.svg" alt="Moving away from a mouse in its social range"><div class="t">Moving away from a mouse in its social range</div><div class="f">17_dyadic_dynamic_moving_away_in_social_range.svg</div></div>
+<div class="card"><img src="18_dyadic_dynamic_breaking_contact.svg" alt="Breaking contact"><div class="t">Breaking contact</div><div class="f">18_dyadic_dynamic_breaking_contact.svg</div></div>
+<div class="card"><img src="19_dyadic_dynamic_following_within_path.svg" alt="Following a mouse within its path"><div class="t">Following a mouse within its path</div><div class="f">19_dyadic_dynamic_following_within_path.svg</div></div>
+</div>
+<h2>Social configuration events</h2>
+<div class="grid">
+<div class="card"><img src="20_social_group_of_2_mice.svg" alt="Group of 2 mice"><div class="t">Group of 2 mice</div><div class="f">20_social_group_of_2_mice.svg</div></div>
+<div class="card"><img src="21_social_group_of_3_mice.svg" alt="Group of 3 mice"><div class="t">Group of 3 mice</div><div class="f">21_social_group_of_3_mice.svg</div></div>
+<div class="card"><img src="22_social_group_of_4_mice.svg" alt="Group of 4 mice"><div class="t">Group of 4 mice</div><div class="f">22_social_group_of_4_mice.svg</div></div>
+<div class="card"><img src="23_social_nest_of_3_mice_stopped.svg" alt="Nest of 3 mice (stopped)"><div class="t">Nest of 3 mice (stopped)</div><div class="f">23_social_nest_of_3_mice_stopped.svg</div></div>
+<div class="card"><img src="24_social_nest_of_4_mice_stopped.svg" alt="Nest of 4 mice (stopped)"><div class="t">Nest of 4 mice (stopped)</div><div class="f">24_social_nest_of_4_mice_stopped.svg</div></div>
+<div class="card"><img src="25_social_train_of_2_mice_moving.svg" alt="Train of 2 mice (moving)"><div class="t">Train of 2 mice (moving)</div><div class="f">25_social_train_of_2_mice_moving.svg</div></div>
+<div class="card"><img src="26_social_train_of_3_mice_moving.svg" alt="Train of 3 mice (moving)"><div class="t">Train of 3 mice (moving)</div><div class="f">26_social_train_of_3_mice_moving.svg</div></div>
+<div class="card"><img src="27_social_train_of_4_mice_moving.svg" alt="Train of 4 mice (moving)"><div class="t">Train of 4 mice (moving)</div><div class="f">27_social_train_of_4_mice_moving.svg</div></div>
+</div>
+<h2>Group making/breaking events</h2>
+<div class="grid">
+<div class="card"><img src="28_group_making_3_mice.svg" alt="Making a group of 3 mice"><div class="t">Making a group of 3 mice</div><div class="f">28_group_making_3_mice.svg</div></div>
+<div class="card"><img src="29_group_making_4_mice.svg" alt="Making a group of 4 mice"><div class="t">Making a group of 4 mice</div><div class="f">29_group_making_4_mice.svg</div></div>
+<div class="card"><img src="30_group_breaking_3_mice.svg" alt="Breaking a group of 3 mice"><div class="t">Breaking a group of 3 mice</div><div class="f">30_group_breaking_3_mice.svg</div></div>
+<div class="card"><img src="31_group_breaking_4_mice.svg" alt="Breaking a group of 4 mice"><div class="t">Breaking a group of 4 mice</div><div class="f">31_group_breaking_4_mice.svg</div></div>
+</div>
+</body></html>

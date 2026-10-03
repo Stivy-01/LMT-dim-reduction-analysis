@@ -1,0 +1,22 @@
+source_sheet,source_label,metric,metric_label,n_cages,mean,ci_low,ci_high,interpretation_higher
+16p,16p,whole_group_shift,Whole-group shift,3,4.6735319192789575,1.954346773652592,6.3543336281750955,larger displacement
+16p,16p,identity_shift,Identity-domain shift,3,-0.09652713557094957,-0.6007502582508637,0.1952074706956045,more positive identity shift
+16p,16p,dispersion_change,Dispersion change,3,-0.5692397042054473,-1.0947861079777141,-0.3017623394734821,less cohesive / more spread
+16p,16p,pairwise_change,Pairwise distance change,3,-0.9631185127007963,-1.5654215618870495,-0.5441152013952473,individuals farther apart in behavior space
+16p,16p,stressed_control_separation_change,Stress-control separation change,3,0.3738815065193233,-0.0033563946573864634,0.7252337953329654,more separation between treatments
+16p,16p,control_response,Control response,3,3.3214582709614766,1.613966442302482,4.487552649185081,larger control-mouse shift
+16p,16p,synchronization_similarity,Trajectory synchronization,3,0.19273439632239975,-0.329330618631972,0.6178523256936247,more parallel individual shifts
+CD del,CD del,whole_group_shift,Whole-group shift,2,3.9912248508675248,2.760397587567693,5.222052114167356,larger displacement
+CD del,CD del,identity_shift,Identity-domain shift,2,-0.28465547211953257,-1.0248947025511725,0.4555837583121074,more positive identity shift
+CD del,CD del,dispersion_change,Dispersion change,2,0.4372853037100426,0.2753012507692285,0.5992693566508567,less cohesive / more spread
+CD del,CD del,pairwise_change,Pairwise distance change,2,0.4878689892399126,0.11506743006855213,0.8606705484112731,individuals farther apart in behavior space
+CD del,CD del,stressed_control_separation_change,Stress-control separation change,2,0.7641352415288396,-0.35156980040076613,1.8798402834584453,more separation between treatments
+CD del,CD del,control_response,Control response,2,3.7458140594057996,3.1642988460509343,4.327329272760665,larger control-mouse shift
+CD del,CD del,synchronization_similarity,Trajectory synchronization,2,0.33577800695412113,0.2430700504418263,0.42848596346641593,more parallel individual shifts
+wt,WT,whole_group_shift,Whole-group shift,8,7.463029721382394,3.244069726969902,15.16979981865051,larger displacement
+wt,WT,identity_shift,Identity-domain shift,8,1.6538291046496427,-0.6839196738938901,5.822836829076332,more positive identity shift
+wt,WT,dispersion_change,Dispersion change,8,-3.3446234105045334,-11.733391617589907,1.0349429862912807,less cohesive / more spread
+wt,WT,pairwise_change,Pairwise distance change,8,-4.371854662209916,-15.885585381760677,1.6546437337795104,individuals farther apart in behavior space
+wt,WT,stressed_control_separation_change,Stress-control separation change,8,-5.272438350071624,-16.196687311487334,0.4429489540147582,more separation between treatments
+wt,WT,control_response,Control response,8,7.432947333245867,2.3153692615546584,16.76938347315089,larger control-mouse shift
+wt,WT,synchronization_similarity,Trajectory synchronization,8,0.6179444156429363,0.3998330212086365,0.7998923073197861,more parallel individual shifts

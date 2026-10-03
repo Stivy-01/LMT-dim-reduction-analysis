@@ -38,7 +38,6 @@ ENV/
 *.db
 *.sqlite
 *.sqlite3
-*.csv
 *.log
 
 # OS specific
@@ -48,3 +47,12 @@ Thumbs.db
 # Backup files
 *~
 *.bak 
+
+#thesis negligible files
+outputs/thesis_full_runs/*
+outputs/thesis_recap_check/
+outputs/docx_review_*/
+figures/pre_post_behavior_profiles/*
+build/ tmp/ out/ *.egg-info/
+__pycache__/ *.pyc .pytest_cache/
+scripts/node_modules/ .conda/

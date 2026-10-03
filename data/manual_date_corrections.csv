@@ -1,0 +1,11 @@
+enabled,cage_id,mouse_id,original_date,corrected_date,correction_source,correction_reason,force_exclude,exclusion_reason
+true,16p_8445,,2025-04-06,2024-06-17,manual_user_confirmed,processing date entry error; 2025 rows are post-stress nights for this cage,false,
+true,16p_8445,,2025-04-07,2024-06-18,manual_user_confirmed,processing date entry error; 2025 rows are post-stress nights for this cage,false,
+true,16p_8445,,2025-04-08,2024-06-19,manual_user_confirmed,processing date entry error; 2025 rows are post-stress nights for this cage,false,
+true,cddel_9621,,2025-04-07,2024-12-12,manual_user_confirmed,upstream preprocessing date error; stress nights should follow baseline 2024-12-09 to 2024-12-11,false,
+true,cddel_9621,,2025-04-08,2024-12-13,manual_user_confirmed,upstream preprocessing date error; stress nights should follow baseline 2024-12-09 to 2024-12-11,false,
+true,cddel_9621,,2025-04-09,2024-12-14,manual_user_confirmed,upstream preprocessing date error; stress nights should follow baseline 2024-12-09 to 2024-12-11,false,
+true,cddel_9621,,2025-04-10,2024-12-15,manual_user_confirmed,upstream preprocessing date error; extra final stress night excluded from operational analysis,true,known extra final stress night from upstream preprocessing error
+true,wt_9909,,2023-11-01,2024-11-01,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,false,
+true,wt_9909,,2023-11-02,2024-11-02,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,false,
+true,wt_9909,,2023-11-03,2024-11-03,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,false,

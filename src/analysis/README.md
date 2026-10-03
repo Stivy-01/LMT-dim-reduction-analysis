@@ -1,148 +1,80 @@
-# Analysis Module Documentation
+# Thesis analysis pipeline (`src.analysis`)
 
-## Overview
-This directory contains the core analysis modules for the LMT behavioral analysis pipeline. Each module is designed to handle specific aspects of the analysis workflow.
+This package implements the thesis analysis: it measures how chronic stress reshapes
+mouse behavior and group structure in Live Mouse Tracker (LMT) data, using
+dimensionality reduction (PCA + regularized LDA identity space) and
+phase-by-treatment effect models.
 
-## Module Descriptions
+Design principles:
 
-### 1. analysis_pipeline.py
-The main orchestrator module that coordinates the complete analysis workflow.
-- **Key Class**: `AnalysisPipeline`
-- **Main Functions**:
-  - `run_analysis()`: Executes the complete analysis pipeline
-- **Features**:
-  - Coordinates data preprocessing
-  - Runs sequential and parallel analyses
-  - Handles statistical analysis
-  - Generates comprehensive reports
-- **Dependencies**: preprocessing, sequential_analysis, parallel_pca, parallel_lda, statistics, reporting
+- Treatment labels (control / stressed) always come from metadata, never inferred
+  from behavioral similarity.
+- The known outlier cage `wt_10132` is analyzed in a dedicated scope, never silently
+  dropped from the primary scope.
+- With few cages, confidence intervals and permutation results are more informative
+  than isolated p-values (BH-FDR corrected throughout).
 
-### 2. preprocessing.py
-Handles data preprocessing and feature selection.
-- **Key Class**: `BehaviorPreprocessor`
-- **Main Functions**:
-  - `fit_transform()`: Preprocesses behavioral data
-  - `_handle_datetime()`: Processes temporal data
-  - `_normalize_by_interval()`: Normalizes features within intervals
-  - `_clean_data()`: Cleans and prepares data
-  - `_remove_correlated_features()`: Filters highly correlated features
-- **Features**:
-  - Data cleaning and normalization
-  - Feature selection
-  - Correlation filtering
-  - Standardization
-  - Cross-validation split creation
+## Pipeline stages
 
-### 3. parallel_pca.py
-Implements PCA part of Forkosh's parallel approach.
-- **Key Function**: `analyze_pca_parallel()`
-- **Features**:
-  - Data preprocessing with standardization
-  - Low variance feature removal
-  - Quantile normalization
-  - Component significance testing
-  - Distribution overlap analysis
-  - Stability scoring
-- **Returns**: Dictionary with PCA results including transformed space, components, eigenvalues, etc.
+`thesis_analysis.py` only orchestrates (`build_pipeline`); each stage lives in its
+own module:
 
-### 4. parallel_lda.py
-Implements LDA part of Forkosh's parallel approach.
-- **Key Function**: `analyze_lda_parallel()`
-- **Features**:
-  - Data preprocessing
-  - Identity domain analysis
-  - Component significance testing
-  - Distribution overlap analysis
-  - Discriminative power calculation
-- **Returns**: Dictionary with LDA results including transformed space, components, eigenvalues, etc.
+| Stage | Module | What it does |
+|---|---|---|
+| 0. Config | `config.py` | Default paths, column sets, `ThesisAnalysisConfig` / `ThesisAnalysisResult`, CLI args |
+| 1. Parsing | `text_parsing.py` | Normalizes mouse IDs, recap dates, years, RFID; stable seeds |
+| 2. Recap metadata | `recap_metadata.py` | Reads the recap workbook (`Analysis_Metadata` sheet) into mouse metadata |
+| 3. Merge | `merge_dataset.py` | Joins behavior CSV + metadata + recap + manual date corrections |
+| 4. QC | `quality_control.py` | Assigns baseline/post-stress phase, analysis tiers, eligibility flags, complete features |
+| 5. Projection | `projection.py` | Regularized LDA identity space + temporal validation |
+| 6. Effects | `effects.py` | Phase×treatment model/feature effects, BH correction |
+| 7. Group stats | `group_stats.py` | Cage-level metrics, bootstrap + sign-flip permutation change-in-change |
+| 8. Fit models | `fit_models.py` | Fits PCA/LDA on log1p features, merges scores back into QC frame |
+| 9. Diagnostics | `diagnostics.py` | 7 internal QC figures (timeline, missingness, trajectories, arrows, forest, dispersion, heatmap) |
+| 10. Reporting | `reporting.py` | HTML report, run directory, CSV writers |
+| 11. Orchestration | `thesis_analysis.py` | `build_pipeline` + `run_pipeline` + `main` |
 
-### 5. statistics.py
-Implements statistical analysis methods.
-- **Key Functions**:
-  - `perform_permutation_test()`: Stability assessment
-  - `perform_variance_ttest()`: Variance explained testing
-  - `perform_regression_analysis()`: Linear regression analysis
-  - `perform_anova()`: ANOVA across components
-  - `perform_correlation_analysis()`: Feature correlation analysis
-  - `calculate_stability_scores()`: Stability scoring
-- **Features**:
-  - Comprehensive statistical testing
-  - Multiple test types supported
-  - Cross-validation
-  - Significance testing
+Analysis scopes (when the sample changes, results are exported per scope):
 
-### 6. reporting.py
-Handles generation of analysis reports.
-- **Key Class**: `AnalysisReport`
-- **Main Functions**:
-  - `generate_markdown()`: Creates markdown report
-  - `generate_html()`: Creates HTML report
-- **Features**:
-  - Comprehensive reporting of:
-    - Analysis overview
-    - Sequential and parallel results
-    - Statistical test results
-    - Feature significance
-    - Component structure
-  - Multiple output formats (Markdown, HTML)
+- `primary` — all effect-eligible rows.
+- `phase_boundary_sensitivity` — sensitivity eligibility definition.
+- `exclude_wt_10132` — primary sample without the outlier cage.
 
-### 7. sequential_analysis.py
-Implements sequential analysis approach.
-- **Key Function**: `analyze_identity_domain_sequential()`
-- **Features**:
-  - PCA followed by LDA
-  - Stability scoring
-  - Variance explained calculation
+## Inputs
 
-### 8. identity_domain.py
-Implements identity domain analysis.
-- **Key Class**: `IdentityDomainAnalyzer`
-- **Features**:
-  - Scatter matrix computation
-  - Eigendecomposition
-  - Identity domain transformation
+- `data/behavior_stats_intervals_to_analize/merged_analysis_behavior_stats_intervals.csv`
+- `data/analysis_metadata.csv`
+- `data/LMT RECAP ALL EXPERIMENTS.xlsx` (normalized into `Analysis_Metadata`)
+- `data/manual_date_corrections.csv`
 
-### 9. gui.py
-Provides graphical user interface for analysis configuration.
-- **Key Class**: `AnalysisGUI`
-- **Features**:
-  - Analysis type selection
-  - File selection
-  - Configuration settings
-  - User-friendly interface
+## Outputs (per run directory)
 
-### 10. analysis_demo.py
-Demonstrates usage of analysis pipeline.
-- **Features**:
-  - Complete analysis workflow example
-  - Statistical testing demonstration
-  - Result visualization
-  - Feature importance analysis
+Tables: `mouse_night_analysis.csv`, `group_night_analysis.csv`, `pca_scores.csv`,
+`pca_loadings.csv`, `identity_loadings.csv`, `model_effects.csv`, `feature_effects.csv`,
+`bootstrap_permutation.csv`, `metadata_enriched.csv`, `quality_control.csv`,
+`date_corrections_applied.csv`, plus `thesis_analysis_report.html` and
+`run_manifest.json`.
 
-### 11. analysis_demo_pca.py
-Focused demonstration of PCA analysis.
-- **Features**:
-  - PCA-specific workflow
-  - Component analysis
-  - Result visualization
+The CSVs consumed by the publication figures are mirrored under
+`src/visualization/data/` (all figure inputs live there, including the
+`longitudinal_window/` values for S10); the figures themselves under
+`src/visualization/output/`. See `src/visualization/README.md` for the
+per-figure module layout (group entry `build_all.py`).
 
-### 12. analysis_demo_4h.py
-Demonstration with 4-hour interval analysis.
-- **Features**:
-  - Time-based analysis example
-  - Interval-specific processing
-  - Result visualization
+## Statistical methods
 
-## Usage
-The main entry point is `run_analysis.py` in the src directory, which:
-1. Shows GUI for configuration
-2. Creates and runs analysis pipeline
-3. Generates comprehensive reports and results
+Deep dive: [`STATISTICS.md`](STATISTICS.md) — what was used, where it lives in the
+pipeline, and why (PCA/LDA, mixed models, BH-FDR, bootstrap, sign-flip tests).
 
-## Dependencies
-- numpy
-- pandas
-- scikit-learn
-- scipy
-- matplotlib (for visualizations)
-- markdown (for report generation) 
+## Run it
+
+```bash
+python -m src.analysis.thesis_analysis --help
+python -m src.analysis.thesis_analysis --recap "data/LMT RECAP ALL EXPERIMENTS.xlsx"
+```
+
+or via the wrapper (also builds the workbook):
+
+```powershell
+scripts/run_lmt_pipeline.ps1
+```

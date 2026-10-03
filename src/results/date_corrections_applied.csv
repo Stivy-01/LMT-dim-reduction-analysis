@@ -1,0 +1,13 @@
+cage_id,mouse_id,interval_start_original,interval_start,phase,relative_night,date_correction_source,date_correction_reason,flag_manual_exclusion,manual_exclusion_reason
+wt_9909,9909,2023-11-01 19:00:00,2024-11-01 19:00:00,post_stress,5,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9909,2023-11-02 19:00:00,2024-11-02 19:00:00,post_stress,6,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9909,2023-11-03 19:00:00,2024-11-03 19:00:00,post_stress,7,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9910,2023-11-01 19:00:00,2024-11-01 19:00:00,post_stress,5,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9910,2023-11-02 19:00:00,2024-11-02 19:00:00,post_stress,6,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9910,2023-11-03 19:00:00,2024-11-03 19:00:00,post_stress,7,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9911,2023-11-01 19:00:00,2024-11-01 19:00:00,post_stress,5,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9911,2023-11-02 19:00:00,2024-11-02 19:00:00,post_stress,6,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9911,2023-11-03 19:00:00,2024-11-03 19:00:00,post_stress,7,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9912,2023-11-01 19:00:00,2024-11-01 19:00:00,post_stress,5,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9912,2023-11-02 19:00:00,2024-11-02 19:00:00,post_stress,6,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,
+wt_9909,9912,2023-11-03 19:00:00,2024-11-03 19:00:00,post_stress,7,manual_user_confirmed,processing date entry error; 2023 rows are post-stress nights for this cage,False,

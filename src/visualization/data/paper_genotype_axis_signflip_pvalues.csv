@@ -1,0 +1,25 @@
+source_sheet,phase,response,p_value
+16p,baseline,id_1,0.8125
+16p,baseline,id_2,0.203125
+16p,baseline,identity_composite,0.0625
+16p,baseline,pca_1,0.1640625
+16p,baseline,pca_2,0.140625
+16p,baseline,pca_3,0.8515625
+16p,post_stress,id_1,0.6981201171875
+16p,post_stress,id_2,0.00634765625
+16p,post_stress,identity_composite,0.00146484375
+16p,post_stress,pca_1,0.0177001953125
+16p,post_stress,pca_2,0.0166015625
+16p,post_stress,pca_3,0.7049560546875
+CD del,baseline,id_1,0.001953125
+CD del,baseline,id_2,0.001953125
+CD del,baseline,identity_composite,0.001953125
+CD del,baseline,pca_1,0.302734375
+CD del,baseline,pca_2,0.1171875
+CD del,baseline,pca_3,0.921875
+CD del,post_stress,id_1,0.23828125
+CD del,post_stress,id_2,0.6806640625
+CD del,post_stress,identity_composite,0.35546875
+CD del,post_stress,pca_1,0.32568359375
+CD del,post_stress,pca_2,0.04638671875
+CD del,post_stress,pca_3,0.06494140625

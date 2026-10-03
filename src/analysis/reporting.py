@@ -1,287 +1,106 @@
-"""
-Reporting Module
-==============
+# -*- coding: utf-8 -*-
+"""Report HTML e I/O della run (ex BLOCCO 10 di thesis_analysis)."""
+from __future__ import annotations
 
-Handles generation of analysis reports in both Markdown and HTML formats.
-Includes comprehensive reporting of:
-- Analysis overview
-- Sequential and parallel analysis results
-- Statistical test results
-- Feature significance analysis
-- Component structure analysis
-"""
-
-import pandas as pd
-import numpy as np
-import markdown
+import stat
+import textwrap
+from datetime import datetime
 from pathlib import Path
 
-class AnalysisReport:
+import pandas as pd
+
+from src.analysis.config import ThesisAnalysisResult
+
+
+def _render_report(result: ThesisAnalysisResult) -> Path:
+    report = result.output_dir / "thesis_analysis_report.html"
+    model_html = (
+        result.model_effects.to_html(index=False, border=0)
+        if not result.model_effects.empty
+        else "<p>No dimension-level model could be fitted.</p>"
+    )
+    bootstrap_html = (
+        result.bootstrap_permutation.to_html(index=False, border=0)
+        if not result.bootstrap_permutation.empty
+        else "<p>No cage-level change-in-change estimate was available.</p>"
+    )
+    top_features = result.feature_effects
+    if "analysis_scope" in top_features.columns:
+        top_features = top_features[top_features["analysis_scope"].eq("primary")]
+    top_features = top_features.sort_values("interaction_q_value").head(20)
+    feature_html = (
+        top_features.to_html(index=False, border=0)
+        if not top_features.empty
+        else "<p>No feature-level effect table was available.</p>"
+    )
+    html = f"""
+    <html>
+      <head>
+        <meta charset="utf-8"/>
+        <style>
+          body {{ font-family: Arial, sans-serif; margin: 24px; }}
+          table {{ border-collapse: collapse; }}
+          th, td {{ border: 1px solid #ccc; padding: 6px 8px; }}
+          img {{ max-width: 100%; height: auto; }}
+          code {{ background: #f2f2f2; padding: 1px 4px; }}
+        </style>
+      </head>
+      <body>
+        <h1>Scientific thesis analysis pipeline</h1>
+        <p>Run directory: <code>{result.output_dir}</code></p>
+        <p>Projection eligible rows: {result.projection_rows}</p>
+        <p>Effect eligible rows: {result.effect_rows}</p>
+        <p>Selected complete features: {len(result.feature_columns)}</p>
+        <p><strong>Interpretation:</strong> primary results use explicit phase
+        and treatment metadata. Additional scopes are exported only when they
+        change the analytical sample, including the explicit exclusion of
+        outlier cage <code>wt_10132</code>. Treatment is never inferred from
+        behavior. With few cages, confidence intervals and permutation results
+        are more informative than isolated p-values.</p>
+        <h2>Figures</h2>
+        <ul>
+          <li><img src="figures/figure_01_timeline_qc.png" alt="timeline qc"/></li>
+          <li><img src="figures/figure_02_missingness_heatmap.png" alt="missingness"/></li>
+          <li><img src="figures/figure_03_trajectories.png" alt="trajectories"/></li>
+          <li><img src="figures/figure_04_projection_arrows.png" alt="projection arrows"/></li>
+          <li><img src="figures/figure_05_forest_plot.png" alt="forest plot"/></li>
+          <li><img src="figures/figure_06_group_dispersion_centroid.png" alt="group dispersion"/></li>
+          <li><img src="figures/figure_07_feature_heatmap.png" alt="feature heatmap"/></li>
+        </ul>
+        <h2>Dimension-level models</h2>
+        {model_html}
+        <h2>Paired cage change-in-change</h2>
+        {bootstrap_html}
+        <h2>Top primary feature effects</h2>
+        {feature_html}
+      </body>
+    </html>
     """
-    Generates comprehensive analysis reports in multiple formats.
-    """
-    
-    def __init__(self, results_dict, significance_summary, feature_names=None):
-        """
-        Initialize report generator.
-        
-        Args:
-            results_dict: Dictionary containing all analysis results
-            significance_summary: Summary of statistical significance tests
-            feature_names: List of feature names (optional)
-        """
-        self.results = results_dict
-        self.significance = significance_summary
-        self.feature_names = feature_names or [f"Feature_{i}" for i in range(100)]
-        
-    def _generate_overview_section(self):
-        """Generate analysis overview section."""
-        return f"""# Behavioral Identity Domain Analysis Report
+    report.write_text(textwrap.dedent(html), encoding="utf-8")
+    return report
 
-## 1. Analysis Overview
-- Original dimensions: {self.results['original_dims']}
-- Final PCA dimensions: {self.results['pca_dims']}
-- Analysis date: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}
-"""
 
-    def _generate_sequential_section(self):
-        """Generate sequential analysis results section."""
-        return f"""
-## 2. Sequential Analysis Results
-- Stability score: {self.results['sequential_stability']:.3f}
-- PCA variance explained: {self.results['sequential_pca_var']:.3f}
-"""
+def _make_run_directory(output_root: Path, run_name: str | None) -> Path:
+    output_root = output_root.expanduser().resolve()
+    output_root.mkdir(parents=True, exist_ok=True)
+    base = output_root / (run_name or f"thesis_analysis_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
+    candidate = base
+    index = 1
+    while candidate.exists():
+        index += 1
+        candidate = base.with_name(f"{base.name}_{index}")
+    candidate.mkdir(parents=True, exist_ok=False)
+    return candidate
 
-    def _generate_parallel_section(self):
-        """Generate parallel analysis results section."""
-        return f"""
-## 3. Parallel Analysis Results (Forkosh Approach)
-### PCA Results
-- Stability score: {self.results['parallel_pca_stability']:.3f}
-- Variance explained: {self.results['parallel_pca_var']:.3f}
-- Number of significant components: {self.significance['PCA']['n_significant_components']}
-- Component p-values:
-{pd.DataFrame({
-    'Component': range(1, len(self.significance['PCA']['component_p_values'])+1),
-    'p-value': self.significance['PCA']['component_p_values']
-}).to_markdown(index=False)}
 
-### LDA Results
-- Stability score: {self.results['parallel_lda_stability']:.3f}
-- Number of significant components: {self.significance['LDA']['n_significant_components']}
-- Component p-values:
-{pd.DataFrame({
-    'Component': range(1, len(self.significance['LDA']['component_p_values'])+1),
-    'p-value': self.significance['LDA']['component_p_values']
-}).to_markdown(index=False)}
-"""
+def _set_readonly(path: Path) -> None:
+    try:
+        path.chmod(stat.S_IREAD | stat.S_IRGRP | stat.S_IROTH)
+    except Exception:
+        pass
 
-    def _generate_feature_analysis_section(self):
-        """Generate feature significance analysis section."""
-        section = "\n## 4. Significant Features Analysis\n### PCA Components\n"
-        
-        # Add PCA significant features
-        for comp, features in self.significance['PCA']['significant_features'].items():
-            section += f"\n#### {comp}\n"
-            for feat in features:
-                weight = self.results['parallel_pca_feature_significance'][comp][feat]['weight']
-                ci_lower = self.results['parallel_pca_feature_significance'][comp][feat]['ci_lower']
-                ci_upper = self.results['parallel_pca_feature_significance'][comp][feat]['ci_upper']
-                section += f"- {feat}: {weight:.3f} (CI: [{ci_lower:.3f}, {ci_upper:.3f}])\n"
-        
-        section += "\n### LDA Components\n"
-        
-        # Add LDA significant features
-        for comp, features in self.significance['LDA']['significant_features'].items():
-            section += f"\n#### {comp}\n"
-            for feat in features:
-                weight = self.results['parallel_lda_feature_significance'][comp][feat]['weight']
-                ci_lower = self.results['parallel_lda_feature_significance'][comp][feat]['ci_lower']
-                ci_upper = self.results['parallel_lda_feature_significance'][comp][feat]['ci_upper']
-                section += f"- {feat}: {weight:.3f} (CI: [{ci_lower:.3f}, {ci_upper:.3f}])\n"
-        
-        return section
 
-    def _generate_statistics_section(self):
-        """Generate statistical analysis section."""
-        stats = self.results['forkosh_statistics']
-        
-        section = f"""
-## 5. Statistical Analysis Results
-### Permutation Tests
-- PCA Stability: {stats['permutation_tests']['pca']['observed']:.3f}
-  - p-value: {stats['permutation_tests']['pca']['p_value']:.3f}
-- LDA Stability: {stats['permutation_tests']['lda']['observed']:.3f}
-  - p-value: {stats['permutation_tests']['lda']['p_value']:.3f}
-
-### Variance Explained (t-tests)
-#### PCA Components
-{pd.DataFrame({
-    'Component': range(1, len(stats['ttest_results']['PCA']['var_explained'])+1),
-    'Variance': stats['ttest_results']['PCA']['var_explained'],
-    'p-value': stats['ttest_results']['PCA']['p_values']
-}).to_markdown(index=False)}
-
-#### LDA Components
-{pd.DataFrame({
-    'Component': range(1, len(stats['ttest_results']['LDA']['var_explained'])+1),
-    'Variance': stats['ttest_results']['LDA']['var_explained'],
-    'p-value': stats['ttest_results']['LDA']['p_values']
-}).to_markdown(index=False)}
-
-### Linear Regression (R² Analysis)
-- PCA R² scores: {stats['regression_results']['PCA']['r2_scores']}
-- LDA R² scores: {stats['regression_results']['LDA']['r2_scores']}
-
-### ANOVA Results
-#### PCA Components
-{pd.DataFrame({
-    'Component': range(1, len(stats['anova_results']['PCA']['f_statistics'])+1),
-    'F-statistic': stats['anova_results']['PCA']['f_statistics'],
-    'p-value': stats['anova_results']['PCA']['p_values']
-}).to_markdown(index=False)}
-
-#### LDA Components
-{pd.DataFrame({
-    'Component': range(1, len(stats['anova_results']['LDA']['f_statistics'])+1),
-    'F-statistic': stats['anova_results']['LDA']['f_statistics'],
-    'p-value': stats['anova_results']['LDA']['p_values']
-}).to_markdown(index=False)}
-"""
-        return section
-
-    def _generate_correlation_section(self):
-        """Generate correlation analysis section."""
-        section = "\n### Feature Correlations\nSignificant correlations with behavioral features (p < 0.05):\n"
-        
-        stats = self.results['forkosh_statistics']
-        for space_name in ['PCA', 'LDA']:
-            section += f"\n#### {space_name} Components\n"
-            corr_results = stats['correlation_results'][space_name]
-            for comp_idx in range(corr_results['correlations'].shape[0]):
-                significant_idx = corr_results['p_values'][comp_idx] < 0.05
-                if np.any(significant_idx):
-                    section += f"\nComponent {comp_idx + 1}:\n"
-                    for feat_idx in np.where(significant_idx)[0]:
-                        section += (f"- {self.feature_names[feat_idx]}: "
-                                  f"r = {corr_results['correlations'][comp_idx, feat_idx]:.3f} "
-                                  f"(p = {corr_results['p_values'][comp_idx, feat_idx]:.3f})\n")
-        
-        return section
-
-    def _generate_files_section(self):
-        """Generate files summary section."""
-        return """
-## 6. Generated Files
-The following files contain detailed analysis results:
-- `*_metrics.csv`: Summary metrics for both approaches
-- `*_sequential_space.csv`: Identity space from sequential approach
-- `*_parallel_pca_space.csv`: PCA space from parallel approach
-- `*_parallel_lda_space.csv`: LDA space from parallel approach
-"""
-
-    def generate_markdown(self):
-        """Generate complete markdown report."""
-        sections = [
-            self._generate_overview_section(),
-            self._generate_sequential_section(),
-            self._generate_parallel_section(),
-            self._generate_feature_analysis_section(),
-            self._generate_statistics_section(),
-            self._generate_correlation_section(),
-            self._generate_files_section()
-        ]
-        
-        return '\n'.join(sections)
-
-    def generate_html(self):
-        """Generate HTML report with styling."""
-        md_content = self.generate_markdown()
-        
-        html_template = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Analysis Report</title>
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    line-height: 1.6;
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 20px;
-                }
-                h1 {
-                    color: #2c3e50;
-                    border-bottom: 2px solid #2c3e50;
-                }
-                h2 {
-                    color: #34495e;
-                    margin-top: 30px;
-                }
-                h3 {
-                    color: #7f8c8d;
-                }
-                h4 {
-                    color: #95a5a6;
-                }
-                table {
-                    border-collapse: collapse;
-                    width: 100%;
-                    margin: 20px 0;
-                }
-                th, td {
-                    border: 1px solid #ddd;
-                    padding: 8px;
-                    text-align: left;
-                }
-                th {
-                    background-color: #f5f6fa;
-                }
-                tr:nth-child(even) {
-                    background-color: #f9f9f9;
-                }
-                .feature-list {
-                    margin-left: 20px;
-                }
-                .confidence-interval {
-                    color: #7f8c8d;
-                    font-size: 0.9em;
-                }
-            </style>
-        </head>
-        <body>
-        {content}
-        </body>
-        </html>
-        """
-        
-        return html_template.format(content=markdown.markdown(md_content))
-
-def generate_report(results_dict, significance_summary, output_dir, base_filename, feature_names=None):
-    """
-    Generate and save analysis reports.
-    
-    Args:
-        results_dict: Dictionary containing all analysis results
-        significance_summary: Summary of statistical significance tests
-        output_dir: Directory to save reports
-        base_filename: Base name for report files
-        feature_names: List of feature names (optional)
-    
-    Returns:
-        tuple: (markdown_path, html_path)
-    """
-    report = AnalysisReport(results_dict, significance_summary, feature_names)
-    
-    # Save markdown report
-    md_path = output_dir / f"{base_filename}_analysis_report.md"
-    with open(md_path, 'w') as f:
-        f.write(report.generate_markdown())
-    
-    # Save HTML report
-    html_path = output_dir / f"{base_filename}_analysis_report.html"
-    with open(html_path, 'w') as f:
-        f.write(report.generate_html())
-    
-    return md_path, html_path 
+def _save_csv(df: pd.DataFrame, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path, index=False)
+    _set_readonly(path)

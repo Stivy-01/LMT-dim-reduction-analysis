@@ -1,0 +1,25 @@
+source_sheet,phase,composite,p_value
+16p,baseline,Social proximity counts,0.6640625
+16p,post_stress,Social proximity counts,0.1993408203125
+CD del,baseline,Social proximity counts,0.333984375
+CD del,post_stress,Social proximity counts,0.533203125
+16p,baseline,Social bout duration,0.0625
+16p,post_stress,Social bout duration,0.06201171875
+CD del,baseline,Social bout duration,0.02734375
+CD del,post_stress,Social bout duration,0.2734375
+16p,baseline,Isolation counts,0.2890625
+16p,post_stress,Isolation counts,0.780029296875
+CD del,baseline,Isolation counts,0.005859375
+CD del,post_stress,Isolation counts,0.0029296875
+16p,baseline,Isolation duration,0.3046875
+16p,post_stress,Isolation duration,0.2972412109375
+CD del,baseline,Isolation duration,0.716796875
+CD del,post_stress,Isolation duration,0.91162109375
+16p,baseline,Exploration / rearing,0.8515625
+16p,post_stress,Exploration / rearing,0.7513427734375
+CD del,baseline,Exploration / rearing,0.001953125
+CD del,post_stress,Exploration / rearing,0.03076171875
+16p,baseline,Stop / fragmentation,0.078125
+16p,post_stress,Stop / fragmentation,0.0032958984375
+CD del,baseline,Stop / fragmentation,0.037109375
+CD del,post_stress,Stop / fragmentation,0.0478515625

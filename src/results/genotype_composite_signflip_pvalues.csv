@@ -1,0 +1,25 @@
+source_sheet,phase,composite,n,mean,p
+CD del,baseline,Exploration / rearing,10,-0.31634699854934,0.001953125
+CD del,post_stress,Isolation counts,12,-0.11490614948443023,0.0029296875
+16p,post_stress,Stop / fragmentation,14,0.1614894845557012,0.0032958984375
+CD del,baseline,Isolation counts,10,-0.17441841399439303,0.005859375
+CD del,baseline,Social bout duration,10,0.036997382649919634,0.02734375
+CD del,post_stress,Exploration / rearing,12,-0.18250108765374026,0.03076171875
+CD del,baseline,Stop / fragmentation,10,-0.1691447145752859,0.037109375
+CD del,post_stress,Stop / fragmentation,12,-0.12994191327623064,0.0478515625
+16p,post_stress,Social bout duration,14,-0.022358383824544446,0.06201171875
+16p,baseline,Social bout duration,8,-0.043602273754912074,0.0625
+16p,baseline,Stop / fragmentation,8,0.22246944503736338,0.078125
+16p,post_stress,Social proximity counts,14,0.021267055481456253,0.1993408203125
+CD del,post_stress,Social bout duration,12,0.016332710444437782,0.2734375
+16p,baseline,Isolation counts,8,0.10587619907522683,0.2890625
+16p,post_stress,Isolation duration,14,-0.04688215770678713,0.2972412109375
+16p,baseline,Isolation duration,8,0.04139411326530559,0.3046875
+CD del,baseline,Social proximity counts,10,0.015340478317813983,0.333984375
+CD del,post_stress,Social proximity counts,12,-0.010177068515927186,0.533203125
+16p,baseline,Social proximity counts,8,-0.0067875901168932265,0.6640625
+CD del,baseline,Isolation duration,10,0.008116424012177279,0.716796875
+16p,post_stress,Exploration / rearing,14,-0.02822959194005532,0.7513427734375
+16p,post_stress,Isolation counts,14,0.02047828492238832,0.780029296875
+16p,baseline,Exploration / rearing,8,0.019949966195381877,0.8515625
+CD del,post_stress,Isolation duration,12,0.0023303729959218006,0.91162109375

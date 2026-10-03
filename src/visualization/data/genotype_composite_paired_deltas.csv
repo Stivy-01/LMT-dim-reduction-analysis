@@ -1,0 +1,265 @@
+source_sheet,cage_id,interval_start,phase,treatment,tg_mouse_id,wt_mouse_id,composite,n_features,tg_minus_wt
+16p,16p_8445,2024-06-16 19:00:00,baseline,control,8449,8445,Social proximity counts,9,-0.016890129483105396
+16p,16p_8445,2024-06-17 19:00:00,post_stress,control,8449,8445,Social proximity counts,9,-0.006379676718523106
+16p,16p_8445,2024-06-18 19:00:00,post_stress,control,8449,8445,Social proximity counts,9,-0.0768155147348996
+16p,16p_8445,2024-06-19 19:00:00,post_stress,control,8449,8445,Social proximity counts,9,-0.04464630493819962
+16p,16p_8445,2024-06-16 19:00:00,baseline,stressed,8448,8447,Social proximity counts,9,0.05118018103933439
+16p,16p_8445,2024-06-17 19:00:00,post_stress,stressed,8448,8447,Social proximity counts,9,0.11837770999416107
+16p,16p_8445,2024-06-18 19:00:00,post_stress,stressed,8448,8447,Social proximity counts,9,0.04948423362535061
+16p,16p_8445,2024-06-19 19:00:00,post_stress,stressed,8448,8447,Social proximity counts,9,0.0696095976756661
+16p,16p_9333,2024-09-07 19:00:00,baseline,stressed,9333,9334,Social proximity counts,9,0.027294066797576438
+16p,16p_9333,2024-09-08 19:00:00,post_stress,stressed,9333,9334,Social proximity counts,9,0.024249506159426854
+16p,16p_9333,2024-09-07 19:00:00,baseline,control,9335,9336,Social proximity counts,9,-0.023294331935727126
+16p,16p_9333,2024-09-08 19:00:00,post_stress,control,9335,9336,Social proximity counts,9,-0.01251450114102928
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,stressed,9622,9621,Social proximity counts,9,-0.025764633980646323
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,stressed,9622,9621,Social proximity counts,9,0.020541389239860684
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,stressed,9622,9621,Social proximity counts,9,0.047810082956626886
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,stressed,9622,9621,Social proximity counts,9,0.06152092765483373
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,stressed,9622,9621,Social proximity counts,9,0.03692286541440737
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,control,9623,9624,Social proximity counts,9,-0.0006309024540614377
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,control,9623,9624,Social proximity counts,9,-0.0008038535594487368
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,control,9623,9624,Social proximity counts,9,-0.05224387145561119
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,control,9623,9624,Social proximity counts,9,-0.05036074834816034
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,control,9623,9624,Social proximity counts,9,-0.08784457120534395
+16p,16p_9755,2024-10-15 19:00:00,baseline,stressed,9755,9758,Social proximity counts,9,0.04151172946183114
+16p,16p_9755,2024-10-16 19:00:00,baseline,stressed,9755,9758,Social proximity counts,9,-0.058064638587497344
+16p,16p_9755,2024-10-17 19:00:00,post_stress,stressed,9755,9758,Social proximity counts,9,0.07202738741659657
+16p,16p_9755,2024-10-18 19:00:00,post_stress,stressed,9755,9758,Social proximity counts,9,0.028058436851859173
+16p,16p_9755,2024-10-19 19:00:00,post_stress,stressed,9755,9758,Social proximity counts,9,-0.027188962718415373
+16p,16p_9755,2024-10-15 19:00:00,baseline,control,9756,9757,Social proximity counts,9,-0.01601067456580216
+16p,16p_9755,2024-10-16 19:00:00,baseline,control,9756,9757,Social proximity counts,9,-0.060026923661755854
+16p,16p_9755,2024-10-17 19:00:00,post_stress,control,9756,9757,Social proximity counts,9,0.10694442242565799
+16p,16p_9755,2024-10-18 19:00:00,post_stress,control,9756,9757,Social proximity counts,9,0.04107752739005418
+16p,16p_9755,2024-10-19 19:00:00,post_stress,control,9756,9757,Social proximity counts,9,-0.04454508454731777
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,stressed,10276,10278,Social proximity counts,9,0.10224633694059489
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,stressed,10276,10278,Social proximity counts,9,0.02615263916713189
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,stressed,10276,10278,Social proximity counts,9,0.043596964302795804
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,stressed,10276,10278,Social proximity counts,9,0.04785845268622957
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,stressed,10276,10278,Social proximity counts,9,0.06218222054750861
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,stressed,10276,10278,Social proximity counts,9,-0.0674467583606859
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,control,10277,10279,Social proximity counts,9,0.04910945818669118
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,control,10277,10279,Social proximity counts,9,0.01020160172534289
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,control,10277,10279,Social proximity counts,9,-0.07124421639012073
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,control,10277,10279,Social proximity counts,9,-0.033639934575326734
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,control,10277,10279,Social proximity counts,9,-0.06298598866767355
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,control,10277,10279,Social proximity counts,9,-0.023897498837930797
+16p,16p_8445,2024-06-16 19:00:00,baseline,control,8449,8445,Social bout duration,6,-0.04765969107315893
+16p,16p_8445,2024-06-17 19:00:00,post_stress,control,8449,8445,Social bout duration,6,-0.06794911323463043
+16p,16p_8445,2024-06-18 19:00:00,post_stress,control,8449,8445,Social bout duration,6,-0.08618632133953925
+16p,16p_8445,2024-06-19 19:00:00,post_stress,control,8449,8445,Social bout duration,6,-0.04095662839436104
+16p,16p_8445,2024-06-16 19:00:00,baseline,stressed,8448,8447,Social bout duration,6,-0.04735057726232348
+16p,16p_8445,2024-06-17 19:00:00,post_stress,stressed,8448,8447,Social bout duration,6,-0.016217831996466963
+16p,16p_8445,2024-06-18 19:00:00,post_stress,stressed,8448,8447,Social bout duration,6,0.043076199207166356
+16p,16p_8445,2024-06-19 19:00:00,post_stress,stressed,8448,8447,Social bout duration,6,-0.025028918933388506
+16p,16p_9333,2024-09-07 19:00:00,baseline,stressed,9333,9334,Social bout duration,6,0.0023606440034852163
+16p,16p_9333,2024-09-08 19:00:00,post_stress,stressed,9333,9334,Social bout duration,6,0.03210502009796771
+16p,16p_9333,2024-09-07 19:00:00,baseline,control,9335,9336,Social bout duration,6,0.04550411094606741
+16p,16p_9333,2024-09-08 19:00:00,post_stress,control,9335,9336,Social bout duration,6,0.043052131076185864
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,stressed,9622,9621,Social bout duration,6,-0.020115019687682163
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,stressed,9622,9621,Social bout duration,6,0.002882788664824054
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,stressed,9622,9621,Social bout duration,6,-0.0668864502972918
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,stressed,9622,9621,Social bout duration,6,-0.049413660865336516
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,stressed,9622,9621,Social bout duration,6,-0.0018438184397695512
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,control,9623,9624,Social bout duration,6,0.09579483898227281
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,control,9623,9624,Social bout duration,6,0.03558759869165101
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,control,9623,9624,Social bout duration,6,0.11124767863342046
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,control,9623,9624,Social bout duration,6,0.027393126111357764
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,control,9623,9624,Social bout duration,6,0.06026188539759875
+16p,16p_9755,2024-10-15 19:00:00,baseline,stressed,9755,9758,Social bout duration,6,-0.12153430594126019
+16p,16p_9755,2024-10-16 19:00:00,baseline,stressed,9755,9758,Social bout duration,6,-0.10252752383864788
+16p,16p_9755,2024-10-17 19:00:00,post_stress,stressed,9755,9758,Social bout duration,6,-0.039107640279320975
+16p,16p_9755,2024-10-18 19:00:00,post_stress,stressed,9755,9758,Social bout duration,6,-0.0376443262782882
+16p,16p_9755,2024-10-19 19:00:00,post_stress,stressed,9755,9758,Social bout duration,6,-0.0561451253580482
+16p,16p_9755,2024-10-15 19:00:00,baseline,control,9756,9757,Social bout duration,6,-0.07389421622062271
+16p,16p_9755,2024-10-16 19:00:00,baseline,control,9756,9757,Social bout duration,6,-0.0037166306528363577
+16p,16p_9755,2024-10-17 19:00:00,post_stress,control,9756,9757,Social bout duration,6,-0.055532626850949174
+16p,16p_9755,2024-10-18 19:00:00,post_stress,control,9756,9757,Social bout duration,6,0.003639564836534659
+16p,16p_9755,2024-10-19 19:00:00,post_stress,control,9756,9757,Social bout duration,6,-0.010121756096484247
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,stressed,10276,10278,Social bout duration,6,-0.01137172996836335
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,stressed,10276,10278,Social bout duration,6,-0.0024313054412820425
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,stressed,10276,10278,Social bout duration,6,0.04719632590147586
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,stressed,10276,10278,Social bout duration,6,0.01640942038758686
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,stressed,10276,10278,Social bout duration,6,-0.017422043485924743
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,stressed,10276,10278,Social bout duration,6,0.05205784238753495
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,control,10277,10279,Social bout duration,6,0.11889811732008036
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,control,10277,10279,Social bout duration,6,0.0502435114381797
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,control,10277,10279,Social bout duration,6,0.05328870059804025
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,control,10277,10279,Social bout duration,6,-0.0069843291090651944
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,control,10277,10279,Social bout duration,6,0.03981604693925683
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,control,10277,10279,Social bout duration,6,0.03135682767388576
+16p,16p_8445,2024-06-16 19:00:00,baseline,control,8449,8445,Isolation counts,4,0.10644831879380878
+16p,16p_8445,2024-06-17 19:00:00,post_stress,control,8449,8445,Isolation counts,4,0.1600717059990302
+16p,16p_8445,2024-06-18 19:00:00,post_stress,control,8449,8445,Isolation counts,4,0.10785384020345301
+16p,16p_8445,2024-06-19 19:00:00,post_stress,control,8449,8445,Isolation counts,4,0.3116025980998651
+16p,16p_8445,2024-06-16 19:00:00,baseline,stressed,8448,8447,Isolation counts,4,-0.26240587708974994
+16p,16p_8445,2024-06-17 19:00:00,post_stress,stressed,8448,8447,Isolation counts,4,-0.3769674846131177
+16p,16p_8445,2024-06-18 19:00:00,post_stress,stressed,8448,8447,Isolation counts,4,-0.41048808256475544
+16p,16p_8445,2024-06-19 19:00:00,post_stress,stressed,8448,8447,Isolation counts,4,-0.4730373696942738
+16p,16p_9333,2024-09-07 19:00:00,baseline,stressed,9333,9334,Isolation counts,4,0.0697252064494771
+16p,16p_9333,2024-09-08 19:00:00,post_stress,stressed,9333,9334,Isolation counts,4,0.08573340083243375
+16p,16p_9333,2024-09-07 19:00:00,baseline,control,9335,9336,Isolation counts,4,-0.11569077861066712
+16p,16p_9333,2024-09-08 19:00:00,post_stress,control,9335,9336,Isolation counts,4,0.046033954905270846
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,stressed,9622,9621,Isolation counts,4,0.03725900938219695
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,stressed,9622,9621,Isolation counts,4,-0.01569824821151089
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,stressed,9622,9621,Isolation counts,4,-0.016231632568328047
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,stressed,9622,9621,Isolation counts,4,0.06500854589695515
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,stressed,9622,9621,Isolation counts,4,-0.11102881590619695
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,control,9623,9624,Isolation counts,4,-0.2909225974248988
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,control,9623,9624,Isolation counts,4,-0.2539430001556042
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,control,9623,9624,Isolation counts,4,-0.11185831193810292
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,control,9623,9624,Isolation counts,4,-0.057456771755258096
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,control,9623,9624,Isolation counts,4,-0.032439661131168585
+16p,16p_9755,2024-10-15 19:00:00,baseline,stressed,9755,9758,Isolation counts,4,0.40401964212055597
+16p,16p_9755,2024-10-16 19:00:00,baseline,stressed,9755,9758,Isolation counts,4,0.5242818743900328
+16p,16p_9755,2024-10-17 19:00:00,post_stress,stressed,9755,9758,Isolation counts,4,0.14257832881060306
+16p,16p_9755,2024-10-18 19:00:00,post_stress,stressed,9755,9758,Isolation counts,4,0.32130611391426567
+16p,16p_9755,2024-10-19 19:00:00,post_stress,stressed,9755,9758,Isolation counts,4,0.3909792491502455
+16p,16p_9755,2024-10-15 19:00:00,baseline,control,9756,9757,Isolation counts,4,0.010531985995377857
+16p,16p_9755,2024-10-16 19:00:00,baseline,control,9756,9757,Isolation counts,4,0.11009922055297938
+16p,16p_9755,2024-10-17 19:00:00,post_stress,control,9756,9757,Isolation counts,4,-0.07502346534428717
+16p,16p_9755,2024-10-18 19:00:00,post_stress,control,9756,9757,Isolation counts,4,0.14423318842948651
+16p,16p_9755,2024-10-19 19:00:00,post_stress,control,9756,9757,Isolation counts,4,-0.08817998921478298
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,stressed,10276,10278,Isolation counts,4,-0.20445848663879262
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,stressed,10276,10278,Isolation counts,4,-0.14188130881541117
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,stressed,10276,10278,Isolation counts,4,-0.2671053317889225
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,stressed,10276,10278,Isolation counts,4,-0.22320694723505152
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,stressed,10276,10278,Isolation counts,4,-0.2914614928204955
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,stressed,10276,10278,Isolation counts,4,-0.13933357517856293
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,control,10277,10279,Isolation counts,4,-0.37461246766905254
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,control,10277,10279,Isolation counts,4,-0.151853123944252
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,control,10277,10279,Isolation counts,4,-0.08096858467768286
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,control,10277,10279,Isolation counts,4,-0.15694940124837875
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,control,10277,10279,Isolation counts,4,-0.08571897174942489
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,control,10277,10279,Isolation counts,4,-0.21819675817914996
+16p,16p_8445,2024-06-16 19:00:00,baseline,control,8449,8445,Isolation duration,4,0.09034950267117448
+16p,16p_8445,2024-06-17 19:00:00,post_stress,control,8449,8445,Isolation duration,4,0.13895633229786053
+16p,16p_8445,2024-06-18 19:00:00,post_stress,control,8449,8445,Isolation duration,4,-0.06443995077849207
+16p,16p_8445,2024-06-19 19:00:00,post_stress,control,8449,8445,Isolation duration,4,0.11917869839066095
+16p,16p_8445,2024-06-16 19:00:00,baseline,stressed,8448,8447,Isolation duration,4,-0.059062272061878224
+16p,16p_8445,2024-06-17 19:00:00,post_stress,stressed,8448,8447,Isolation duration,4,-0.1374097575879376
+16p,16p_8445,2024-06-18 19:00:00,post_stress,stressed,8448,8447,Isolation duration,4,-0.3291011390367657
+16p,16p_8445,2024-06-19 19:00:00,post_stress,stressed,8448,8447,Isolation duration,4,-0.3127052212466293
+16p,16p_9333,2024-09-07 19:00:00,baseline,stressed,9333,9334,Isolation duration,4,0.1961435154407755
+16p,16p_9333,2024-09-08 19:00:00,post_stress,stressed,9333,9334,Isolation duration,4,0.020669803571423423
+16p,16p_9333,2024-09-07 19:00:00,baseline,control,9335,9336,Isolation duration,4,-0.09107150168665318
+16p,16p_9333,2024-09-08 19:00:00,post_stress,control,9335,9336,Isolation duration,4,-0.213462200405295
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,stressed,9622,9621,Isolation duration,4,0.1714444977344958
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,stressed,9622,9621,Isolation duration,4,-0.024153789900559913
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,stressed,9622,9621,Isolation duration,4,0.07574697011031242
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,stressed,9622,9621,Isolation duration,4,-0.0425426197961811
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,stressed,9622,9621,Isolation duration,4,0.03075310736331857
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,control,9623,9624,Isolation duration,4,0.029460082112812813
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,control,9623,9624,Isolation duration,4,0.029584542691990984
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,control,9623,9624,Isolation duration,4,0.1413383973548518
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,control,9623,9624,Isolation duration,4,0.059796923416065434
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,control,9623,9624,Isolation duration,4,-0.03458399755918348
+16p,16p_9755,2024-10-15 19:00:00,baseline,stressed,9755,9758,Isolation duration,4,0.04249305545988907
+16p,16p_9755,2024-10-16 19:00:00,baseline,stressed,9755,9758,Isolation duration,4,0.13686214124526452
+16p,16p_9755,2024-10-17 19:00:00,post_stress,stressed,9755,9758,Isolation duration,4,0.13444381466613398
+16p,16p_9755,2024-10-18 19:00:00,post_stress,stressed,9755,9758,Isolation duration,4,-0.11178837418095339
+16p,16p_9755,2024-10-19 19:00:00,post_stress,stressed,9755,9758,Isolation duration,4,-0.10063904980557797
+16p,16p_9755,2024-10-15 19:00:00,baseline,control,9756,9757,Isolation duration,4,0.08523978513797129
+16p,16p_9755,2024-10-16 19:00:00,baseline,control,9756,9757,Isolation duration,4,-0.06980132008409859
+16p,16p_9755,2024-10-17 19:00:00,post_stress,control,9756,9757,Isolation duration,4,0.01678042819165204
+16p,16p_9755,2024-10-18 19:00:00,post_stress,control,9756,9757,Isolation duration,4,0.0449469754287016
+16p,16p_9755,2024-10-19 19:00:00,post_stress,control,9756,9757,Isolation duration,4,0.1382194326001987
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,stressed,10276,10278,Isolation duration,4,-0.113673849291959
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,stressed,10276,10278,Isolation duration,4,0.027375582984813934
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,stressed,10276,10278,Isolation duration,4,0.005223180718635895
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,stressed,10276,10278,Isolation duration,4,-0.0635349392027067
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,stressed,10276,10278,Isolation duration,4,-0.06218980085542375
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,stressed,10276,10278,Isolation duration,4,-0.016808558866244716
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,control,10277,10279,Isolation duration,4,-0.05020300908685482
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,control,10277,10279,Isolation duration,4,0.03119485537106878
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,control,10277,10279,Isolation duration,4,-0.025087853212671485
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,control,10277,10279,Isolation duration,4,-0.005512746594612261
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,control,10277,10279,Isolation duration,4,0.04902653312512226
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,control,10277,10279,Isolation duration,4,-0.10352479254425698
+16p,16p_8445,2024-06-16 19:00:00,baseline,control,8449,8445,Exploration / rearing,8,-0.08285738221662745
+16p,16p_8445,2024-06-17 19:00:00,post_stress,control,8449,8445,Exploration / rearing,8,0.25335062181319484
+16p,16p_8445,2024-06-18 19:00:00,post_stress,control,8449,8445,Exploration / rearing,8,-0.11471439013005147
+16p,16p_8445,2024-06-19 19:00:00,post_stress,control,8449,8445,Exploration / rearing,8,0.14771439429588348
+16p,16p_8445,2024-06-16 19:00:00,baseline,stressed,8448,8447,Exploration / rearing,8,-0.5405399319968041
+16p,16p_8445,2024-06-17 19:00:00,post_stress,stressed,8448,8447,Exploration / rearing,8,-0.5665253257816592
+16p,16p_8445,2024-06-18 19:00:00,post_stress,stressed,8448,8447,Exploration / rearing,8,-0.26581458256334745
+16p,16p_8445,2024-06-19 19:00:00,post_stress,stressed,8448,8447,Exploration / rearing,8,-0.5598707378127565
+16p,16p_9333,2024-09-07 19:00:00,baseline,stressed,9333,9334,Exploration / rearing,8,0.05776857603455021
+16p,16p_9333,2024-09-08 19:00:00,post_stress,stressed,9333,9334,Exploration / rearing,8,-0.04005039697107926
+16p,16p_9333,2024-09-07 19:00:00,baseline,control,9335,9336,Exploration / rearing,8,-0.30211883829942
+16p,16p_9333,2024-09-08 19:00:00,post_stress,control,9335,9336,Exploration / rearing,8,-0.49603390245957796
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,stressed,9622,9621,Exploration / rearing,8,-0.1428978926127848
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,stressed,9622,9621,Exploration / rearing,8,-0.19985880344151657
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,stressed,9622,9621,Exploration / rearing,8,0.15720061011063433
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,stressed,9622,9621,Exploration / rearing,8,0.04889918442821989
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,stressed,9622,9621,Exploration / rearing,8,-0.2399386600535008
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,control,9623,9624,Exploration / rearing,8,-0.46486171844910695
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,control,9623,9624,Exploration / rearing,8,-0.5495691414823579
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,control,9623,9624,Exploration / rearing,8,0.07597712693327857
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,control,9623,9624,Exploration / rearing,8,-0.4325243557979263
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,control,9623,9624,Exploration / rearing,8,-0.339698973601118
+16p,16p_9755,2024-10-15 19:00:00,baseline,stressed,9755,9758,Exploration / rearing,8,0.4517273154649594
+16p,16p_9755,2024-10-16 19:00:00,baseline,stressed,9755,9758,Exploration / rearing,8,0.3615824615932121
+16p,16p_9755,2024-10-17 19:00:00,post_stress,stressed,9755,9758,Exploration / rearing,8,0.21480926926076724
+16p,16p_9755,2024-10-18 19:00:00,post_stress,stressed,9755,9758,Exploration / rearing,8,0.24921699141959025
+16p,16p_9755,2024-10-19 19:00:00,post_stress,stressed,9755,9758,Exploration / rearing,8,0.3824378954971491
+16p,16p_9755,2024-10-15 19:00:00,baseline,control,9756,9757,Exploration / rearing,8,0.07067482210868908
+16p,16p_9755,2024-10-16 19:00:00,baseline,control,9756,9757,Exploration / rearing,8,0.14336270687449582
+16p,16p_9755,2024-10-17 19:00:00,post_stress,control,9756,9757,Exploration / rearing,8,0.19251838459198287
+16p,16p_9755,2024-10-18 19:00:00,post_stress,control,9756,9757,Exploration / rearing,8,0.30695847238483576
+16p,16p_9755,2024-10-19 19:00:00,post_stress,control,9756,9757,Exploration / rearing,8,-0.09921098070570628
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,stressed,10276,10278,Exploration / rearing,8,-0.063521424274118
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,stressed,10276,10278,Exploration / rearing,8,-0.032876053655559956
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,stressed,10276,10278,Exploration / rearing,8,-0.3530153237095772
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,stressed,10276,10278,Exploration / rearing,8,0.13639591247745558
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,stressed,10276,10278,Exploration / rearing,8,-0.023031085877180862
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,stressed,10276,10278,Exploration / rearing,8,-0.19519416063984354
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,control,10277,10279,Exploration / rearing,8,-0.45867549678752034
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,control,10277,10279,Exploration / rearing,8,-0.42818129489573775
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,control,10277,10279,Exploration / rearing,8,-0.47001283618512124
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,control,10277,10279,Exploration / rearing,8,-0.5018306828696696
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,control,10277,10279,Exploration / rearing,8,-0.43478621076139434
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,control,10277,10279,Exploration / rearing,8,-0.44148175619383767
+16p,16p_8445,2024-06-16 19:00:00,baseline,control,8449,8445,Stop / fragmentation,4,0.18128755105250205
+16p,16p_8445,2024-06-17 19:00:00,post_stress,control,8449,8445,Stop / fragmentation,4,0.13398543908164817
+16p,16p_8445,2024-06-18 19:00:00,post_stress,control,8449,8445,Stop / fragmentation,4,0.1124270493648929
+16p,16p_8445,2024-06-19 19:00:00,post_stress,control,8449,8445,Stop / fragmentation,4,0.23210424552495446
+16p,16p_8445,2024-06-16 19:00:00,baseline,stressed,8448,8447,Stop / fragmentation,4,0.07274024661201395
+16p,16p_8445,2024-06-17 19:00:00,post_stress,stressed,8448,8447,Stop / fragmentation,4,0.14904809973636102
+16p,16p_8445,2024-06-18 19:00:00,post_stress,stressed,8448,8447,Stop / fragmentation,4,0.1459592466795614
+16p,16p_8445,2024-06-19 19:00:00,post_stress,stressed,8448,8447,Stop / fragmentation,4,0.08999520528071381
+16p,16p_9333,2024-09-07 19:00:00,baseline,stressed,9333,9334,Stop / fragmentation,4,0.1311727057827876
+16p,16p_9333,2024-09-08 19:00:00,post_stress,stressed,9333,9334,Stop / fragmentation,4,0.2719933456519832
+16p,16p_9333,2024-09-07 19:00:00,baseline,control,9335,9336,Stop / fragmentation,4,-0.1484720278328071
+16p,16p_9333,2024-09-08 19:00:00,post_stress,control,9335,9336,Stop / fragmentation,4,-0.14419753701663063
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,stressed,9622,9621,Stop / fragmentation,4,-0.00537993191728936
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,stressed,9622,9621,Stop / fragmentation,4,0.022442928923171124
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,stressed,9622,9621,Stop / fragmentation,4,0.08014172123809149
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,stressed,9622,9621,Stop / fragmentation,4,0.10896808832442462
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,stressed,9622,9621,Stop / fragmentation,4,-0.04984027289203441
+CD del,cddel_9621,2024-12-10 19:00:00,baseline,control,9623,9624,Stop / fragmentation,4,-0.45143694871826656
+CD del,cddel_9621,2024-12-11 19:00:00,baseline,control,9623,9624,Stop / fragmentation,4,-0.4484628283861176
+CD del,cddel_9621,2024-12-12 19:00:00,post_stress,control,9623,9624,Stop / fragmentation,4,-0.3746947582346112
+CD del,cddel_9621,2024-12-13 19:00:00,post_stress,control,9623,9624,Stop / fragmentation,4,-0.3852514410901824
+CD del,cddel_9621,2024-12-14 19:00:00,post_stress,control,9623,9624,Stop / fragmentation,4,-0.42535927459429423
+16p,16p_9755,2024-10-15 19:00:00,baseline,stressed,9755,9758,Stop / fragmentation,4,0.7350308184553942
+16p,16p_9755,2024-10-16 19:00:00,baseline,stressed,9755,9758,Stop / fragmentation,4,0.6765118956482594
+16p,16p_9755,2024-10-17 19:00:00,post_stress,stressed,9755,9758,Stop / fragmentation,4,0.31932707026057017
+16p,16p_9755,2024-10-18 19:00:00,post_stress,stressed,9755,9758,Stop / fragmentation,4,0.39111308247929033
+16p,16p_9755,2024-10-19 19:00:00,post_stress,stressed,9755,9758,Stop / fragmentation,4,0.28868355269122215
+16p,16p_9755,2024-10-15 19:00:00,baseline,control,9756,9757,Stop / fragmentation,4,-0.016068725474444934
+16p,16p_9755,2024-10-16 19:00:00,baseline,control,9756,9757,Stop / fragmentation,4,0.14755309605520184
+16p,16p_9755,2024-10-17 19:00:00,post_stress,control,9756,9757,Stop / fragmentation,4,0.15355869392080956
+16p,16p_9755,2024-10-18 19:00:00,post_stress,control,9756,9757,Stop / fragmentation,4,0.25049766777794624
+16p,16p_9755,2024-10-19 19:00:00,post_stress,control,9756,9757,Stop / fragmentation,4,-0.13364237765350562
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,stressed,10276,10278,Stop / fragmentation,4,0.14212739739364855
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,stressed,10276,10278,Stop / fragmentation,4,-0.047242803945718226
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,stressed,10276,10278,Stop / fragmentation,4,-0.06737580602555138
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,stressed,10276,10278,Stop / fragmentation,4,0.10565977513916791
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,stressed,10276,10278,Stop / fragmentation,4,0.026135377506333768
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,stressed,10276,10278,Stop / fragmentation,4,-0.020128299611978706
+CD del,cddel_10276,2025-02-22 19:00:00,baseline,control,10277,10279,Stop / fragmentation,4,-0.3617028777560587
+CD del,cddel_10276,2025-02-23 19:00:00,baseline,control,10277,10279,Stop / fragmentation,4,-0.2558662060050976
+CD del,cddel_10276,2025-02-24 19:00:00,baseline,control,10277,10279,Stop / fragmentation,4,-0.2185500693155793
+CD del,cddel_10276,2025-02-25 19:00:00,post_stress,control,10277,10279,Stop / fragmentation,4,-0.20266047078336946
+CD del,cddel_10276,2025-02-26 19:00:00,post_stress,control,10277,10279,Stop / fragmentation,4,-0.2332184406681681
+CD del,cddel_10276,2025-02-27 19:00:00,post_stress,control,10277,10279,Stop / fragmentation,4,-0.1890549636481469

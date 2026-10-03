@@ -1,0 +1,41 @@
+mouse_id,cage_id,source_sheet,sex,treatment,genotype,strain,experiment_start,experiment_end,stress_start,phase_assignment_status,notes
+8226,CDdel_8226,CD del,F,control,TG,,2024-06-03,2024-06-07,2024-06-06 18:58,explicit_stress_date_but_no_post_rows,Experiment start 17:40
+8227,CDdel_8226,CD del,F,stressed,TG,,2024-06-03,2024-06-07,2024-06-06 18:58,explicit_stress_date_but_no_post_rows,
+8228,CDdel_8226,CD del,F,stressed,WT,,2024-06-03,2024-06-07,2024-06-06 18:58,explicit_stress_date_but_no_post_rows,Room temperature 27 C
+8229,CDdel_8226,CD del,F,control,WT,,2024-06-03,2024-06-07,2024-06-06 18:58,explicit_stress_date_but_no_post_rows,
+8445,16p_8445,16p,F,control,WT,,2024-06-15,2024-06-19,,ambiguous_stress_date_and_out_of_window_rows,Experiment start 17:13
+8447,16p_8445,16p,F,stressed,WT,,2024-06-15,2024-06-19,,ambiguous_stress_date_and_out_of_window_rows,
+8448,16p_8445,16p,F,stressed,TG,,2024-06-15,2024-06-19,,ambiguous_stress_date_and_out_of_window_rows,Stress time written as 19:08-19:39 without date
+8449,16p_8445,16p,F,control,TG,,2024-06-15,2024-06-19,,ambiguous_stress_date_and_out_of_window_rows,
+8718,wt_8718,wt,F,stressed,WT,16p,2024-05-14,2024-05-18,2024-05-17 19:00,explicit_and_usable,Experiment start 16:20
+8719,wt_8718,wt,F,control,WT,16p,2024-05-14,2024-05-18,2024-05-17 19:00,explicit_and_usable,
+8720,wt_8718,wt,F,control,WT,16p,2024-05-14,2024-05-18,2024-05-17 19:00,explicit_and_usable,Food check 2024-05-15 at 14:00
+8722,wt_8718,wt,F,stressed,WT,16p,2024-05-14,2024-05-18,2024-05-17 19:00,explicit_and_usable,
+9314,wt_9314,wt,M,stressed,WT,Sa-Cre,2024-09-13,2024-09-17,2024-09-16 18:50,explicit_and_usable,CSV/raw ID 9314 carries RFID 001040990567 assigned to stressed metadata mouse 9317; IDs 9314 and 9317 are swapped relative to recap
+9315,wt_9314,wt,M,control,WT,Sa-Cre,2024-09-13,2024-09-17,2024-09-16 18:50,explicit_and_usable,No subcutaneous chip
+9316,wt_9314,wt,M,stressed,WT,Sa-Cre,2024-09-13,2024-09-17,2024-09-16 18:50,explicit_and_usable,No subcutaneous chip
+9317,wt_9314,wt,M,control,WT,Sa-Cre,2024-09-13,2024-09-17,2024-09-16 18:50,explicit_and_usable,CSV/raw ID 9317 carries RFID 001040992979 assigned to control metadata mouse 9314; IDs 9314 and 9317 are swapped relative to recap
+9333,16p_9333,16p,M,stressed,TG,,2024-09-06,2024-09-10,,ambiguous_stress_date_and_extra_early_rows,Experiment start 15:30
+9334,16p_9333,16p,M,stressed,WT,,2024-09-06,2024-09-10,,ambiguous_stress_date_and_extra_early_rows,
+9335,16p_9333,16p,M,control,TG,,2024-09-06,2024-09-10,,ambiguous_stress_date_and_extra_early_rows,Entrance 2024-09-07 at 17:55-18:00
+9336,16p_9333,16p,M,control,WT,,2024-09-06,2024-09-10,,ambiguous_stress_date_and_extra_early_rows,Stress time written as 19:00-19:33 without date
+9755,16p_9755,D raw,M,stressed,TG,16p,2024-10-14,2024-10-20,2024-10-17 19:00,inferred_from_baseline_database_boundary,Direct SETUP=stress in raw database; baseline database ends before night of 2024-10-17
+9756,16p_9755,D raw,M,control,TG,16p,2024-10-14,2024-10-20,2024-10-17 19:00,inferred_from_baseline_database_boundary,Direct SETUP=neutral in raw database; baseline database ends before night of 2024-10-17
+9757,16p_9755,D raw,M,control,WT,16p,2024-10-14,2024-10-20,2024-10-17 19:00,inferred_from_baseline_database_boundary,Direct SETUP=neutral in raw database; baseline database ends before night of 2024-10-17
+9758,16p_9755,D raw,M,stressed,WT,16p,2024-10-14,2024-10-20,2024-10-17 19:00,inferred_from_baseline_database_boundary,Direct SETUP=stress in raw database; baseline database ends before night of 2024-10-17
+9909,crh_9909,D raw,F,control,WT,crh,2024-10-28,2024-10-31,,treatment_known_phase_not_observed,Direct SETUP=neutral in raw database; 2023 CSV rows are a separate unmatched session
+9910,crh_9909,D raw,F,stressed,WT,crh,2024-10-28,2024-10-31,,treatment_known_phase_not_observed,Direct SETUP=stress in raw database; 2023 CSV rows are a separate unmatched session
+9911,crh_9909,D raw,F,stressed,WT,crh,2024-10-28,2024-10-31,,treatment_known_phase_not_observed,Direct SETUP=stress in raw database; 2023 CSV rows are a separate unmatched session
+9912,crh_9909,D raw,F,control,WT,crh,2024-10-28,2024-10-31,,treatment_known_phase_not_observed,Direct SETUP=neutral in raw database; 2023 CSV rows are a separate unmatched session
+10132,wt_feb2025,D raw,F,unknown,WT,,2025-02-03,2025-02-09,2025-02-06 00:00,phase_known_treatment_unknown,Project matched by filename date; local raw ID to global ID is ambiguous
+10135,wt_feb2025,D raw,F,unknown,WT,,2025-02-03,2025-02-09,2025-02-06 00:00,phase_known_treatment_unknown,Project matched by filename date; local raw ID to global ID is ambiguous
+10136,wt_feb2025,D raw,F,unknown,WT,,2025-02-03,2025-02-09,2025-02-06 00:00,phase_known_treatment_unknown,Project matched by filename date; local raw ID to global ID is ambiguous
+10137,wt_feb2025,D raw,F,unknown,WT,,2025-02-03,2025-02-09,2025-02-06 00:00,phase_known_treatment_unknown,Project matched by filename date; local raw ID to global ID is ambiguous
+10205,wt_feb21_2025,D raw,F,unknown,WT,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable WT project based on exact dates and higher raw/CSV event volume
+10206,wt_feb21_2025,D raw,F,unknown,WT,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable WT project based on exact dates and higher raw/CSV event volume
+10207,wt_feb21_2025,D raw,F,unknown,WT,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable WT project based on exact dates and higher raw/CSV event volume
+10208,wt_feb21_2025,D raw,F,unknown,WT,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable WT project based on exact dates and higher raw/CSV event volume
+10276,cddel_feb21_2025,D raw,F,unknown,CD-del,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable CD-del project based on exact dates and lower raw/CSV event volume
+10277,cddel_feb21_2025,D raw,F,unknown,CD-del,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable CD-del project based on exact dates and lower raw/CSV event volume
+10278,cddel_feb21_2025,D raw,F,unknown,CD-del,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable CD-del project based on exact dates and lower raw/CSV event volume
+10279,cddel_feb21_2025,D raw,F,unknown,CD-del,,2025-02-21,2025-02-28,2025-02-25 00:00,probable_project_phase_known_treatment_unknown,Probable CD-del project based on exact dates and lower raw/CSV event volume

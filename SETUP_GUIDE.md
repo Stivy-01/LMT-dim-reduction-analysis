@@ -1,95 +1,74 @@
-# LMT Dimensionality Reduction Toolkit - Setup Guide
+# LMT Thesis Analysis — Setup Guide
 
-## 🚀 Quick Start
+Reproduce the thesis analysis and figures from a fresh clone.
 
-### Prerequisites Checklist
-- [ ] Python 3.8 or higher installed
-- [ ] Git installed
-- [ ] Basic command line knowledge
-- [ ] SQLite database from LMT experiments
-- [ ] DB Browser for SQLite (optional but recommended)
+## Prerequisites
 
-## 📥 Installation Steps
+- Python 3.8+ (3.12 used for the thesis runs)
+- Git
+- The input data committed under `data/`:
+  `merged_analysis_behavior_stats_intervals.csv`,
+  `manual_date_corrections.csv`, `LMT RECAP ALL EXPERIMENTS.xlsx`
+- Node.js — only needed to rebuild the Excel workbook
+  (`scripts/build_thesis_workbook.mjs`); skip otherwise
 
-### 1. Get the Code
+## 1. Get the code
+
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/LMT-dim-reduction-toolkit
-cd LMT-dim-reduction-toolkit
+git clone https://github.com/Stivy-01/LMT-dim-reduction-analysis.git
+cd LMT-dim-reduction-analysis
+git checkout thesis-clean
 ```
 
-### 2a. Set Up Python Environment
-```bash
-# Create a virtual environment (recommended)
-python -m venv lmt_env
+## 2. Environment
 
-# Activate the environment
-# On Windows:
+```bash
+python -m venv lmt_env
+# Windows:
 .\lmt_env\Scripts\activate
-# On Unix/MacOS:
+# Unix/macOS:
 source lmt_env/bin/activate
 ```
-### 2b. Set Up Conda Enviroment
-```terminal
-# Create a conda enviroment
-conda -n lmt_env
 
-# Activate the enviroment
-conda activate lmt_env
-```
+## 3. Install dependencies
 
-### 3. Install Dependencies
-⚠️ **Important**: Follow this exact order
 ```bash
-# 1. First, install numpy
-pip install numpy==1.23.5
+# 1. numpy first, then scipy (order matters for some platforms)
+pip install "numpy==1.23.5"
+pip install "scipy>=1.9.0"
 
-# 2. Then scipy
-pip install scipy>=1.9.0
-
-# 3. Finally, install the package
-pip install -e .  # for development mode (recommended)
-# OR
-pip install .    # for regular installation
+# 2. everything else
+pip install -r docs/requirements.txt
+pip install -e .   # development mode (recommended)
 ```
 
-After installation, you can import the package in Python:
-```python
-# Example imports
-from lmt_analysis.preprocessing import event_filtered
-from lmt_analysis.behavior import behavior_processor
-from lmt_analysis.visualization import identity_space_plotter
+## 4. Verify installation
+
+```bash
+python -c "import src.analysis.thesis_analysis; print('ok')"
+python -m src.analysis.thesis_analysis --help
+python -m src.visualization.build_all --help
 ```
 
-### 4. Verify Installation
-```python
-# Create a test script (test_installation.py)
-from lmt_analysis.utils import test_setup
-test_setup.run_test()
+## 5. Run the analysis
+
+```powershell
+# Full pipeline (analysis + workbook); writes a new run directory
+scripts/run_lmt_pipeline.ps1
 ```
 
-If you see no errors, the installation was successful! 
+or step by step:
 
+```bash
+# 1. normalize the recap workbook into Analysis_Metadata
+python scripts/update_recap_analysis_metadata.py "data/LMT RECAP ALL EXPERIMENTS.xlsx"
+# 2. thesis analysis -> result tables + run_manifest.json
+python -m src.analysis.thesis_analysis --recap "data/LMT RECAP ALL EXPERIMENTS.xlsx"
+# 3. all thesis figures (inputs in src/visualization/data/)
+python -m src.visualization.build_all
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Best approach might be to:
-Use median for the bar width (most representative)
-Add std as error bars or transparency
-Keep mean in the statistics panel
-This way you can see:
-Typical duration (median - width)
-Consistency (std - error bars)
-Overall pattern (mean - stats)
+Single figures are also runnable standalone, e.g.
+`python -m src.visualization.results.fig_03_group_trajectories --help`.
+See `src/README.md`, `src/analysis/README.md` (+ `STATISTICS.md`) and
+`src/visualization/README.md` for module details.

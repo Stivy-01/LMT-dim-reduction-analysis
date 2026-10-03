@@ -1,0 +1,191 @@
+{
+ "px_per_unit": 6.0,
+ "icons": {
+  "01_individual_moving_alone": {
+   "w_units": 49.666666666666664,
+   "h_units": 124.66666666666667,
+   "px_w": 298,
+   "px_h": 748
+  },
+  "02_individual_stopped_alone": {
+   "w_units": 69.16666666666667,
+   "h_units": 134.83333333333334,
+   "px_w": 415,
+   "px_h": 809
+  },
+  "03_individual_rearing": {
+   "w_units": 140.0,
+   "h_units": 108.16666666666667,
+   "px_w": 840,
+   "px_h": 649
+  },
+  "04_individual_stopped_and_huddled": {
+   "w_units": 103.0,
+   "h_units": 142.83333333333334,
+   "px_w": 618,
+   "px_h": 857
+  },
+  "05_individual_jumping_against_a_wall": {
+   "w_units": 123.5,
+   "h_units": 149.83333333333334,
+   "px_w": 741,
+   "px_h": 899
+  },
+  "06_individual_sap": {
+   "w_units": 221.0,
+   "h_units": 134.33333333333334,
+   "px_w": 1326,
+   "px_h": 806
+  },
+  "07_dyadic_state_moving_in_contact": {
+   "w_units": 50.0,
+   "h_units": 90.5,
+   "px_w": 300,
+   "px_h": 543
+  },
+  "08_dyadic_state_stopped_in_contact": {
+   "w_units": 50.0,
+   "h_units": 93.16666666666667,
+   "px_w": 300,
+   "px_h": 559
+  },
+  "09_dyadic_state_rearing_in_contact": {
+   "w_units": 117.66666666666667,
+   "h_units": 71.66666666666667,
+   "px_w": 706,
+   "px_h": 430
+  },
+  "10_dyadic_state_contact_side_by_side_same_way": {
+   "w_units": 32.0,
+   "h_units": 71.33333333333333,
+   "px_w": 192,
+   "px_h": 428
+  },
+  "11_dyadic_state_contact_side_by_side_opposite_way": {
+   "w_units": 31.0,
+   "h_units": 89.83333333333333,
+   "px_w": 186,
+   "px_h": 539
+  },
+  "12_dyadic_state_contact_nose_to_nose": {
+   "w_units": 55.833333333333336,
+   "h_units": 83.16666666666667,
+   "px_w": 335,
+   "px_h": 499
+  },
+  "13_dyadic_state_contact_nose_to_anogenital": {
+   "w_units": 73.66666666666667,
+   "h_units": 93.0,
+   "px_w": 442,
+   "px_h": 558
+  },
+  "14_dyadic_dynamic_approaching_in_social_range": {
+   "w_units": 121.16666666666667,
+   "h_units": 121.0,
+   "px_w": 727,
+   "px_h": 726
+  },
+  "15_dyadic_dynamic_approaching_rearing_in_social_range": {
+   "w_units": 121.0,
+   "h_units": 126.0,
+   "px_w": 726,
+   "px_h": 756
+  },
+  "16_dyadic_dynamic_making_contact": {
+   "w_units": 96.5,
+   "h_units": 108.0,
+   "px_w": 579,
+   "px_h": 648
+  },
+  "17_dyadic_dynamic_moving_away_in_social_range": {
+   "w_units": 137.0,
+   "h_units": 98.5,
+   "px_w": 822,
+   "px_h": 591
+  },
+  "18_dyadic_dynamic_breaking_contact": {
+   "w_units": 115.5,
+   "h_units": 143.83333333333334,
+   "px_w": 693,
+   "px_h": 863
+  },
+  "19_dyadic_dynamic_following_within_path": {
+   "w_units": 119.66666666666667,
+   "h_units": 90.66666666666667,
+   "px_w": 718,
+   "px_h": 544
+  },
+  "20_social_group_of_2_mice": {
+   "w_units": 57.333333333333336,
+   "h_units": 66.5,
+   "px_w": 344,
+   "px_h": 399
+  },
+  "21_social_group_of_3_mice": {
+   "w_units": 58.333333333333336,
+   "h_units": 72.0,
+   "px_w": 350,
+   "px_h": 432
+  },
+  "22_social_group_of_4_mice": {
+   "w_units": 71.33333333333333,
+   "h_units": 77.16666666666667,
+   "px_w": 428,
+   "px_h": 463
+  },
+  "23_social_nest_of_3_mice_stopped": {
+   "w_units": 78.0,
+   "h_units": 73.0,
+   "px_w": 468,
+   "px_h": 438
+  },
+  "24_social_nest_of_4_mice_stopped": {
+   "w_units": 80.0,
+   "h_units": 88.0,
+   "px_w": 480,
+   "px_h": 528
+  },
+  "25_social_train_of_2_mice_moving": {
+   "w_units": 65.5,
+   "h_units": 106.5,
+   "px_w": 393,
+   "px_h": 639
+  },
+  "26_social_train_of_3_mice_moving": {
+   "w_units": 92.0,
+   "h_units": 120.5,
+   "px_w": 552,
+   "px_h": 723
+  },
+  "27_social_train_of_4_mice_moving": {
+   "w_units": 99.5,
+   "h_units": 132.16666666666666,
+   "px_w": 597,
+   "px_h": 793
+  },
+  "28_group_making_3_mice": {
+   "w_units": 135.33333333333334,
+   "h_units": 144.66666666666666,
+   "px_w": 812,
+   "px_h": 868
+  },
+  "29_group_making_4_mice": {
+   "w_units": 136.33333333333334,
+   "h_units": 158.66666666666666,
+   "px_w": 818,
+   "px_h": 952
+  },
+  "30_group_breaking_3_mice": {
+   "w_units": 129.83333333333334,
+   "h_units": 132.83333333333334,
+   "px_w": 779,
+   "px_h": 797
+  },
+  "31_group_breaking_4_mice": {
+   "w_units": 137.83333333333334,
+   "h_units": 160.83333333333334,
+   "px_w": 827,
+   "px_h": 965
+  }
+ }
+}

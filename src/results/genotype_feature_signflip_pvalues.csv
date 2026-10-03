@@ -1,0 +1,505 @@
+source_sheet,phase,feature,n,mean,p
+16p,post_stress,Stop_std_duration,14,-0.2102267879592097,0.0003662109375
+CD del,post_stress,Rear_isolated_count,12,-0.35659824086873226,0.00048828125
+16p,post_stress,Periphery_Zone_std_duration,14,-0.2873787612185481,0.00048828125
+CD del,post_stress,Rear_at_periphery_count,12,-0.34520414859672693,0.0009765625
+16p,post_stress,Rear_at_periphery_mean_duration,14,-0.1875891553809784,0.0009765625
+16p,post_stress,Periphery_Zone_mean_duration,14,-0.2217436179279811,0.0010986328125
+CD del,baseline,Move_isolated_mean_duration,10,-0.06507375507647777,0.001953125
+CD del,baseline,Rear_isolated_count,10,-0.3386079861783264,0.001953125
+CD del,baseline,Center_Zone_count,10,-0.2976242939720531,0.001953125
+CD del,baseline,Approach_passive_count,10,-0.03959389765521554,0.001953125
+16p,post_stress,Stop_mean_duration,14,-0.2029827696956618,0.002685546875
+CD del,baseline,Train2_passive_count,10,-0.5047185778693658,0.00390625
+CD del,baseline,Rear_at_periphery_count,10,-0.3199364506578455,0.00390625
+CD del,baseline,Huddling_count,10,0.1507048468821157,0.00390625
+16p,post_stress,Periphery_Zone_count,14,0.1842523642385546,0.0042724609375
+CD del,post_stress,Rear_in_contact_count,12,-0.08738340966874615,0.00439453125
+16p,post_stress,Move_isolated_count,14,0.16767649764909737,0.005126953125
+CD del,baseline,Get_away_active_count,10,-0.1077238000231842,0.005859375
+16p,post_stress,Stop_isolated_count,14,0.0876460939375908,0.005859375
+CD del,baseline,seq_oral_geni___oral_oral_passive_count,10,0.1473544085522403,0.005859375
+CD del,post_stress,Group_4_make_std_duration,12,0.16702212565066302,0.00634765625
+16p,post_stress,Rear_isolated_mean_duration,14,-0.17173336341839704,0.00634765625
+CD del,post_stress,Approach_mean_duration,12,0.014777589023272824,0.0068359375
+16p,baseline,Social_escape_mean_duration,8,-0.03082329651469895,0.0078125
+CD del,baseline,Rear_in_centerWindow_count,10,-0.6541763399639204,0.0078125
+CD del,post_stress,Stop_isolated_count,12,-0.11598343060146481,0.0078125
+16p,baseline,seq_oral_geni___oral_oral_active_count,8,-0.12910206450943748,0.0078125
+CD del,post_stress,Approach_passive_count,12,-0.0273320237104671,0.00830078125
+16p,post_stress,Side_by_side_Contact_mean_duration,14,-0.031497806977691674,0.0084228515625
+CD del,baseline,Stop_isolated_count,10,-0.13994892196864414,0.009765625
+CD del,post_stress,Center_Zone_count,12,-0.2932266153767518,0.01123046875
+CD del,post_stress,Center_Zone_std_duration,12,0.3535655231695792,0.01220703125
+16p,post_stress,Approach_rear_passive_count,14,-0.07016726372787245,0.0126953125
+CD del,post_stress,Rear_in_centerWindow_count,12,-0.6678916419880849,0.0126953125
+16p,post_stress,Social_approach_mean_duration,14,-0.042262447178520735,0.012939453125
+CD del,baseline,Rear_in_contact_count,10,-0.07361852072620098,0.013671875
+16p,post_stress,Stop_in_contact_mean_duration,14,-0.07670340349864688,0.014892578125
+16p,baseline,Rear_in_contact_count,8,-0.12703550843150344,0.015625
+16p,baseline,Periphery_Zone_mean_duration,8,-0.2283226614571345,0.015625
+16p,baseline,Oral_genital_Contact_mean_duration,8,-0.033965538883075796,0.015625
+16p,baseline,Approach_rear_passive_count,8,-0.1374651559572846,0.015625
+16p,baseline,Contact_mean_duration,8,-0.12133132131356947,0.015625
+16p,baseline,Social_escape_std_duration,8,-0.0660405724988124,0.015625
+CD del,baseline,Train2_active_count,10,-0.6180922040767386,0.015625
+16p,post_stress,Huddling_count,14,0.17678294859469837,0.017333984375
+CD del,post_stress,Group_4_break_mean_duration,12,0.15367052276297083,0.017578125
+16p,post_stress,Approach_rear_mean_duration,14,-0.018979892206900346,0.01806640625
+16p,post_stress,Stop_count,14,0.1751148259435674,0.018798828125
+16p,post_stress,Rear_isolated_std_duration,14,-0.2916364068701535,0.0189208984375
+16p,post_stress,Stop_isolated_mean_duration,14,-0.11136856378338367,0.0194091796875
+CD del,baseline,Rear_in_centerWindow_std_duration,10,-0.21939411538385825,0.01953125
+16p,post_stress,Contact_mean_duration,14,-0.07571776349604978,0.01953125
+16p,post_stress,Approach_contact_active_count,14,0.12042418625764205,0.020263671875
+CD del,post_stress,Break_contact_active_count,12,-0.09322425778147375,0.02099609375
+16p,post_stress,Stop_in_contact_std_duration,14,-0.08598602137267986,0.0211181640625
+CD del,baseline,Approach_contact_active_count,10,-0.17890768868540707,0.021484375
+16p,post_stress,Rear_in_contact_mean_duration,14,-0.048260305360055884,0.02294921875
+16p,baseline,Stop_in_contact_std_duration,8,-0.12978692574200085,0.0234375
+16p,baseline,seq_oral_geni___oral_oral_passive_count,8,-0.11844944268423305,0.0234375
+16p,baseline,Contact_std_duration,8,-0.1340838895976542,0.0234375
+16p,baseline,Stop_in_contact_mean_duration,8,-0.11524856370198046,0.0234375
+16p,baseline,Approach_active_count,8,0.0359346703870997,0.0234375
+16p,post_stress,SAP_count,14,0.07575283629975435,0.024658203125
+16p,post_stress,Center_Zone_count,14,0.21083791174092847,0.02490234375
+CD del,baseline,Move_isolated_count,10,-0.15852152743674103,0.025390625
+CD del,baseline,Rear_in_contact_mean_duration,10,0.04311166016705298,0.02734375
+CD del,post_stress,Get_away_active_count,12,-0.07001194602653815,0.02783203125
+16p,post_stress,Contact_std_duration,14,-0.08107004932372627,0.028076171875
+16p,post_stress,Social_approach_std_duration,14,-0.051797331970744,0.028564453125
+16p,post_stress,Rear_at_periphery_std_duration,14,-0.25943680294577315,0.029052734375
+CD del,baseline,Approach_std_duration,10,0.04759972994831972,0.029296875
+CD del,baseline,Approach_rear_mean_duration,10,0.02161904601420247,0.029296875
+CD del,baseline,Stop_count,10,-0.23787390590160093,0.029296875
+CD del,post_stress,Move_isolated_mean_duration,12,-0.043739953293793675,0.0302734375
+16p,baseline,Oral_oral_Contact_passive_count,8,-0.08179278901452723,0.03125
+16p,baseline,Social_approach_mean_duration,8,-0.05843016216212804,0.03125
+16p,baseline,Oral_oral_Contact_active_count,8,-0.08179278901452723,0.03125
+16p,baseline,Get_away_std_duration,8,-0.032263882113350364,0.03125
+16p,baseline,Oral_genital_Contact_active_count,8,-0.05627458570281273,0.03125
+16p,baseline,Periphery_Zone_count,8,0.21485271931546324,0.03125
+16p,post_stress,Oral_genital_Contact_mean_duration,14,-0.017250598698243653,0.0325927734375
+CD del,post_stress,Approach_rear_passive_count,12,-0.04914545062663745,0.0361328125
+CD del,post_stress,Center_Zone_mean_duration,12,0.2039529689305529,0.037109375
+CD del,post_stress,Huddling_count,12,0.10262304588542624,0.03857421875
+16p,baseline,Periphery_Zone_std_duration,8,-0.21527511702092625,0.0390625
+16p,baseline,Oral_oral_Contact_mean_duration,8,-0.028148813504070315,0.0390625
+16p,baseline,Rear_in_contact_std_duration,8,-0.14680261684329848,0.0390625
+16p,baseline,Rear_in_contact_mean_duration,8,-0.030155308368606814,0.0390625
+CD del,baseline,Move_in_contact_std_duration,10,-0.01029358094378811,0.0390625
+16p,baseline,Rear_at_periphery_mean_duration,8,-0.13937421713802137,0.0390625
+16p,post_stress,Group2_mean_duration,14,-0.0754149918769682,0.0396728515625
+16p,post_stress,Approach_mean_duration,14,-0.015629858961663096,0.041259765625
+CD del,post_stress,Group_3_break_count,12,-0.12231075614674451,0.0439453125
+CD del,baseline,Approach_contact_passive_count,10,0.07924683836463202,0.044921875
+CD del,baseline,Get_away_passive_count,10,0.03564072922844978,0.044921875
+16p,post_stress,Huddling_mean_duration,14,0.07801600386417055,0.044921875
+CD del,post_stress,Stop_count,12,-0.18044952635717174,0.04638671875
+16p,baseline,Approach_rear_mean_duration,8,-0.025652470599560648,0.046875
+16p,baseline,SAP_count,8,0.11970140875685972,0.046875
+CD del,baseline,Oral_genital_Contact_mean_duration,10,0.020995458104544278,0.048828125
+CD del,post_stress,Approach_contact_active_count,12,-0.14773686148901755,0.04931640625
+CD del,baseline,Group_4_make_count,10,-0.22691356301812182,0.05078125
+CD del,post_stress,Social_escape_active_count,12,-0.04387184167794192,0.05322265625
+16p,baseline,Oral_genital_Contact_passive_count,8,-0.07829740946160131,0.0546875
+16p,baseline,Side_by_side_Contact_active_count,8,-0.08242445180184108,0.0546875
+16p,baseline,Side_by_side_Contact_passive_count,8,-0.08242445180184108,0.0546875
+CD del,post_stress,seq_oral_oral___oral_genital_active_count,12,-0.050615911119193537,0.0546875
+16p,post_stress,Group2_std_duration,14,-0.08939263638305209,0.054931640625
+CD del,baseline,Break_contact_active_count,10,-0.08501212910224466,0.056640625
+CD del,baseline,Rear_in_contact_std_duration,10,0.13945733849286138,0.056640625
+16p,post_stress,Approach_contact_passive_count,14,-0.08838881036302892,0.059326171875
+CD del,post_stress,Stop_isolated_mean_duration,12,0.1261584533298961,0.0595703125
+CD del,baseline,Stop_mean_duration,10,0.22968640057926604,0.060546875
+16p,post_stress,WallJump_count,14,-0.7143601124267571,0.060791015625
+16p,baseline,Side_by_side_Contact_opposite_way_active_count,8,-0.07743068125411086,0.0625
+16p,baseline,Move_in_contact_mean_duration,8,-0.01163465241495125,0.0625
+16p,baseline,isolated_mean_duration,8,0.2571833029036702,0.0625
+16p,baseline,Side_by_side_Contact_opposite_way_passive_count,8,-0.07743068125411086,0.0625
+CD del,post_stress,Move_isolated_count,12,-0.08960547330144852,0.06396484375
+CD del,baseline,Oral_genital_Contact_passive_count,10,0.066602999658586,0.064453125
+16p,post_stress,Approach_contact_std_duration,14,0.011243307424620165,0.0655517578125
+16p,post_stress,Train2_mean_duration,14,-0.055936372738954764,0.0665283203125
+CD del,baseline,Contact_std_duration,10,0.13917478094616142,0.068359375
+CD del,post_stress,Stop_mean_duration,12,0.18237047409415655,0.0693359375
+16p,baseline,Move_in_contact_passive_count,8,-0.07110327814708325,0.0703125
+16p,baseline,Side_by_side_Contact_mean_duration,8,-0.04625216121089555,0.0703125
+CD del,post_stress,Oral_oral_Contact_active_count,12,-0.033275522373258,0.0703125
+CD del,post_stress,Oral_oral_Contact_passive_count,12,-0.033275522373258,0.0703125
+16p,baseline,Get_away_mean_duration,8,-0.009262250369130087,0.0703125
+CD del,baseline,Social_approach_mean_duration,10,0.0409823052614781,0.0703125
+16p,post_stress,Stop_in_contact_passive_count,14,0.0291203666622337,0.0732421875
+16p,post_stress,seq_oral_geni___oral_oral_active_count,14,-0.057371521415494224,0.0732421875
+CD del,baseline,Group2_mean_duration,10,0.07358175709199902,0.07421875
+CD del,baseline,Approach_mean_duration,10,0.023168728741101548,0.076171875
+CD del,baseline,Train2_std_duration,10,-0.07608536141778968,0.078125
+16p,baseline,Group2_mean_duration,8,-0.08076966171383534,0.078125
+16p,baseline,Contact_active_count,8,0.038462696858142825,0.078125
+16p,baseline,Approach_std_duration,8,-0.025957285195856872,0.078125
+16p,baseline,Contact_passive_count,8,0.038470376759750465,0.078125
+CD del,baseline,Train2_mean_duration,10,-0.07080334168049987,0.078125
+CD del,baseline,Rear_at_periphery_mean_duration,10,0.02518803595861805,0.078125
+16p,baseline,Side_by_side_Contact_opposite_way_mean_duration,8,-0.04368907696208605,0.078125
+16p,baseline,Social_approach_std_duration,8,-0.059211913117744,0.078125
+16p,post_stress,Approach_active_count,14,0.01675711638239539,0.0792236328125
+CD del,baseline,Group2_std_duration,10,0.1847061702040885,0.080078125
+CD del,baseline,Social_approach_std_duration,10,0.0920083469859958,0.080078125
+CD del,post_stress,Huddling_mean_duration,12,0.07950820669296395,0.0830078125
+CD del,baseline,Stop_in_contact_std_duration,10,0.13564947505711117,0.083984375
+16p,post_stress,Rear_in_contact_count,14,-0.05708464233871484,0.08447265625
+CD del,post_stress,Huddling_std_duration,12,0.24238938037993019,0.08544921875
+16p,post_stress,Train2_std_duration,14,-0.05716047875262805,0.088134765625
+CD del,post_stress,Group_4_make_mean_duration,12,0.0667829901169169,0.08837890625
+CD del,baseline,Stop_in_contact_mean_duration,10,0.06630237348806307,0.091796875
+16p,post_stress,Get_away_passive_count,14,-0.014548029231009512,0.0927734375
+16p,baseline,Move_in_contact_std_duration,8,-0.023623660887852026,0.09375
+16p,baseline,Approach_rear_std_duration,8,-0.06453274281843341,0.09375
+16p,baseline,seq_oral_oral___oral_genital_passive_count,8,-0.08449802706983445,0.09375
+16p,post_stress,Contact_passive_count,14,0.027155148157290396,0.09375
+16p,post_stress,Contact_active_count,14,0.0270987437172413,0.0948486328125
+CD del,post_stress,Move_in_contact_passive_count,12,-0.026119070511636228,0.09619140625
+16p,post_stress,Move_in_contact_passive_count,14,-0.040022229588585194,0.098876953125
+CD del,post_stress,Periphery_Zone_std_duration,12,0.11937695008357063,0.09912109375
+CD del,baseline,Group_3_break_count,10,-0.0941879077647467,0.1015625
+CD del,post_stress,Train2_passive_count,12,-0.2929348623385767,0.1015625
+CD del,baseline,Side_by_side_Contact_opposite_way_active_count,10,0.04976703050542245,0.103515625
+CD del,baseline,Side_by_side_Contact_opposite_way_passive_count,10,0.04976703050542245,0.103515625
+CD del,baseline,Contact_mean_duration,10,0.06435563389980727,0.103515625
+16p,post_stress,Social_escape_passive_count,14,-0.04164985726485373,0.10400390625
+CD del,post_stress,Approach_active_count,12,-0.011895259093060016,0.10498046875
+CD del,baseline,SAP_mean_duration,10,0.06088867558562422,0.107421875
+16p,baseline,Center_Zone_count,8,0.3324433817180329,0.109375
+16p,baseline,Group2_std_duration,8,-0.07064913119046728,0.109375
+16p,post_stress,Break_contact_std_duration,14,0.03209711165724962,0.110595703125
+CD del,baseline,Group_4_break_count,10,-0.18570235398468196,0.11328125
+CD del,post_stress,Oral_genital_Contact_passive_count,12,0.024084217410644124,0.11328125
+CD del,baseline,seq_oral_oral___oral_genital_passive_count,10,0.0688189039492039,0.11328125
+16p,baseline,Approach_mean_duration,8,-0.0282391852615592,0.1171875
+16p,baseline,Rear_at_periphery_std_duration,8,-0.301030957721213,0.1171875
+16p,post_stress,seq_oral_oral___oral_genital_active_count,14,-0.04518844290481663,0.12158203125
+16p,baseline,Huddling_count,8,0.15734567459916826,0.125
+16p,baseline,Group_3_make_count,8,0.11711509199771597,0.125
+16p,baseline,isolated_std_duration,8,0.34613100795272345,0.125
+CD del,post_stress,Periphery_Zone_count,12,-0.09639154842628998,0.1279296875
+CD del,post_stress,Stop_in_contact_passive_count,12,-0.04039984715424602,0.12939453125
+CD del,baseline,Oral_genital_Contact_std_duration,10,0.08599686824951676,0.130859375
+16p,post_stress,Rearing_count,14,-0.061485138376976826,0.1314697265625
+CD del,post_stress,Social_approach_passive_count,12,-0.023678701369616157,0.1328125
+16p,baseline,Move_isolated_count,8,0.16593381294722065,0.1328125
+16p,baseline,Approach_contact_mean_duration,8,0.007182546428385025,0.1328125
+16p,post_stress,Break_contact_active_count,14,0.03317880587436321,0.137451171875
+16p,baseline,Stop_in_contact_passive_count,8,0.029523186590033723,0.140625
+CD del,baseline,Approach_rear_std_duration,10,0.08229658484231829,0.140625
+CD del,baseline,Center_Zone_mean_duration,10,0.08875068815352913,0.142578125
+16p,post_stress,Side_by_side_Contact_opposite_way_mean_duration,14,-0.02065895189768509,0.1429443359375
+16p,baseline,Social_escape_passive_count,8,-0.04770937536548402,0.1484375
+CD del,baseline,Get_away_mean_duration,10,0.004517670213323881,0.150390625
+CD del,post_stress,Social_approach_mean_duration,12,0.014922009885730609,0.15087890625
+CD del,baseline,Move_in_contact_mean_duration,10,-0.004637308712168811,0.15234375
+16p,post_stress,isolated_std_duration,14,0.21258385502113666,0.1527099609375
+16p,post_stress,Train2_active_count,14,0.3595032895278462,0.154296875
+CD del,baseline,Side_by_side_Contact_opposite_way_mean_duration,10,0.0325622230321593,0.15625
+16p,baseline,WallJump_count,8,-0.44571731956758726,0.15625
+CD del,baseline,Huddling_mean_duration,10,0.05030960567503793,0.158203125
+CD del,baseline,Periphery_Zone_count,10,-0.11537844443480123,0.158203125
+16p,post_stress,Approach_contact_mean_duration,14,0.007929416978707157,0.1602783203125
+CD del,post_stress,Stop_std_duration,12,0.1347473149145916,0.16064453125
+CD del,baseline,Stop_isolated_mean_duration,10,0.08789664734876043,0.162109375
+16p,post_stress,Get_away_active_count,14,0.031151248658163877,0.162841796875
+16p,post_stress,Rearing_mean_duration,14,0.04660187396965198,0.164306640625
+CD del,baseline,Approach_contact_std_duration,10,0.0064040297547452805,0.166015625
+CD del,baseline,Stop_std_duration,10,0.17193203205031432,0.166015625
+16p,post_stress,Rear_in_contact_std_duration,14,-0.1084088364907725,0.1661376953125
+CD del,post_stress,Contact_passive_count,12,-0.03514633228626284,0.1689453125
+CD del,post_stress,Contact_active_count,12,-0.03514633228626284,0.1689453125
+CD del,post_stress,Group_4_break_std_duration,12,0.12593569973819901,0.17041015625
+CD del,post_stress,Approach_rear_active_count,12,-0.031238998610183744,0.17041015625
+CD del,post_stress,Group_3_make_count,12,-0.06582825848676199,0.1708984375
+CD del,baseline,Side_by_side_Contact_opposite_way_std_duration,10,0.1066956399670637,0.173828125
+CD del,baseline,Break_contact_passive_count,10,0.037910356824940636,0.1796875
+CD del,baseline,Group_3_break_std_duration,10,0.05680176426821074,0.181640625
+CD del,baseline,Social_escape_active_count,10,-0.03272586224775525,0.181640625
+CD del,post_stress,Get_away_passive_count,12,0.01911293289266425,0.18701171875
+16p,baseline,Stop_isolated_count,8,0.12632429738672302,0.1875
+16p,post_stress,Oral_oral_Contact_active_count,14,-0.030255754443837487,0.1878662109375
+16p,post_stress,Oral_oral_Contact_passive_count,14,-0.030255754443837487,0.1878662109375
+CD del,post_stress,isolated_count,12,0.10256254683392463,0.1884765625
+CD del,post_stress,Social_approach_active_count,12,-0.025628744202393968,0.19140625
+16p,baseline,Approach_contact_std_duration,8,0.006029804270991237,0.1953125
+CD del,post_stress,Rear_at_periphery_std_duration,12,0.1782528856912633,0.19970703125
+CD del,post_stress,Rear_isolated_std_duration,12,0.17565314239694982,0.201171875
+CD del,baseline,Social_escape_mean_duration,10,0.012401071896792862,0.203125
+CD del,post_stress,SAP_count,12,0.05030003705529096,0.20361328125
+16p,post_stress,Stop_in_contact_active_count,14,0.02048163072688366,0.2064208984375
+16p,post_stress,Oral_oral_Contact_mean_duration,14,-0.01228514576248387,0.2066650390625
+16p,post_stress,isolated_mean_duration,14,0.11703099026572886,0.207275390625
+16p,baseline,Group_3_break_count,8,0.06996868112624974,0.2109375
+CD del,baseline,Group_3_make_std_duration,10,0.0523863124591767,0.212890625
+16p,post_stress,Group_4_break_std_duration,14,0.07686382542919223,0.2144775390625
+16p,post_stress,Stop_isolated_std_duration,14,-0.12556536117217396,0.2169189453125
+CD del,post_stress,Approach_rear_std_duration,12,-0.05158591943168439,0.22119140625
+CD del,post_stress,Train2_std_duration,12,0.023742182815125645,0.22412109375
+16p,post_stress,Rearing_std_duration,14,0.04040493887649142,0.224609375
+16p,baseline,Approach_contact_active_count,8,0.14696208069969152,0.2265625
+16p,baseline,isolated_count,8,0.10775424707342107,0.234375
+16p,post_stress,Break_contact_passive_count,14,-0.04104172862317588,0.2344970703125
+16p,baseline,Move_in_contact_active_count,8,-0.016803473840453425,0.2421875
+16p,baseline,Stop_in_contact_active_count,8,0.02140201483174131,0.2421875
+CD del,post_stress,Move_in_contact_active_count,12,-0.03038515960597594,0.24267578125
+CD del,post_stress,Stop_in_contact_active_count,12,-0.02717595692736166,0.2451171875
+CD del,post_stress,Periphery_Zone_mean_duration,12,0.0871089713841729,0.24560546875
+16p,post_stress,Center_Zone_std_duration,14,-0.1966486543284142,0.2491455078125
+CD del,baseline,Side_by_side_Contact_active_count,10,0.030039595468296276,0.25
+CD del,baseline,Side_by_side_Contact_passive_count,10,0.030039595468296276,0.25
+16p,baseline,Approach_rear_active_count,8,-0.02375804091590071,0.25
+16p,post_stress,Center_Zone_mean_duration,14,-0.09555051396710554,0.25634765625
+CD del,baseline,Periphery_Zone_mean_duration,10,0.10342576042201564,0.2578125
+CD del,post_stress,Oral_oral_Contact_std_duration,12,0.023948585938413217,0.26123046875
+CD del,baseline,Group_3_break_mean_duration,10,0.02561066256840131,0.26171875
+CD del,post_stress,Social_escape_passive_count,12,-0.015635748240785674,0.2626953125
+CD del,baseline,seq_oral_geni___oral_oral_mean_duration,10,0.01767176354264812,0.263671875
+CD del,post_stress,WallJump_mean_duration,12,0.06823503814289357,0.2646484375
+16p,baseline,Center_Zone_std_duration,8,-0.21457200830083506,0.265625
+16p,baseline,Social_approach_passive_count,8,-0.024558769477523775,0.265625
+CD del,post_stress,Rear_in_centerWindow_mean_duration,12,0.04750603545130506,0.27490234375
+16p,post_stress,Social_approach_active_count,14,0.019926618137543425,0.2781982421875
+16p,post_stress,Social_escape_mean_duration,14,-0.007940709459490315,0.2789306640625
+CD del,baseline,Approach_rear_active_count,10,-0.026585156230319262,0.28125
+16p,baseline,Stop_mean_duration,8,-0.20824550362648553,0.28125
+CD del,baseline,Periphery_Zone_std_duration,10,0.10806332277205,0.28125
+CD del,baseline,seq_oral_oral___oral_genital_std_duration,10,0.10274760290016767,0.283203125
+CD del,baseline,Group_3_make_count,10,-0.07361581761828742,0.2890625
+16p,baseline,Stop_count,8,0.22288027035909763,0.2890625
+16p,baseline,Break_contact_passive_count,8,-0.055969391123412364,0.2890625
+CD del,baseline,Rear_isolated_mean_duration,10,0.01330926051265129,0.291015625
+16p,baseline,Social_approach_active_count,8,0.02204876657599541,0.296875
+16p,post_stress,Rear_at_periphery_count,14,-0.18905483301201148,0.301513671875
+CD del,post_stress,WallJump_count,12,0.3384772714415225,0.302734375
+16p,baseline,Group_4_break_mean_duration,8,0.058942393294683836,0.3046875
+16p,baseline,Center_Zone_mean_duration,8,-0.1414788655214578,0.3046875
+16p,baseline,Rear_isolated_mean_duration,8,-0.08600280598254056,0.3046875
+16p,post_stress,Approach_rear_std_duration,14,-0.025001520871187198,0.3095703125
+CD del,post_stress,Group2_passive_count,12,-0.029171195211465713,0.3095703125
+CD del,post_stress,Group2_active_count,12,-0.029171195211465713,0.3095703125
+16p,post_stress,seq_oral_oral___oral_genital_passive_count,14,0.043792417486781345,0.312744140625
+CD del,baseline,Contact_passive_count,10,-0.025243225135833547,0.31640625
+CD del,baseline,Contact_active_count,10,-0.025243225135833547,0.31640625
+16p,post_stress,Group_4_break_mean_duration,14,0.059627603032445534,0.3179931640625
+CD del,baseline,Stop_in_contact_passive_count,10,-0.024846450525904874,0.3203125
+16p,baseline,Approach_contact_passive_count,8,-0.08051170701796184,0.3203125
+16p,post_stress,Oral_oral_Contact_std_duration,14,0.0619267330670354,0.3262939453125
+16p,baseline,Side_by_side_Contact_opposite_way_std_duration,8,-0.05992469752274496,0.328125
+CD del,post_stress,Social_escape_std_duration,12,-0.014585237915098637,0.33349609375
+16p,post_stress,Move_in_contact_active_count,14,0.017956892409879747,0.3345947265625
+16p,baseline,Break_contact_active_count,8,0.05618213481544619,0.3359375
+CD del,post_stress,Approach_rear_mean_duration,12,-0.008082835273257816,0.3359375
+CD del,post_stress,isolated_std_duration,12,0.09690983597631601,0.3408203125
+16p,baseline,Group_4_make_count,8,0.14764964576740336,0.34375
+16p,post_stress,seq_oral_geni___oral_oral_passive_count,14,0.03760043016655982,0.3468017578125
+CD del,post_stress,WallJump_std_duration,12,0.08875165216206199,0.35009765625
+16p,post_stress,Rear_isolated_count,14,-0.16482004342917658,0.350830078125
+CD del,post_stress,Social_escape_mean_duration,12,0.00460112770643695,0.35107421875
+16p,baseline,Stop_std_duration,8,-0.12076429075672732,0.3515625
+16p,baseline,Oral_genital_Contact_std_duration,8,-0.028513609685158516,0.3515625
+CD del,post_stress,Rear_in_centerWindow_std_duration,12,0.10524026798093923,0.3525390625
+CD del,baseline,Approach_contact_mean_duration,10,0.004490927566317559,0.36328125
+CD del,baseline,Social_approach_active_count,10,-0.02070800758856883,0.36328125
+16p,post_stress,Side_by_side_Contact_passive_count,14,-0.02598278312533602,0.36376953125
+16p,post_stress,Side_by_side_Contact_active_count,14,-0.02598278312533602,0.36376953125
+16p,baseline,SAP_mean_duration,8,-0.035120015036511076,0.3671875
+16p,baseline,Huddling_mean_duration,8,0.04885385409597391,0.3671875
+CD del,post_stress,Approach_contact_passive_count,12,0.031645211568398134,0.36865234375
+CD del,baseline,seq_oral_oral___oral_genital_mean_duration,10,0.01567939005031386,0.373046875
+CD del,post_stress,Move_in_contact_std_duration,12,-0.02348065221959444,0.37841796875
+CD del,post_stress,Stop_isolated_std_duration,12,0.10718711852053926,0.3837890625
+CD del,baseline,isolated_count,10,-0.06059522039386069,0.38671875
+CD del,baseline,Group_3_make_mean_duration,10,0.02204285409574365,0.388671875
+16p,baseline,Move_isolated_std_duration,8,-0.24924289056228238,0.3984375
+16p,baseline,Huddling_std_duration,8,0.12471720912614001,0.3984375
+CD del,baseline,Rear_in_centerWindow_mean_duration,10,-0.04958803692718339,0.400390625
+CD del,baseline,Approach_rear_passive_count,10,-0.021331205787138242,0.40234375
+CD del,baseline,Social_escape_std_duration,10,0.014929904087859703,0.40625
+CD del,post_stress,Side_by_side_Contact_opposite_way_mean_duration,12,0.011743134883167694,0.40966796875
+CD del,post_stress,isolated_mean_duration,12,-0.05632630785436445,0.41064453125
+CD del,baseline,Get_away_std_duration,10,0.007470219379287349,0.421875
+16p,post_stress,WallJump_mean_duration,14,-0.04539445744208289,0.424072265625
+CD del,post_stress,SAP_mean_duration,12,-0.03913756386084472,0.42919921875
+16p,baseline,Stop_isolated_std_duration,8,0.12671661380304566,0.4296875
+16p,post_stress,Get_away_std_duration,14,-0.007309053678415642,0.4306640625
+CD del,post_stress,Oral_genital_Contact_active_count,12,-0.016919536413837682,0.4384765625
+16p,baseline,Oral_oral_Contact_std_duration,8,-0.02236512710646004,0.4453125
+16p,post_stress,WallJump_std_duration,14,0.05446915925270325,0.451171875
+CD del,post_stress,Rearing_std_duration,12,-0.03861593379065486,0.45166015625
+CD del,baseline,Stop_in_contact_active_count,10,-0.017434268067143998,0.455078125
+16p,post_stress,Oral_genital_Contact_passive_count,14,-0.0198502993010008,0.4581298828125
+16p,baseline,Group_4_make_std_duration,8,0.08475280987397607,0.4609375
+16p,baseline,Group_4_make_mean_duration,8,0.04566248515592955,0.4609375
+16p,baseline,seq_oral_geni___oral_oral_std_duration,8,0.101694453013814,0.4609375
+16p,baseline,SAP_std_duration,8,-0.14841960139659768,0.4609375
+CD del,post_stress,Stop_in_contact_mean_duration,12,0.01677130072469483,0.4619140625
+CD del,post_stress,Side_by_side_Contact_mean_duration,12,-0.006234790066618389,0.46484375
+CD del,post_stress,Approach_std_duration,12,0.009195365429592683,0.4658203125
+CD del,post_stress,Get_away_std_duration,12,-0.005215044674999759,0.47314453125
+16p,post_stress,seq_oral_geni___oral_oral_std_duration,14,0.08976070294847702,0.47412109375
+CD del,post_stress,Contact_mean_duration,12,0.016001288498884866,0.48046875
+CD del,post_stress,Break_contact_std_duration,12,0.015692634381425638,0.48193359375
+CD del,baseline,Rearing_std_duration,10,-0.05582251169644331,0.5
+CD del,baseline,Social_escape_passive_count,10,0.01212122358831368,0.501953125
+CD del,post_stress,Approach_contact_mean_duration,12,0.004460855277172664,0.50244140625
+CD del,post_stress,Train2_active_count,12,-0.10856241857459599,0.5087890625
+16p,post_stress,Get_away_mean_duration,14,-0.003283865594331079,0.518310546875
+16p,post_stress,Group2_passive_count,14,0.01668233809998533,0.5196533203125
+16p,post_stress,Group2_active_count,14,0.016529834111725,0.522216796875
+16p,post_stress,Side_by_side_Contact_std_duration,14,-0.027994409225909764,0.5286865234375
+16p,post_stress,Group_4_make_std_duration,14,0.04650591392309267,0.534423828125
+CD del,post_stress,Group_3_break_mean_duration,12,0.022184684947419462,0.53466796875
+16p,post_stress,Group_4_break_count,14,0.12461083755996964,0.537353515625
+16p,baseline,seq_oral_oral___oral_genital_mean_duration,8,-0.014464219420443887,0.5390625
+CD del,baseline,Center_Zone_std_duration,10,0.10503331892650125,0.54296875
+16p,baseline,Rear_in_centerWindow_count,8,0.16576717018258125,0.546875
+16p,baseline,Social_escape_active_count,8,-0.012783354854919,0.546875
+CD del,post_stress,Group_4_make_count,12,0.09345131480714058,0.5517578125
+CD del,post_stress,Oral_genital_Contact_mean_duration,12,0.005535481598349142,0.556640625
+16p,post_stress,Group_3_break_mean_duration,14,0.014085158918532336,0.5643310546875
+16p,post_stress,Group_4_make_count,14,0.07458866648391185,0.564453125
+CD del,baseline,Group2_passive_count,10,-0.01185334931490477,0.564453125
+CD del,post_stress,Move_in_contact_mean_duration,12,-0.0020908982712767583,0.56640625
+16p,post_stress,Move_isolated_mean_duration,14,-0.021457693891096693,0.566650390625
+CD del,baseline,Group2_active_count,10,-0.011609990299158709,0.572265625
+CD del,post_stress,Group_3_break_std_duration,12,0.05247692783010929,0.5771484375
+CD del,post_stress,Rear_in_contact_mean_duration,12,-0.009991575767646125,0.58056640625
+CD del,post_stress,seq_oral_geni___oral_oral_passive_count,12,0.027335818533609817,0.5810546875
+16p,post_stress,Huddling_std_duration,14,0.08034619177879321,0.5845947265625
+16p,baseline,Rearing_std_duration,8,-0.037477452099630895,0.5859375
+CD del,baseline,Group_4_make_mean_duration,10,0.03569891537934626,0.587890625
+CD del,baseline,Rearing_mean_duration,10,-0.04520439155712726,0.587890625
+16p,post_stress,Social_approach_passive_count,14,-0.012856874782973746,0.5927734375
+16p,post_stress,seq_oral_oral___oral_genital_mean_duration,14,-0.01294690759219135,0.5933837890625
+CD del,post_stress,Group2_std_duration,12,-0.023580884355180593,0.59619140625
+CD del,baseline,Group_4_break_std_duration,10,-0.06758016853428384,0.59765625
+CD del,post_stress,Group_3_make_std_duration,12,0.05952276323875286,0.5986328125
+16p,post_stress,SAP_mean_duration,14,0.02950822796920318,0.6016845703125
+16p,post_stress,Approach_std_duration,14,-0.007687471762141698,0.6026611328125
+CD del,post_stress,Side_by_side_Contact_std_duration,12,0.01841103351287467,0.60400390625
+CD del,post_stress,Train2_mean_duration,12,0.009743545086921797,0.6083984375
+16p,baseline,Group_4_break_std_duration,8,0.04769826791589733,0.6171875
+16p,post_stress,Approach_rear_active_count,14,-0.010616706509944864,0.6241455078125
+16p,baseline,Rear_isolated_std_duration,8,-0.10104869418149849,0.625
+16p,baseline,Break_contact_std_duration,8,-0.004903418544853601,0.625
+CD del,baseline,SAP_count,10,-0.02570221399268836,0.625
+CD del,post_stress,Oral_genital_Contact_std_duration,12,-0.018391154024490517,0.62744140625
+CD del,post_stress,seq_oral_geni___oral_oral_std_duration,12,-0.03049659490965956,0.62939453125
+16p,baseline,Get_away_active_count,8,0.013118443811034776,0.6328125
+CD del,baseline,Break_contact_mean_duration,10,-0.00116714734018395,0.640625
+16p,post_stress,Move_in_contact_mean_duration,14,-0.0026252888561628792,0.64208984375
+16p,post_stress,Group_3_make_mean_duration,14,0.010454811007771042,0.6427001953125
+16p,post_stress,Move_in_contact_std_duration,14,-0.005193732313728644,0.6429443359375
+CD del,post_stress,Side_by_side_Contact_active_count,12,-0.007693274373109083,0.64306640625
+CD del,post_stress,Side_by_side_Contact_passive_count,12,-0.007693274373109083,0.64306640625
+CD del,post_stress,Rear_in_contact_std_duration,12,-0.03988348602248743,0.64306640625
+CD del,baseline,Oral_genital_Contact_active_count,10,0.011547743276436404,0.646484375
+CD del,baseline,seq_oral_oral___oral_genital_active_count,10,-0.01969773420688956,0.646484375
+CD del,post_stress,Rear_isolated_mean_duration,12,-0.016770700198050766,0.650390625
+CD del,baseline,Huddling_std_duration,10,0.06014376650074741,0.650390625
+CD del,baseline,Move_in_contact_active_count,10,-0.01012988390077182,0.65234375
+16p,post_stress,Group_3_make_std_duration,14,-0.030534201017076053,0.6552734375
+16p,baseline,Break_contact_mean_duration,8,-0.0016576156398335502,0.65625
+CD del,post_stress,seq_oral_oral___oral_genital_mean_duration,12,0.009229157291401377,0.6650390625
+CD del,baseline,Oral_oral_Contact_mean_duration,10,0.004398965937799709,0.666015625
+CD del,baseline,Side_by_side_Contact_mean_duration,10,0.008342875190329618,0.666015625
+CD del,baseline,Oral_oral_Contact_passive_count,10,-0.01031768634908791,0.66796875
+CD del,baseline,Oral_oral_Contact_active_count,10,-0.01031768634908791,0.66796875
+16p,baseline,Train2_passive_count,8,-0.08738661379630316,0.671875
+16p,baseline,Train2_mean_duration,8,0.03208140522157177,0.671875
+16p,baseline,seq_oral_oral___oral_genital_active_count,8,-0.01683875023813784,0.671875
+CD del,post_stress,Break_contact_mean_duration,12,-0.001607075316959092,0.67333984375
+CD del,post_stress,Rearing_mean_duration,12,-0.022078814560991384,0.67333984375
+CD del,post_stress,Social_approach_std_duration,12,-0.00718598635101905,0.6806640625
+16p,post_stress,Social_escape_active_count,14,0.007476994592675374,0.6876220703125
+16p,baseline,Approach_passive_count,8,0.006247130182964751,0.703125
+16p,post_stress,Oral_genital_Contact_active_count,14,0.009375807346675511,0.708251953125
+CD del,baseline,Break_contact_std_duration,10,0.0028066230086904345,0.708984375
+CD del,post_stress,Contact_std_duration,12,-0.011266569169222104,0.7138671875
+CD del,post_stress,Group_3_make_mean_duration,12,0.01831084002608945,0.71533203125
+CD del,baseline,seq_oral_geni___oral_oral_active_count,10,-0.015108489392158647,0.720703125
+16p,baseline,Group_3_break_std_duration,8,-0.12101712701545006,0.7265625
+CD del,post_stress,Stop_in_contact_std_duration,12,-0.011929579005997379,0.7265625
+16p,post_stress,Side_by_side_Contact_opposite_way_active_count,14,-0.009074855280247906,0.72900390625
+16p,post_stress,Side_by_side_Contact_opposite_way_passive_count,14,-0.009074855280247906,0.72900390625
+16p,post_stress,Oral_genital_Contact_std_duration,14,0.009482167923834802,0.7322998046875
+CD del,post_stress,seq_oral_oral___oral_genital_passive_count,12,0.009720440004515074,0.732421875
+16p,post_stress,Break_contact_mean_duration,14,-0.001457305588570714,0.7325439453125
+16p,baseline,Group_3_make_std_duration,8,-0.12135293583737308,0.734375
+16p,baseline,Get_away_passive_count,8,0.002605207811265926,0.7421875
+CD del,post_stress,Side_by_side_Contact_opposite_way_active_count,12,0.0062424508717069315,0.7451171875
+CD del,post_stress,Side_by_side_Contact_opposite_way_passive_count,12,0.0062424508717069315,0.7451171875
+16p,baseline,Group_4_break_count,8,0.04346273622842418,0.75
+CD del,baseline,WallJump_count,10,-0.039562047629882836,0.75
+CD del,baseline,Approach_active_count,10,-0.0024669738272812694,0.751953125
+16p,post_stress,Move_isolated_std_duration,14,-0.09992636603635326,0.7545166015625
+CD del,post_stress,Side_by_side_Contact_opposite_way_std_duration,12,-0.014141908504224684,0.76220703125
+16p,baseline,Train2_std_duration,8,0.01409042232975245,0.7734375
+CD del,baseline,Rear_isolated_std_duration,10,-0.018578397434593243,0.77734375
+16p,post_stress,SAP_std_duration,14,0.04150799844673419,0.7779541015625
+16p,post_stress,Group_3_break_std_duration,14,-0.017083823525466856,0.7813720703125
+16p,baseline,seq_oral_oral___oral_genital_std_duration,8,-0.047685775967508476,0.7890625
+CD del,post_stress,Rear_at_periphery_mean_duration,12,-0.010646032407907046,0.79296875
+CD del,baseline,WallJump_mean_duration,10,-0.009725076011262523,0.796875
+16p,post_stress,Group_3_make_count,14,0.022635725393745552,0.79931640625
+CD del,post_stress,seq_oral_oral___oral_genital_std_duration,12,0.016514888453767855,0.8056640625
+CD del,baseline,Group_4_make_std_duration,10,-0.035634289814076264,0.806640625
+CD del,baseline,Rearing_count,10,0.018712370209886763,0.810546875
+CD del,baseline,isolated_std_duration,10,0.03626602437271167,0.814453125
+16p,post_stress,Rear_in_centerWindow_std_duration,14,-0.03605179088975962,0.8153076171875
+CD del,post_stress,seq_oral_geni___oral_oral_active_count,12,-0.007374448593094433,0.81689453125
+CD del,baseline,Rear_at_periphery_std_duration,10,-0.015494985707175673,0.826171875
+16p,post_stress,Train2_passive_count,14,-0.045925531145434975,0.826416015625
+CD del,post_stress,Move_isolated_std_duration,12,-0.037542790675402546,0.82763671875
+16p,post_stress,seq_oral_geni___oral_oral_mean_duration,14,-0.004663192506092215,0.82958984375
+16p,baseline,Side_by_side_Contact_std_duration,8,-0.009461808773188774,0.8359375
+16p,post_stress,Rear_in_centerWindow_mean_duration,14,0.020323163081910022,0.8372802734375
+CD del,post_stress,Oral_oral_Contact_mean_duration,12,0.001639320755759583,0.84130859375
+16p,post_stress,Approach_passive_count,14,-0.0020820909782506654,0.8433837890625
+16p,baseline,Stop_isolated_mean_duration,8,-0.017969835425796457,0.84375
+CD del,post_stress,Break_contact_passive_count,12,0.003836674746594849,0.84716796875
+16p,baseline,Rearing_mean_duration,8,0.007907023560122461,0.859375
+CD del,baseline,SAP_std_duration,10,-0.022632789054173708,0.869140625
+CD del,post_stress,SAP_std_duration,12,0.02011590411488554,0.87109375
+CD del,baseline,Stop_isolated_std_duration,10,0.02052938902029859,0.87109375
+CD del,post_stress,Get_away_mean_duration,12,-0.00028579795529375823,0.8720703125
+16p,post_stress,Social_escape_std_duration,14,-0.003571722308527344,0.8734130859375
+16p,baseline,Move_isolated_mean_duration,8,0.012365791565889225,0.875
+16p,post_stress,Group_4_make_mean_duration,14,-0.0069324327996165514,0.88037109375
+16p,baseline,Rearing_count,8,-0.007775888595547793,0.8828125
+16p,baseline,Rear_in_centerWindow_mean_duration,8,0.0852263079975126,0.8828125
+16p,post_stress,Rear_in_centerWindow_count,14,0.030395313933408642,0.8839111328125
+16p,baseline,Group2_active_count,8,0.0040553792588026265,0.890625
+CD del,baseline,Side_by_side_Contact_std_duration,10,0.00513549741329587,0.900390625
+CD del,post_stress,Rearing_count,12,0.005725262629581951,0.90576171875
+16p,baseline,Group2_passive_count,8,0.003493839793118802,0.90625
+16p,baseline,Group_3_make_mean_duration,8,-0.006133740501542251,0.90625
+CD del,baseline,Oral_oral_Contact_std_duration,10,0.004433647933199053,0.91015625
+CD del,post_stress,Group_4_break_count,12,-0.011837962657017148,0.912109375
+16p,post_stress,isolated_count,14,-0.00858940846795829,0.91845703125
+16p,baseline,Train2_active_count,8,-0.02322029281422737,0.9296875
+CD del,baseline,seq_oral_geni___oral_oral_std_duration,10,0.006400547562078879,0.93359375
+CD del,baseline,Social_approach_passive_count,10,0.0016841900230183226,0.93359375
+CD del,baseline,Group_4_break_mean_duration,10,-0.005877424914652441,0.9375
+16p,baseline,WallJump_mean_duration,8,0.008215749157851959,0.9453125
+CD del,post_stress,Group2_mean_duration,12,0.0015467551872877072,0.951171875
+16p,baseline,WallJump_std_duration,8,-0.004994463856647285,0.953125
+16p,baseline,Rear_at_periphery_count,8,0.01063657312064338,0.953125
+16p,baseline,Group_3_break_mean_duration,8,-0.007336089079258026,0.953125
+CD del,baseline,WallJump_std_duration,10,0.003908386185736395,0.95703125
+16p,baseline,Rear_isolated_count,8,0.023492438893542716,0.9609375
+16p,post_stress,seq_oral_oral___oral_genital_std_duration,14,-0.0027945776064211675,0.9681396484375
+CD del,post_stress,seq_oral_geni___oral_oral_mean_duration,12,0.0006806361518207827,0.97021484375
+16p,baseline,seq_oral_geni___oral_oral_mean_duration,8,-0.0015307502416481017,0.9765625
+CD del,post_stress,Approach_contact_std_duration,12,-0.000759962363715967,0.9775390625
+CD del,baseline,isolated_mean_duration,10,-0.003666456736224745,0.982421875
+CD del,baseline,Move_in_contact_passive_count,10,0.0005052898755421087,0.984375
+16p,post_stress,Group_3_break_count,14,-0.0011161360914763688,0.98681640625
+16p,baseline,Rear_in_centerWindow_std_duration,8,0.12729877435518658,0.9921875
+16p,post_stress,Side_by_side_Contact_opposite_way_std_duration,14,0.0002642055535230622,0.9945068359375
+CD del,baseline,Move_isolated_std_duration,10,0.015385959226919252,0.998046875
