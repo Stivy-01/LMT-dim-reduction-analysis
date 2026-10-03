@@ -39,7 +39,7 @@ ENV/
 *.sqlite
 *.sqlite3
 *.log
-
+*.html
 # OS specific
 .DS_Store
 Thumbs.db
